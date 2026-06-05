@@ -141,6 +141,7 @@ export default function TargetTrainer() {
 
   // Refs for high-performance game loop
   const containerRef = useRef<HTMLDivElement>(null);
+  const containerRectRef = useRef<DOMRect | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const heatmapCanvasRef = useRef<HTMLCanvasElement>(null);
   const distributionCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -187,8 +188,29 @@ export default function TargetTrainer() {
     isPausedRef.current = isPaused;
   }, [isPaused]);
 
+  // Sync container rect on resize/scroll
+  useEffect(() => {
+    const updateRect = () => {
+      if (containerRef.current) {
+        containerRectRef.current = containerRef.current.getBoundingClientRect();
+      }
+    };
+    
+    updateRect();
+    window.addEventListener('resize', updateRect);
+    window.addEventListener('scroll', updateRect);
+    return () => {
+      window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect);
+    };
+  }, []);
+
   // Handle Pause on Mouse Leave
   const handleMouseEnter = () => {
+    if (containerRef.current) {
+      containerRectRef.current = containerRef.current.getBoundingClientRect();
+    }
+    
     if (gameState === 'playing' && isPaused) {
       const now = performance.now();
       const pausedDuration = now - pauseTimeRef.current;
@@ -232,8 +254,8 @@ export default function TargetTrainer() {
   // --- GAME LOGIC ---
 
   const spawnTarget = useCallback(() => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
+    if (!containerRef.current || !containerRectRef.current) return;
+    const rect = containerRectRef.current;
     const radius = TARGET_SIZES[settings.targetSize];
     
     let x, y;
@@ -401,7 +423,7 @@ export default function TargetTrainer() {
     }
 
     // Mode Specific Logic
-    const rect = containerRef.current?.getBoundingClientRect();
+    const rect = containerRectRef.current;
     if (!rect) return;
 
     if (mode === 'tracking') {
@@ -485,7 +507,7 @@ export default function TargetTrainer() {
     if (gameState !== 'playing') return;
     if (mode === 'tracking') return; // No clicks in tracking
 
-    const rect = containerRef.current?.getBoundingClientRect();
+    const rect = containerRectRef.current;
     if (!rect) return;
 
     const mouseX = e.clientX - rect.left;
@@ -552,7 +574,7 @@ export default function TargetTrainer() {
   // Mouse move for tracking
   const mousePosRef = useRef({ x: 0, y: 0 });
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect();
+    const rect = containerRectRef.current;
     if (!rect) return;
     
     const x = e.clientX - rect.left;
@@ -884,7 +906,7 @@ export default function TargetTrainer() {
         {/* Custom Crosshair */}
         <div 
           ref={crosshairRef}
-          className="pointer-events-none absolute top-0 left-0 z-50 flex items-center justify-center w-0 h-0"
+          className="pointer-events-none absolute top-0 left-0 z-50 flex items-center justify-center w-0 h-0 will-change-transform"
           style={{ 
             display: settings.crosshair.enabled ? 'flex' : 'none'
           }}
