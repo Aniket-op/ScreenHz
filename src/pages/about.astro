@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = "About Screen HZ | How We Measure Your Setup";
+const description = "Learn how Screen HZ measures monitor refresh rate, FPS, mouse DPI, and input latency with professional accuracy.";
+---
+
+<Base title={title} description={description}>
+  <section class="py-[80px] w-full">
+    <div class="max-w-[760px] mx-auto px-6">
+      <div class="text-[11px] font-mono font-bold text-muted tracking-[0.14em] uppercase mb-4">
+        OUR MISSION
+      </div>
+      <h1 class="text-display-xl text-brand mb-8 tracking-tighter">Know Your Setup.</h1>
+      
+      <p class="text-body-lg text-muted leading-relaxed mb-12">
+        Screen HZ was built for gamers, by gamers. We realized that many people don't actually know if their expensive hardware is performing as advertised. Whether it's a monitor stuck at 60Hz or a mouse with hidden input lag, we help you find and fix it.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 mb-16">
+        <div>
+          <h2 class="text-display-sm text-cyber mb-4">Refresh Rate (Hz)</h2>
+          <p class="text-body-sm text-muted leading-relaxed">
+            We use the <code class="text-cyber bg-surface px-1.5 py-0.5 rounded font-mono">requestAnimationFrame</code> API to measure exactly how many times per second your browser is able to paint a new frame to your screen. By tracking the high-resolution timestamps of these frames, we can detect your monitor's true physical refresh rate.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-display-sm text-neon mb-4">FPS & Stability</h2>
+          <p class="text-body-sm text-muted leading-relaxed">
+            Frame Rate (FPS) is how many frames your GPU is generating. We measure the delta between frames to calculate a "Smoothness Score". If your frame times vary wildly, you'll experience "stuttering" even if your average FPS is high.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-display-sm text-heat mb-4">Mouse Polling Rate</h2>
+          <p class="text-body-sm text-muted leading-relaxed">
+            Your mouse sends data to your PC at a specific frequency (Hz). A 1000Hz mouse sends data every 1ms. We track these micro-movements to estimate your mouse's actual report rate. If your polling rate is unstable, your aim will feel inconsistent.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-display-sm text-pulse mb-4">Reaction Time</h2>
+          <p class="text-body-sm text-muted leading-relaxed">
+            Human reaction time is only part of the equation. Your monitor's input lag and your mouse's click latency also play a role. Our reaction test measures the end-to-end "photon-to-click" pipeline in your browser environment.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="text-display-md text-brand mb-6">Why browser-based?</h2>
+      <p class="text-body-md text-muted leading-relaxed mb-8">
+        Modern browsers like Chrome and Edge have incredibly optimized rendering engines and high-precision timers. By building Screen HZ as a web app, we provide a zero-install tool that works across Windows, macOS, and Linux instantly. It's the fastest way to check a new monitor or calibrate a new mouse.
+      </p>
+
+      <div class="bg-surface p-8 rounded-[14px] shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
+        <h3 class="text-display-sm text-brand mb-4">Professional Standards</h3>
+        <p class="text-body-sm text-muted leading-relaxed">
+          Our algorithms are designed to filter out background noise and OS-level interruptions to give you the most accurate reading possible. For the best results, we recommend closing other tabs and disabling hardware-intensive background apps while running the benchmarks.
+        </p>
+      </div>
+
+      <div class="mt-16 flex justify-center">
+        <a href="/" class="px-12 py-4 bg-brand text-bg font-bold rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-widest">
+          Back to Benchmarks
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

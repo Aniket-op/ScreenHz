@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = "How to Improve FPS for Gaming | Screen HZ Guides";
+const description = "Top tips and tricks to boost your FPS and reduce input lag in any game.";
+
+const article = {
+  publishedTime: "2026-06-05T12:00:00Z",
+  modifiedTime: new Date().toISOString(),
+  author: "Screen HZ Team"
+};
+---
+
+<Base title={title} description={description} article={article} ogType="article">
+  <article class="py-24">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <nav class="flex gap-2 text-xs font-bold uppercase tracking-widest text-muted mb-8">
+        <a href="/" class="hover:text-brand">Home</a>
+        <span>/</span>
+        <a href="/guides" class="hover:text-brand">Guides</a>
+        <span>/</span>
+        <span class="text-brand">Improve FPS</span>
+      </nav>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand tracking-tighter mb-8 leading-tight">
+        How to Improve FPS for Gaming
+      </h1>
+
+      <div class="prose prose-invert max-w-none">
+        <p class="text-lg text-muted leading-relaxed mb-6">
+          High FPS (Frames Per Second) is crucial for a competitive edge. It reduces input lag and makes tracking enemies much easier.
+        </p>
+
+        <h2 class="text-2xl font-bold text-brand mt-12 mb-4">Quick Optimization Tips</h2>
+        <ul class="text-muted space-y-4">
+          <li><strong>Update GPU Drivers:</strong> Always keep your NVIDIA or AMD drivers up to date.</li>
+          <li><strong>Lower Graphics Settings:</strong> Shadows and volumetric lighting are the biggest performance killers.</li>
+          <li><strong>Enable Game Mode:</strong> Windows Game Mode can help prioritize your game's CPU and GPU usage.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import App from '../components/App';
+
+const title = "What Is My Refresh Rate? | Screen HZ";
+const description = "Free browser tool to test your monitor refresh rate, FPS, mouse DPI, poll rate and reaction time.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Screen HZ",
+  "url": "https://screenhz.app",
+  "description": description,
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any"
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <App client:load />
+
+  <!-- SECTION 9 — GUIDES TEASER -->
+  <section id="guides" class="w-full py-[80px]">
+    <div class="max-w-[760px] mx-auto px-6">
+      <div class="text-[11px] font-mono font-bold text-muted tracking-[0.14em] uppercase mb-4">
+        LEARN MORE
+      </div>
+      <h2 class="text-display-lg text-brand mb-12">Guides & Theory</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/guides/what-is-refresh-rate" class="block p-6 rounded-[14px] bg-surface hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="mb-3 text-brand">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+          </div>
+          <h3 class="text-body-md font-bold text-brand mb-2">What Is Monitor Refresh Rate?</h3>
+          <p class="text-caption text-muted mb-4">Learn why Hz matters.</p>
+          <div class="text-caption font-bold text-cyber">Read &rarr;</div>
+        </a>
+        <a href="/guides/what-is-mouse-dpi" class="block p-6 rounded-[14px] bg-surface hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="mb-3 text-brand">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+          </div>
+          <h3 class="text-body-md font-bold text-brand mb-2">What Is Mouse DPI?</h3>
+          <p class="text-caption text-muted mb-4">Demystifying sensitivity.</p>
+          <div class="text-caption font-bold text-cyber">Read &rarr;</div>
+        </a>
+        <a href="/guides/improve-fps-gaming" class="block p-6 rounded-[14px] bg-surface hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="mb-3 text-brand">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <h3 class="text-body-md font-bold text-brand mb-2">How to Improve Gaming FPS</h3>
+          <p class="text-caption text-muted mb-4">Optimize your rig.</p>
+          <div class="text-caption font-bold text-cyber">Read &rarr;</div>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/layout/SEOHead.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  article?: {
+    publishedTime: string;
+    modifiedTime: string;
+    author: string;
+  };
+  jsonLd?: object;
+}
+
+const { title, description, ...seoProps } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEOHead title={title} description={description} {...seoProps} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

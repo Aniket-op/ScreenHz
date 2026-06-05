@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = "What is Monitor Refresh Rate (Hz)? | Screen HZ Guides";
+const description = "Everything you need to know about monitor refresh rates, Hz, and why it matters for gaming and productivity.";
+
+const article = {
+  publishedTime: "2026-06-05T12:00:00Z",
+  modifiedTime: new Date().toISOString(),
+  author: "Screen HZ Team"
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": { "@type": "Organization", "name": "Screen HZ" },
+  "datePublished": article.publishedTime,
+  "dateModified": article.modifiedTime
+};
+---
+
+<Base title={title} description={description} article={article} jsonLd={jsonLd} ogType="article">
+  <article class="py-24">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <nav class="flex gap-2 text-xs font-bold uppercase tracking-widest text-muted mb-8">
+        <a href="/" class="hover:text-brand">Home</a>
+        <span>/</span>
+        <a href="/guides" class="hover:text-brand">Guides</a>
+        <span>/</span>
+        <span class="text-brand">Refresh Rate</span>
+      </nav>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-brand tracking-tighter mb-8 leading-tight">
+        What is Monitor Refresh Rate?
+      </h1>
+
+      <div class="prose prose-invert max-w-none">
+        <p class="text-lg text-muted leading-relaxed mb-6">
+          The refresh rate of your monitor is the number of times per second that the image on the screen is updated. This is measured in Hertz (Hz). For example, a 60Hz monitor refreshes its image 60 times per second.
+        </p>
+
+        <h2 class="text-2xl font-bold text-brand mt-12 mb-4">Why does Hz matter?</h2>
+        <p class="text-muted leading-relaxed mb-6">
+          Higher refresh rates result in smoother motion. In fast-paced games, a higher Hz allows you to see enemy movements more clearly and reduces "motion blur." It also makes your computer feel more responsive because the time between your mouse movement and the screen updating is reduced.
+        </p>
+
+        <div class="bg-surface p-6 rounded-xl border border-border my-8">
+          <h3 class="text-lg font-bold text-cyber mb-2">The 60Hz vs 144Hz Difference</h3>
+          <p class="text-sm text-muted leading-relaxed">
+            A 60Hz monitor has a "frame time" of 16.67ms. A 144Hz monitor has a frame time of just 6.94ms. That's nearly a 10ms advantage in visual information!
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-brand mt-12 mb-4">How to check your Hz</h2>
+        <p class="text-muted leading-relaxed mb-6">
+          Many people buy high-refresh-rate monitors but forget to enable the setting in their operating system. You can check yours instantly using our <a href="/#benchmarks" class="text-cyber hover:underline">Refresh Rate Detector</a>.
+        </p>
+
+        <div class="mt-16 p-8 bg-surface-elevated rounded-2xl border border-border text-center">
+          <h3 class="text-2xl font-bold text-brand mb-4">Ready to test your screen?</h3>
+          <p class="text-muted mb-8">Run our professional refresh rate test in seconds.</p>
+          <a href="/#benchmarks" class="inline-block px-8 py-3 bg-brand text-bg font-bold rounded-full hover:bg-brand-muted transition-all">
+            Test My Monitor Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Base>
