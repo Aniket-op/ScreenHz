@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import ReactionTimer from '../components/benchmarks/ReactionTimer.tsx';
+
+const title = "Reaction Time Test — Measure Your Milliseconds";
+const description = "Test your human reaction time down to the millisecond. See how fast you react to visual stimuli compared to professional esports players.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Reaction Time Test",
+  "url": "https://screenhz.com/reaction-time",
+  "description": description,
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "featureList": ["Sub-millisecond accuracy", "Average calculation", "Visual stimulus response"],
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="bench-page">
+    <div class="bench-header">
+      <a href="/" class="bench-back">← Back</a>
+      <h1 class="bench-title">{title}</h1>
+      <p class="bench-subtitle">{description}</p>
+    </div>
+    
+    <ReactionTimer client:load />
+
+    <section class="seo-article">
+      <h2>Average Human Reaction Time</h2>
+      <p>The average human reaction time to a visual stimulus is around <strong>250 milliseconds (ms)</strong>. Professional esports players often have reaction times ranging between <strong>150ms to 200ms</strong>.</p>
+      
+      <h3>Hardware Latency Matters</h3>
+      <p>When you take a reaction time test online, you aren't just testing your brain and muscles. You are testing the entire "system latency". This includes:</p>
+      <ul style="list-style-type: disc; margin-left: 2rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6;">
+        <li><strong>Monitor Latency:</strong> How fast the screen draws the green color (Refresh Rate + Response Time)</li>
+        <li><strong>Input Latency:</strong> How fast your mouse sends the click signal (Polling Rate)</li>
+        <li><strong>System Latency:</strong> How fast your PC processes the click and updates the browser</li>
+      </ul>
+      <p>If you have a 60Hz monitor and a cheap mouse, you might have an extra 30-50ms of lag built into your score compared to a pro using a 360Hz monitor and a 4000Hz mouse.</p>
+    </section>
+  </div>
+</Base>

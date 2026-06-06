@@ -1,33 +1,27 @@
 ---
+import '../styles/tokens.css';
 import '../styles/global.css';
+import '../styles/animations.css';
 import SEOHead from '../components/layout/SEOHead.astro';
-import Header from '../components/layout/Header.astro';
+import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 
 interface Props {
   title: string;
   description: string;
-  canonical?: string;
-  ogImage?: string;
-  ogType?: 'website' | 'article';
-  article?: {
-    publishedTime: string;
-    modifiedTime: string;
-    author: string;
-  };
   jsonLd?: object;
 }
 
-const { title, description, ...seoProps } = Astro.props;
+const { title, description, jsonLd } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <SEOHead title={title} description={description} {...seoProps} />
+    <SEOHead title={title} description={description} slug={Astro.url.pathname} jsonLd={jsonLd} />
   </head>
   <body>
-    <Header />
+    <Nav />
     <main>
       <slot />
     </main>

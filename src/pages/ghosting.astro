@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import GhostingTest from '../components/benchmarks/GhostingTest.tsx';
+
+const title = "Monitor Ghosting & Pixel Response Time Test";
+const description = "Test your monitor's pixel response time and ghosting. Use pursuit camera testing to see pixel smearing and inverse ghosting (overshoot).";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Monitor Ghosting & Pixel Response Time Test",
+  "url": "https://screenhz.com/ghosting",
+  "description": description,
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "featureList": ["Overdrive simulation", "Persistence trail visualization"],
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="bench-page">
+    <div class="bench-header">
+      <a href="/" class="bench-back">← Back</a>
+      <h1 class="bench-title">{title}</h1>
+      <p class="bench-subtitle">{description}</p>
+    </div>
+    
+    <GhostingTest client:load />
+
+    <section class="seo-article">
+      <h2>What is Monitor Ghosting?</h2>
+      <p>Ghosting occurs when a display's pixels cannot transition from one color to another fast enough to keep up with the moving image. This leaves a visible trail or "ghost" behind moving objects, ruining motion clarity in fast-paced games.</p>
+      
+      <h3>Pixel Response Time (GtG)</h3>
+      <p>The speed at which pixels change color is called Grey-to-Grey (GtG) response time. A 144Hz monitor needs a response time of at least 6.94ms to transition pixels in time for the next frame. If the response time is slower than the refresh window, severe smearing happens.</p>
+      
+      <h3>What is Overdrive and Inverse Ghosting?</h3>
+      <p>To reduce ghosting, monitor manufacturers use a technique called <strong>Overdrive</strong> (sometimes labeled as Trace Free, Response Time, or Overdrive in the OSD). This sends a higher voltage to the pixel to force it to transition faster. However, setting overdrive too high causes the pixel to overshoot its target color, resulting in a bright, discolored halo behind the moving object known as <strong>Inverse Ghosting</strong> or Corona.</p>
+    </section>
+  </div>
+</Base>

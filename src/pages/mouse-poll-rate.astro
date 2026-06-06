@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PollRateMeter from '../components/benchmarks/PollRateMeter.tsx';
+
+const title = "Mouse Poll Rate & Jitter Test — 125Hz to 8000Hz";
+const description = "Test your gaming mouse polling rate online. Measure exact Hz, standard deviation, and detect jitter in your mouse sensor.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mouse Poll Rate & Jitter Test",
+  "url": "https://screenhz.com/mouse-poll-rate",
+  "description": description,
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "featureList": ["Detect 125Hz to 8000Hz", "Mouse Jitter standard deviation", "Real-time bar chart"],
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="bench-page">
+    <div class="bench-header">
+      <a href="/" class="bench-back">← Back</a>
+      <h1 class="bench-title">{title}</h1>
+      <p class="bench-subtitle">{description}</p>
+    </div>
+    
+    <PollRateMeter client:load />
+
+    <section class="seo-article">
+      <h2>What is Mouse Polling Rate?</h2>
+      <p>Mouse polling rate, measured in Hertz (Hz), represents how many times per second your mouse reports its position to your computer. A higher polling rate means lower input lag and smoother cursor movement.</p>
+      
+      <h3>Standard Polling Rates</h3>
+      <p>Most standard office mice operate at <strong>125Hz</strong> (reporting every 8 milliseconds). Gaming mice typically operate at <strong>500Hz or 1000Hz</strong> (1ms). Recently, esports-grade mice have pushed the boundary to <strong>4000Hz or 8000Hz</strong>, offering sub-millisecond report times.</p>
+      
+      <h3>What is Jitter?</h3>
+      <p>Jitter is the variance or inconsistency in the time between mouse reports. Even if a mouse is rated for 1000Hz, unstable sensor firmware or wireless interference can cause some reports to be delayed, leading to micro-stutters during gameplay. A lower jitter score means a more stable connection.</p>
+    </section>
+  </div>
+</Base>

@@ -1,38 +1,32 @@
 ---
 import Base from '../layouts/Base.astro';
-import UFOCanvas from '../components/benchmarks/UFOCanvas.tsx';
+import HzDetector from '../components/benchmarks/HzDetector.tsx';
 
-const title = "Browser Refresh Rate & Frame Rate Test";
-const description = "Test your monitor's exact refresh rate and compare frame rates with our high-precision UFO motion blur test.";
+const title = "Exact Refresh Rate Test — Decimal Precision Hz Meter";
+const description = "Test your exact monitor refresh rate with 4 decimal places of precision using our high-resolution browser Hz meter.";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Browser Refresh Rate & Frame Rate Test",
-  "url": "https://screenhz.com/",
+  "name": "Exact Refresh Rate Test",
+  "url": "https://screenhz.com/refresh-rate",
   "description": description,
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web Browser",
-  "featureList": ["Live Hz counter", "Multi-lane frame rate comparison", "Adjustable UFO speed"],
+  "featureList": ["Sub-millisecond precision", "Frame time distribution graph", "Rolling average Hz"],
   "offers": { "@type": "Offer", "price": "0" }
 };
 ---
 
 <Base title={title} description={description} jsonLd={jsonLd}>
-  <div class="hero">
-    <div class="hero-mesh"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow caption-mono">ScreenHz Beta</div>
-      <h1 class="hero-title display-xl">Measure your screen. <br/>With exact precision.</h1>
-      <p class="hero-sub body-lg">{description}</p>
-      <div style="display: flex; gap: var(--spacing-sm); justify-content: center; margin-bottom: var(--spacing-4xl);">
-        <a href="/refresh-rate" class="btn-primary">Start Benchmark</a>
-      </div>
+  <div class="bench-page">
+    <div class="bench-header">
+      <a href="/" class="bench-back">← Back</a>
+      <h1 class="bench-title">{title}</h1>
+      <p class="bench-subtitle">{description}</p>
     </div>
-  </div>
-
-  <div class="bench-page" style="padding-top: var(--spacing-xl);">
-    <UFOCanvas client:load />
+    
+    <HzDetector client:load />
 
     <section class="seo-article">
       <h2>What is Screen Refresh Rate?</h2>
@@ -40,6 +34,9 @@ const jsonLd = {
       
       <h3>Hz vs FPS Explained</h3>
       <p>While <strong>Refresh Rate (Hz)</strong> is a hardware specification of your monitor, <strong>Frames Per Second (FPS)</strong> is how fast your computer's graphics card can render new frames. For the smoothest experience, your FPS should match or exceed your monitor's Hz.</p>
+      
+      <h3>Why Exact Decimals Matter</h3>
+      <p>Many "60Hz" monitors actually run at 59.94Hz due to legacy NTSC video standards. High-precision measurement helps debug stuttering issues and verify monitor overclocks by showing the exact microsecond timing of your display.</p>
     </section>
   </div>
 </Base>

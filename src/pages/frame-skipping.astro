@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import FrameSkipDetector from '../components/benchmarks/FrameSkipDetector.tsx';
+
+const title = "Frame Skip Detector — Monitor Overclock Stability Test";
+const description = "Test if your monitor is dropping or skipping frames, especially useful when overclocking your display refresh rate.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Frame Skip Detector Test",
+  "url": "https://screenhz.com/frame-skipping",
+  "description": description,
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "featureList": ["Detect dropped frames", "Monitor overclock validation", "Grid-based visual check"],
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="bench-page">
+    <div class="bench-header">
+      <a href="/" class="bench-back">← Back</a>
+      <h1 class="bench-title">{title}</h1>
+      <p class="bench-subtitle">{description}</p>
+    </div>
+    
+    <FrameSkipDetector client:load />
+
+    <section class="seo-article">
+      <h2>What is Frame Skipping?</h2>
+      <p>Frame skipping occurs when a monitor is sent a signal at a refresh rate it cannot natively support, causing it to quietly drop or "skip" some of the frames. This most often happens when users attempt to <strong>overclock</strong> their monitor (e.g., pushing a 60Hz monitor to 75Hz) using tools like CRU (Custom Resolution Utility) or NVIDIA Control Panel.</p>
+      
+      <h3>How This Test Works</h3>
+      <p>This test renders a grid of cells, lighting them up sequentially one frame at a time. If your monitor is functioning perfectly, taking a photograph of the screen with a slightly longer exposure (e.g., 1/10th of a second) should show a continuous, unbroken line of illuminated cells. If there are gaps in the illuminated line, your monitor is dropping frames.</p>
+      
+      <h3>How to Test with a Camera</h3>
+      <ol style="list-style-type: decimal; margin-left: 2rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6;">
+        <li>Set your camera/phone to Pro Mode or lower the shutter speed (exposure) to roughly 1/10th or 1/5th of a second.</li>
+        <li>Point it at the grid above and take a photo while moving the camera slightly to capture multiple cycles if necessary.</li>
+        <li>Review the photo: a solid chain of white blocks means PASS. Gaps mean FAIL (frames skipped).</li>
+      </ol>
+    </section>
+  </div>
+</Base>

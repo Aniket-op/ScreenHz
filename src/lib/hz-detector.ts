@@ -1,66 +1,33 @@
-export const KNOWN_HZ = [60, 75, 90, 100, 120, 144, 165, 240, 360, 480, 540];
+import { useState, useEffect, useRef } from "react";
 
-export interface HzResult {
-  raw: number;
-  snapped: number;
-  confidence: number;
-  frameTimes: number[];
-}
+export function useHz() {
+  const [hz, setHz] = useState(0);
+  const [fps, setFps] = useState(0);
+  const [frameTime, setFrameTime] = useState(0);
+  const samples = useRef<number[]>([]);
+  const last = useRef(performance.now());
 
-export class HzDetector {
-  private frameTimes: number[] = [];
-  private maxFrames = 120;
-  private lastTime = 0;
-
-  public update(timestamp: number): HzResult {
-    if (this.lastTime > 0) {
-      const delta = timestamp - this.lastTime;
-      this.frameTimes.push(delta);
-      if (this.frameTimes.length > this.maxFrames) {
-        this.frameTimes.shift();
+  useEffect(() => {
+    let raf: number;
+    const loop = (now: number) => {
+      const delta = now - last.current;
+      last.current = now;
+      if (delta > 1 && delta < 200) {
+        samples.current.push(delta);
+        if (samples.current.length > 120) samples.current.shift();
+        const avg = samples.current.reduce((a,b) => a+b) / samples.current.length;
+        const measuredFps = 1000 / avg;
+        setFps(measuredFps);
+        setFrameTime(avg);
+        // Snap to nearest standard Hz
+        const standards = [23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60, 75, 90, 100, 119.88, 120, 144, 165, 180, 240, 300, 360, 480, 500, 540];
+        setHz(standards.reduce((a,b) => Math.abs(b-measuredFps) < Math.abs(a-measuredFps) ? b : a));
       }
-    }
-    this.lastTime = timestamp;
-
-    const avgDelta = this.frameTimes.reduce((a, b) => a + b, 0) / this.frameTimes.length;
-    const rawFps = 1000 / avgDelta;
-    
-    let snapped = rawFps;
-    for (const hz of KNOWN_HZ) {
-      if (Math.abs(rawFps - hz) < 5) {
-        snapped = hz;
-        break;
-      }
-    }
-
-    return {
-      raw: rawFps,
-      snapped,
-      confidence: Math.min(this.frameTimes.length / this.maxFrames, 1),
-      frameTimes: [...this.frameTimes]
+      raf = requestAnimationFrame(loop);
     };
-  }
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
-  public getLastResult(): HzResult {
-    const avgDelta = this.frameTimes.length > 0 ? this.frameTimes.reduce((a, b) => a + b, 0) / this.frameTimes.length : 16.66;
-    const rawFps = 1000 / avgDelta;
-    let snapped = rawFps;
-    for (const hz of KNOWN_HZ) {
-      if (Math.abs(rawFps - hz) < 5) {
-        snapped = hz;
-        break;
-      }
-    }
-    return {
-      raw: rawFps,
-      snapped,
-      confidence: Math.min(this.frameTimes.length / this.maxFrames, 1),
-      frameTimes: [...this.frameTimes]
-    };
-  }
-
-  public reset() {
-    this.frameTimes = [];
-    this.lastTime = 0;
-  }
+  return { hz, fps, frameTime };
 }

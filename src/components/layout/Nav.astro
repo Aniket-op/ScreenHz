@@ -1,0 +1,57 @@
+---
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => currentPath === path ? 'active' : '';
+
+const cat1 = [
+  { path: '/', label: 'UFO Compare' },
+  { path: '/video-game-motion', label: 'Video Game Motion' },
+  { path: '/vertical-scrolling', label: 'Vertical Scrolling' },
+  { path: '/marquee', label: 'Marquee' },
+  { path: '/black-frame-insertion', label: 'Black Frame Insertion' },
+  { path: '/persistence', label: 'Persistence' },
+  { path: '/eye-tracking-blur', label: 'Eye Tracking Blur' },
+  { path: '/phantom-array', label: 'Phantom Array' },
+  { path: '/stutter-tearing', label: 'Stutter/Tearing' },
+  { path: '/vrr-simulation', label: 'VRR Simulation' },
+];
+
+const cat2 = [
+  { path: '/refresh-rate', label: 'Refresh Rate' },
+  { path: '/resolution-scaling', label: 'Resolution/Scaling' },
+  { path: '/chroma-subsampling', label: 'Chroma Subsampling' },
+  { path: '/hdr', label: 'HDR / WCG' },
+];
+
+const cat3 = [
+  { path: '/ghosting', label: 'Ghosting' },
+  { path: '/local-dimming', label: 'Local Dimming' },
+  { path: '/mprt', label: 'MPRT' },
+  { path: '/color-ghosting', label: 'Color Ghosting' },
+  { path: '/black-levels', label: 'Black Levels' },
+  { path: '/white-levels', label: 'White Levels' },
+  { path: '/moving-line', label: 'Moving Line' },
+  { path: '/moving-photo', label: 'Moving Photo' },
+  { path: '/chase-squares', label: 'Chase Squares' },
+  { path: '/aliasing', label: 'Aliasing' },
+];
+
+const cat4 = [
+  { path: '/frame-skipping', label: 'Frame Skipping' },
+  { path: '/mouse-poll-rate', label: 'Mouse Poll Rate' },
+  { path: '/strobe-crosstalk', label: 'Strobe Crosstalk' },
+  { path: '/inversion-artifacts', label: 'Inversion Artifacts' },
+  { path: '/scan-out', label: 'Scan-Out' },
+  { path: '/flicker', label: 'Flicker' },
+];
+---
+<nav class="nav">
+  <a href="/" class="nav-logo">ScreenHz</a>
+  <div class="nav-links">
+    <a href="/" class="nav-btn">Refresh Rate</a>
+    <a href="/reaction-time" class="nav-btn">Reaction Time</a>
+    <a href="/frame-skipping" class="nav-btn">Frame Skipping</a>
+    <a href="/ghosting" class="nav-btn">Ghosting</a>
+    <a href="/mouse-poll-rate" class="nav-btn">Poll Rate</a>
+  </div>
+  <a href="#guides" class="btn-primary" style="height: 32px; font-size: 14px; border-radius: 6px; padding: 0 12px; font-weight: 600;">Guides</a>
+</nav>
