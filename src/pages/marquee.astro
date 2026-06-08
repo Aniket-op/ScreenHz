@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import MarqueeTest from '../components/benchmarks/MarqueeTest.tsx';
+
+const title = "Horizontal Marquee Test";
+const description = "Test display motion clarity using fast-moving horizontal text, mimicking news tickers and game UI elements.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Horizontal Marquee Test",
+  "url": "https://screenhz.com/marquee",
+  "description": description,
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "featureList": ["Horizontal text scrolling", "Customizable text strings", "Independent FPS lanes"],
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="bench-page" style="display: flex; flex-direction: column; height: 100vh; background: #0c0c0c; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace;">
+    <div class="bench-header" style="height: 48px; border-bottom: 1px solid #222; display: flex; align-items: center; padding: 0 24px; flex-shrink: 0;">
+      <a href="/" class="bench-back" style="color: #555; text-decoration: none; margin-right: 16px;">← Back</a>
+      <h1 class="bench-title" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">{title}</h1>
+    </div>
+    
+    <div style="flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">
+      <MarqueeTest client:load />
+    </div>
+
+    <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Reading Text in Motion</h2>
+      <p style="margin-bottom: 16px;">
+        Scrolling text, commonly known as a "marquee," is notoriously difficult for LCD and OLED displays to render cleanly at low frame rates. 
+        As the text moves, your eyes naturally track it. If the display uses a "sample-and-hold" method (like almost all modern monitors), 
+        the text will appear smeared or blurry because the image is held static on the screen for the entire frame duration.
+      </p>
+      
+      <h3 style="font-size: 16px; margin-bottom: 12px; color: #555;">The Effect of Frame Rate</h3>
+      <p style="margin-bottom: 16px;">
+        By increasing the frame rate from 60fps to 120fps or higher, you cut the frame duration in half. This reduces the amount of time 
+        the image is static on your retina as your eyes move, directly halving the perceived motion blur.
+      </p>
+
+      <h3 style="font-size: 16px; margin-bottom: 12px; color: #555;">Testing Custom Content</h3>
+      <p style="margin-bottom: 16px;">
+        You can input custom text to test specific fonts, numbers, or characters. Thinner fonts and smaller text sizes are much more 
+        susceptible to being completely unreadable during motion, so you can test the limits of your display's motion clarity.
+      </p>
+    </section>
+  </div>
+</Base>

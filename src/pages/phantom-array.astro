@@ -1,15 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import GhostingTest from '../components/benchmarks/GhostingTest.tsx';
+import PhantomArray from '../components/benchmarks/PhantomArray.tsx';
 
-const title = "Monitor Ghosting Test";
-const description = "Test your monitor's pixel response time and overdrive settings for trailing ghost artifacts.";
+const title = "Phantom Array Effect Test";
+const description = "Test your display for the phantom array effect (stroboscopic stepping) during fast mouse movement.";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": title,
-  "url": "https://screenhz.com/ghosting",
+  "url": "https://screenhz.com/phantom-array",
   "description": description,
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web Browser",
@@ -26,12 +26,12 @@ const jsonLd = {
     </div>
     
     <div style="flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">
-      <GhostingTest client:load />
+      <PhantomArray client:load />
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Monitor Ghosting</h2>
-      <p style="margin-bottom: 16px;">Ghosting is the faint trail left behind moving objects. It happens because liquid crystals (LCDs) take time to physically twist and change color from one frame to the next.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">The Phantom Array Effect</h2>
+      <p style="margin-bottom: 16px;">Also known as the stroboscopic effect, this occurs when a high-contrast object moves quickly across the screen, appearing as a series of discrete, repeating steps rather than a smooth blur.</p>
     </section>
   </div>
 </Base>

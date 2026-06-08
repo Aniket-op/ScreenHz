@@ -1,15 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import GhostingTest from '../components/benchmarks/GhostingTest.tsx';
+import MovingPhoto from '../components/benchmarks/MovingPhoto.tsx';
 
-const title = "Monitor Ghosting Test";
-const description = "Test your monitor's pixel response time and overdrive settings for trailing ghost artifacts.";
+const title = "Moving Photo Test";
+const description = "Test motion clarity using complex, high-contrast, procedurally generated geometric patterns.";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": title,
-  "url": "https://screenhz.com/ghosting",
+  "url": "https://screenhz.com/moving-photo",
   "description": description,
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web Browser",
@@ -26,12 +26,12 @@ const jsonLd = {
     </div>
     
     <div style="flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">
-      <GhostingTest client:load />
+      <MovingPhoto client:load />
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Monitor Ghosting</h2>
-      <p style="margin-bottom: 16px;">Ghosting is the faint trail left behind moving objects. It happens because liquid crystals (LCDs) take time to physically twist and change color from one frame to the next.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Complex Motion Clarity</h2>
+      <p style="margin-bottom: 16px;">Simple shapes don't always reveal the full extent of motion blur. Complex, high-frequency details (like text and fine lines) are much more sensitive to blur, simulating the experience of panning a camera in a detailed video game.</p>
     </section>
   </div>
 </Base>

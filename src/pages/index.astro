@@ -41,5 +41,81 @@ const jsonLd = {
       <h3>Hz vs FPS Explained</h3>
       <p>While <strong>Refresh Rate (Hz)</strong> is a hardware specification of your monitor, <strong>Frames Per Second (FPS)</strong> is how fast your computer's graphics card can render new frames. For the smoothest experience, your FPS should match or exceed your monitor's Hz.</p>
     </section>
+
+    <section class="tools-grid" style="max-width: 1200px; margin: 0 auto; padding: 64px 24px;">
+      <h2 style="font-size: 24px; margin-bottom: 32px; border-bottom: 1px solid #333; padding-bottom: 16px;">All Display Benchmarks</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+        <a href="/refresh-rate" class="tool-card">Refresh Rate Test</a>
+        <a href="/video-game-motion" class="tool-card">Video Game Motion</a>
+        <a href="/vertical-scrolling" class="tool-card">Vertical Scrolling</a>
+        <a href="/marquee" class="tool-card">Text Marquee Test</a>
+        <a href="/black-frame-insertion" class="tool-card">Black Frame Insertion</a>
+        <a href="/persistence" class="tool-card">Persistence Test</a>
+        <a href="/eye-tracking-blur" class="tool-card">Eye Tracking Blur</a>
+        <a href="/phantom-array" class="tool-card">Phantom Array Effect</a>
+        <a href="/stutter-tearing" class="tool-card">Stutter & Tearing</a>
+        <a href="/vrr-simulation" class="tool-card">VRR Simulation</a>
+        <a href="/resolution-scaling" class="tool-card">Resolution Scaling</a>
+        <a href="/chroma-subsampling" class="tool-card">Chroma Subsampling</a>
+        <a href="/hdr" class="tool-card">HDR & Wide Color Gamut</a>
+        <a href="/ghosting" class="tool-card">Monitor Ghosting</a>
+        <a href="/local-dimming" class="tool-card">Local Dimming</a>
+        <a href="/mprt" class="tool-card">MPRT Test</a>
+        <a href="/color-ghosting" class="tool-card">Color Ghosting</a>
+        <a href="/black-levels" class="tool-card">Black Levels (PLUGE)</a>
+        <a href="/white-levels" class="tool-card">White Levels</a>
+        <a href="/moving-line" class="tool-card">Moving Line & PWM</a>
+        <a href="/moving-photo" class="tool-card">Moving Photo</a>
+        <a href="/chase-squares" class="tool-card">Chase Squares</a>
+        <a href="/aliasing" class="tool-card">Aliasing Test</a>
+        <a href="/strobe-crosstalk" class="tool-card">Strobe Crosstalk</a>
+        <a href="/inversion-artifacts" class="tool-card">Inversion Artifacts</a>
+        <a href="/scan-out" class="tool-card">Scan-Out Test</a>
+        <a href="/flicker" class="tool-card">Display Flicker</a>
+        <a href="/rtings-test" class="tool-card">Calibration Patterns</a>
+        <a href="/crt-simulator" class="tool-card">CRT Simulator</a>
+        <a href="/lcd-pixel-response" class="tool-card">LCD Pixel Response</a>
+        <a href="/color-rainbow" class="tool-card">Color Rainbow</a>
+        <a href="/video-interlacing" class="tool-card">Video Interlacing</a>
+        <a href="/gtg-vs-mprt" class="tool-card">GtG vs MPRT</a>
+        <a href="/blur-busters-law" class="tool-card">Blur Busters Law</a>
+        <a href="/scan-out-skew" class="tool-card">Scan-Out Skew</a>
+        <a href="/browser-timing" class="tool-card">Browser Timing</a>
+        <a href="/dpi-calculator" class="tool-card">DPI Calculator</a>
+        <a href="/aim-trainer" class="tool-card">Aim Trainer</a>
+        <a href="/setup-score" class="tool-card">Setup Score</a>
+        <a href="/leaderboard" class="tool-card">Leaderboard</a>
+      </div>
+      
+      <h2 style="font-size: 24px; margin-top: 64px; margin-bottom: 32px; border-bottom: 1px solid #333; padding-bottom: 16px;">Guides</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+        <a href="/guides/refresh-rate" class="tool-card">Hz vs FPS Explained</a>
+        <a href="/guides/mouse-dpi" class="tool-card">What is Mouse DPI?</a>
+        <a href="/guides/improve-fps" class="tool-card">Improve Gaming FPS</a>
+        <a href="/guides/poll-rate" class="tool-card">Mouse Poll Rate</a>
+        <a href="/guides/gsync-vs-freesync" class="tool-card">G-Sync vs FreeSync</a>
+        <a href="/guides/motion-blur" class="tool-card">Motion Blur Explained</a>
+      </div>
+    </section>
   </div>
+
+  <style is:global>
+    .tool-card {
+      display: block;
+      padding: 20px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 6px;
+      color: #e8e8e8;
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .tool-card:hover {
+      border-color: #555;
+      background: #1a1a1a;
+      color: #fff;
+    }
+  </style>
 </Base>

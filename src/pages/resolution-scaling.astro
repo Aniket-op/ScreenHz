@@ -1,15 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import GhostingTest from '../components/benchmarks/GhostingTest.tsx';
+import ResolutionScaling from '../components/benchmarks/ResolutionScaling.tsx';
 
-const title = "Monitor Ghosting Test";
-const description = "Test your monitor's pixel response time and overdrive settings for trailing ghost artifacts.";
+const title = "Screen Resolution & DPI Test";
+const description = "Verify display resolution, subpixel rendering, and CSS scaling with 1:1 pixel test patterns.";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": title,
-  "url": "https://screenhz.com/ghosting",
+  "url": "https://screenhz.com/resolution-scaling",
   "description": description,
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web Browser",
@@ -26,12 +26,12 @@ const jsonLd = {
     </div>
     
     <div style="flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">
-      <GhostingTest client:load />
+      <ResolutionScaling client:load />
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Monitor Ghosting</h2>
-      <p style="margin-bottom: 16px;">Ghosting is the faint trail left behind moving objects. It happens because liquid crystals (LCDs) take time to physically twist and change color from one frame to the next.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Resolution and Scaling</h2>
+      <p style="margin-bottom: 16px;">Modern operating systems use display scaling (DPI scaling) to make text readable on high-resolution screens. This test verifies if the browser is mapping 1 CSS pixel to 1 physical device pixel.</p>
     </section>
   </div>
 </Base>

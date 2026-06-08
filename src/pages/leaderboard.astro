@@ -1,15 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import GhostingTest from '../components/benchmarks/GhostingTest.tsx';
+import LeaderboardTable from '../components/benchmarks/LeaderboardTable.tsx';
 
-const title = "Monitor Ghosting Test";
-const description = "Test your monitor's pixel response time and overdrive settings for trailing ghost artifacts.";
+const title = "ScreenHz Leaderboard";
+const description = "Compare your display and peripheral performance scores against the global leaderboard.";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": title,
-  "url": "https://screenhz.com/ghosting",
+  "url": "https://screenhz.com/leaderboard",
   "description": description,
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web Browser",
@@ -26,12 +26,12 @@ const jsonLd = {
     </div>
     
     <div style="flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">
-      <GhostingTest client:load />
+      <LeaderboardTable client:load />
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Monitor Ghosting</h2>
-      <p style="margin-bottom: 16px;">Ghosting is the faint trail left behind moving objects. It happens because liquid crystals (LCDs) take time to physically twist and change color from one frame to the next.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Global Rankings</h2>
+      <p style="margin-bottom: 16px;">See how your setup and reaction time stack up against other users. Remember that while hardware can raise your skill ceiling, practice and consistency matter most.</p>
     </section>
   </div>
 </Base>
