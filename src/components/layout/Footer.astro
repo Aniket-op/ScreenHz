@@ -1,7 +1,77 @@
 ---
+const year = new Date().getFullYear();
+
+const footerTools = [
+  { label: 'Refresh Rate Test', href: '/refresh-rate' },
+  { label: 'UFO Frame Compare', href: '/' },
+  { label: 'Ghosting Test', href: '/ghosting' },
+  { label: 'Reaction Time', href: '/reaction-time' },
+  { label: 'Mouse Poll Rate', href: '/mouse-poll-rate' },
+  { label: 'Frame Skipping', href: '/frame-skipping' },
+  { label: 'Aim Trainer', href: '/aim-trainer' },
+];
+const footerGuides = [
+  { label: 'Hz vs FPS Explained', href: '/guides/refresh-rate' },
+  { label: 'What is Mouse DPI?', href: '/guides/mouse-dpi' },
+  { label: 'Improve Gaming FPS', href: '/guides/improve-fps' },
+  { label: 'Mouse Poll Rate Guide', href: '/guides/poll-rate' },
+  { label: 'G-Sync vs FreeSync', href: '/guides/gsync-vs-freesync' },
+  { label: 'Motion Blur Explained', href: '/guides/motion-blur' },
+];
+const footerAbout = [
+  { label: 'About ScreenHz', href: '/about' },
+  { label: 'Run Benchmark', href: '/benchmark' },
+  { label: 'Leaderboard', href: '/leaderboard' },
+  { label: 'Setup Score', href: '/setup-score' },
+];
 ---
-<footer class="footer">
-  <p style="font: var(--font-caption-mono); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink);">ScreenHz</p>
-  <p>The Browser-Native Display Benchmark Suite.</p>
-  <p style="margin-top:0.5rem; color: var(--muted);">© {new Date().getFullYear()} Built for testing refresh rates, motion blur, and response times.</p>
+
+<footer class="footer" role="contentinfo">
+  <div class="footer-grid">
+    <!-- Brand column -->
+    <div>
+      <div class="footer-brand-name">
+        ScreenHz<span class="footer-brand-dot" aria-hidden="true"></span>
+      </div>
+      <p class="footer-brand-desc">
+        The browser-native display benchmark suite. Test your monitor's refresh rate, motion clarity, input latency, and more — all in your browser, no installs required.
+      </p>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <a href="/benchmark" class="btn-primary" style="height:36px; font-size:13px; padding:0 1rem;" id="run-benchmark-footer-btn">
+          Run Benchmark
+        </a>
+      </div>
+    </div>
+
+    <!-- Tools column -->
+    <div>
+      <div class="footer-col-title">Popular Tools</div>
+      {footerTools.map(link => (
+        <a href={link.href} class="footer-link">{link.label}</a>
+      ))}
+    </div>
+
+    <!-- Guides column -->
+    <div>
+      <div class="footer-col-title">Guides</div>
+      {footerGuides.map(link => (
+        <a href={link.href} class="footer-link">{link.label}</a>
+      ))}
+    </div>
+
+    <!-- About column -->
+    <div>
+      <div class="footer-col-title">Platform</div>
+      {footerAbout.map(link => (
+        <a href={link.href} class="footer-link">{link.label}</a>
+      ))}
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© {year} ScreenHz — Free, open display benchmark suite</span>
+    <span style="font:var(--font-caption-mono); color:var(--mute);">
+      Built with Astro · React · Browser APIs
+    </span>
+  </div>
 </footer>

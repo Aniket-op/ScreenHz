@@ -38,7 +38,7 @@ const jsonLd = {
   <div class="bench-page" style="display: flex; flex-direction: column; height: 100vh; background: #0c0c0c; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace;">
     <div class="bench-header" style="height: 48px; border-bottom: 1px solid #222; display: flex; align-items: center; padding: 0 24px; flex-shrink: 0;">
       <a href="/" class="bench-back" style="color: #555; text-decoration: none; margin-right: 16px;">← Back</a>
-      <h1 class="bench-title" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">{title}</h1>
+      <h1 class="bench-title" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0; color: #e8e8e8;">{title}</h1>
     </div>
     
     <div style="flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">

@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import BenchmarkSession from '../components/BenchmarkSession.tsx';
+
+const title       = 'Full Display Benchmark — Score Your Monitor';
+const description = 'Run 7 sequential display benchmark tests and receive a comprehensive score (0–100) with grade, category breakdown, Hz comparison, and performance recommendations.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'ScreenHz Full Display Benchmark',
+  url: 'https://screenhz.app/benchmark',
+  description,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  featureList: [
+    'Refresh Rate Accuracy test',
+    'Frame Consistency analysis',
+    'Motion Smoothness test',
+    'Browser Render Latency measurement',
+    'Rendering Performance stress test',
+    'Animation Frame Rate test',
+    'Display Responsiveness scoring',
+    'Overall score 0–100 with grade A+–D',
+    'Compare against 60Hz / 144Hz / 240Hz / 360Hz',
+    'Shareable results URL',
+  ],
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+
+  <!-- Page header -->
+  <div style="background: var(--gradient-hero-bg); border-bottom: 1px solid var(--hairline); padding: 4rem 2rem 3rem; text-align:center; position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; background-image: linear-gradient(var(--hairline) 1px, transparent 1px), linear-gradient(90deg, var(--hairline) 1px, transparent 1px); background-size:60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%); pointer-events:none;" aria-hidden="true"></div>
+
+    <a href="/" class="bench-back" style="display:inline-flex; align-items:center; gap:0.4rem; margin-bottom:1.5rem; color:var(--mute); text-decoration:none; font-size:0.85rem; transition:color 0.2s;">
+      ← Back to Home
+    </a>
+
+    <div style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--primary); margin-bottom:0.75rem;">
+      ScreenHz · Benchmark Suite
+    </div>
+
+    <h1 style="font:var(--font-display-lg); letter-spacing:var(--tracking-tighter); color:var(--ink); margin-bottom:0.75rem;">
+      Display Benchmark
+    </h1>
+    <p style="font:var(--font-body-lg); color:var(--body); max-width:560px; margin:0 auto 2rem;">
+      {description}
+    </p>
+
+    <!-- Grade scale legend -->
+    <div style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; margin-top:1rem;">
+      {[
+        { grade: 'A+', color: '#00ff87', range: '95–100', tier: 'Elite' },
+        { grade: 'A',  color: '#00e5ff', range: '85–94',  tier: 'High-End' },
+        { grade: 'B',  color: '#7928ca', range: '65–84',  tier: 'Mid-Range' },
+        { grade: 'C',  color: '#f5a623', range: '55–64',  tier: 'Budget' },
+        { grade: 'D',  color: '#ff4444', range: '0–54',   tier: 'Low-Tier' },
+      ].map(g => (
+        <div style={`display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0.85rem; border-radius:100px; border:1px solid ${g.color}40; background:${g.color}0d; font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:${g.color};`}>
+          <strong>{g.grade}</strong> {g.range} · {g.tier}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Benchmark session -->
+  <div style="max-width:1000px; margin:0 auto; padding:3rem 2rem 6rem;">
+    <BenchmarkSession client:load />
+  </div>
+
+  <!-- Info section below benchmark -->
+  <div style="border-top:1px solid var(--hairline); background:var(--canvas-soft); padding:3rem 2rem;">
+    <div style="max-width:860px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1.5rem;">
+      {[
+        {
+          icon: '🛡️',
+          title: 'Privacy First',
+          desc: 'No data is ever sent to a server. All benchmark measurements happen entirely in your browser via Web APIs.',
+        },
+        {
+          icon: '🔬',
+          title: 'Scientifically Accurate',
+          desc: 'Uses requestAnimationFrame timing with sub-millisecond resolution — the same APIs games and browsers use.',
+        },
+        {
+          icon: '⚡',
+          title: 'Keep Tab Active',
+          desc: 'For accurate results, keep this tab in the foreground. Browsers throttle background tabs to save power.',
+        },
+      ].map(item => (
+        <div style="display:flex; gap:1rem; align-items:flex-start;">
+          <span style="font-size:1.5rem; flex-shrink:0;" aria-hidden="true">{item.icon}</span>
+          <div>
+            <div style="font-weight:600; color:var(--ink); margin-bottom:0.3rem; font-size:0.9rem;">{item.title}</div>
+            <div style="font-size:0.85rem; color:var(--body); line-height:1.6;">{item.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</Base>

@@ -10,15 +10,16 @@ interface Props {
   title: string;
   description: string;
   jsonLd?: object;
+  ogImage?: string;
 }
 
-const { title, description, jsonLd } = Astro.props;
+const { title, description, jsonLd, ogImage } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
-    <SEOHead title={title} description={description} slug={Astro.url.pathname} jsonLd={jsonLd} />
+    <SEOHead title={title} description={description} slug={Astro.url.pathname} jsonLd={jsonLd} ogImage={ogImage} />
   </head>
   <body>
     <Nav />
@@ -28,3 +29,25 @@ const { title, description, jsonLd } = Astro.props;
     <Footer />
   </body>
 </html>
+
+<script>
+  // Theme persistence
+  const saved = localStorage.getItem('screenhz-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+  window.toggleTheme = function() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('screenhz-theme', next);
+    const btn = document.getElementById('theme-toggle-btn');
+    if (btn) btn.textContent = next === 'dark' ? '☀️' : '🌙';
+  };
+
+  // Set initial icon
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('theme-toggle-btn');
+    const theme = document.documentElement.getAttribute('data-theme');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  });
+</script>

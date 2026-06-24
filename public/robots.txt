@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+
+# Block development/build artifacts
+Disallow: /dist/
+Disallow: /.astro/
+
 Sitemap: https://screenhz.app/sitemap-index.xml

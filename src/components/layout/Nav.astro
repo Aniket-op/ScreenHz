@@ -1,57 +1,256 @@
 ---
 const currentPath = Astro.url.pathname;
-const isActive = (path: string) => currentPath === path ? 'active' : '';
 
-const cat1 = [
-  { path: '/', label: 'UFO Compare' },
-  { path: '/video-game-motion', label: 'Video Game Motion' },
-  { path: '/vertical-scrolling', label: 'Vertical Scrolling' },
-  { path: '/marquee', label: 'Marquee' },
-  { path: '/black-frame-insertion', label: 'Black Frame Insertion' },
-  { path: '/persistence', label: 'Persistence' },
-  { path: '/eye-tracking-blur', label: 'Eye Tracking Blur' },
-  { path: '/phantom-array', label: 'Phantom Array' },
-  { path: '/stutter-tearing', label: 'Stutter/Tearing' },
-  { path: '/vrr-simulation', label: 'VRR Simulation' },
-];
-
-const cat2 = [
-  { path: '/refresh-rate', label: 'Refresh Rate' },
-  { path: '/resolution-scaling', label: 'Resolution/Scaling' },
-  { path: '/chroma-subsampling', label: 'Chroma Subsampling' },
-  { path: '/hdr', label: 'HDR / WCG' },
-];
-
-const cat3 = [
-  { path: '/ghosting', label: 'Ghosting' },
-  { path: '/local-dimming', label: 'Local Dimming' },
-  { path: '/mprt', label: 'MPRT' },
-  { path: '/color-ghosting', label: 'Color Ghosting' },
-  { path: '/black-levels', label: 'Black Levels' },
-  { path: '/white-levels', label: 'White Levels' },
-  { path: '/moving-line', label: 'Moving Line' },
-  { path: '/moving-photo', label: 'Moving Photo' },
-  { path: '/chase-squares', label: 'Chase Squares' },
-  { path: '/aliasing', label: 'Aliasing' },
-];
-
-const cat4 = [
-  { path: '/frame-skipping', label: 'Frame Skipping' },
-  { path: '/mouse-poll-rate', label: 'Mouse Poll Rate' },
-  { path: '/strobe-crosstalk', label: 'Strobe Crosstalk' },
-  { path: '/inversion-artifacts', label: 'Inversion Artifacts' },
-  { path: '/scan-out', label: 'Scan-Out' },
-  { path: '/flicker', label: 'Flicker' },
+const toolCategories = [
+  {
+    name: 'Motion Tests',
+    icon: '🎮',
+    tools: [
+      { path: '/', label: 'UFO Frame Compare' },
+      { path: '/video-game-motion', label: 'Video Game Motion' },
+      { path: '/vertical-scrolling', label: 'Vertical Scrolling' },
+      { path: '/marquee', label: 'Text Marquee' },
+      { path: '/black-frame-insertion', label: 'Black Frame Insertion' },
+      { path: '/persistence', label: 'Persistence Test' },
+      { path: '/eye-tracking-blur', label: 'Eye Tracking Blur' },
+      { path: '/phantom-array', label: 'Phantom Array' },
+      { path: '/chase-squares', label: 'Chase Squares' },
+    ]
+  },
+  {
+    name: 'Refresh Rate',
+    icon: '⚡',
+    tools: [
+      { path: '/refresh-rate', label: 'Refresh Rate Detect' },
+      { path: '/vrr-simulation', label: 'VRR Simulation' },
+      { path: '/stutter-tearing', label: 'Stutter & Tearing' },
+      { path: '/frame-skipping', label: 'Frame Skipping' },
+      { path: '/browser-timing', label: 'Browser Timing' },
+      { path: '/blur-busters-law', label: 'Blur Busters Law' },
+    ]
+  },
+  {
+    name: 'Latency & Input',
+    icon: '⏱️',
+    tools: [
+      { path: '/reaction-time', label: 'Reaction Time' },
+      { path: '/mouse-poll-rate', label: 'Mouse Poll Rate' },
+      { path: '/aim-trainer', label: 'Aim Trainer' },
+    ]
+  },
+  {
+    name: 'Display Tests',
+    icon: '🖥️',
+    tools: [
+      { path: '/ghosting', label: 'Ghosting Test' },
+      { path: '/hdr', label: 'HDR & Wide Color' },
+      { path: '/black-levels', label: 'Black Levels (PLUGE)' },
+      { path: '/white-levels', label: 'White Levels' },
+      { path: '/color-ghosting', label: 'Color Ghosting' },
+      { path: '/chroma-subsampling', label: 'Chroma Subsampling' },
+      { path: '/resolution-scaling', label: 'Resolution Scaling' },
+      { path: '/local-dimming', label: 'Local Dimming' },
+      { path: '/rtings-test', label: 'Calibration Patterns' },
+    ]
+  },
+  {
+    name: 'Response Time',
+    icon: '🔬',
+    tools: [
+      { path: '/gtg-vs-mprt', label: 'GtG vs MPRT' },
+      { path: '/mprt', label: 'MPRT Test' },
+      { path: '/lcd-pixel-response', label: 'LCD Pixel Response' },
+      { path: '/moving-line', label: 'Moving Line & PWM' },
+      { path: '/moving-photo', label: 'Moving Photo' },
+    ]
+  },
+  {
+    name: 'Visual Artifacts',
+    icon: '🔍',
+    tools: [
+      { path: '/aliasing', label: 'Aliasing Test' },
+      { path: '/strobe-crosstalk', label: 'Strobe Crosstalk' },
+      { path: '/inversion-artifacts', label: 'Inversion Artifacts' },
+      { path: '/scan-out', label: 'Scan-Out Test' },
+      { path: '/scan-out-skew', label: 'Scan-Out Skew' },
+      { path: '/flicker', label: 'Display Flicker' },
+      { path: '/crt-simulator', label: 'CRT Simulator' },
+      { path: '/video-interlacing', label: 'Video Interlacing' },
+    ]
+  },
+  {
+    name: 'Utilities',
+    icon: '🛠️',
+    tools: [
+      { path: '/dpi-calculator', label: 'DPI Calculator' },
+      { path: '/setup-score', label: 'Setup Score' },
+      { path: '/color-rainbow', label: 'Color Rainbow' },
+      { path: '/leaderboard', label: 'Leaderboard' },
+    ]
+  },
 ];
 ---
-<nav class="nav">
-  <a href="/" class="nav-logo">ScreenHz</a>
+
+<nav class="nav" id="main-nav">
+  <!-- Logo -->
+  <a href="/" class="nav-logo" aria-label="ScreenHz Home">
+    ScreenHz<span class="nav-logo-dot" aria-hidden="true"></span>
+  </a>
+
+  <!-- Desktop Links -->
   <div class="nav-links">
-    <a href="/" class="nav-btn">Refresh Rate</a>
-    <a href="/reaction-time" class="nav-btn">Reaction Time</a>
-    <a href="/frame-skipping" class="nav-btn">Frame Skipping</a>
-    <a href="/ghosting" class="nav-btn">Ghosting</a>
-    <a href="/mouse-poll-rate" class="nav-btn">Poll Rate</a>
+    <a href="/reaction-time" class:list={['nav-btn', currentPath === '/reaction-time' ? 'active' : '']}>Reaction</a>
+    <a href="/mouse-poll-rate" class:list={['nav-btn', currentPath === '/mouse-poll-rate' ? 'active' : '']}>Poll Rate</a>
+    <a href="/refresh-rate" class:list={['nav-btn', currentPath === '/refresh-rate' ? 'active' : '']}>Refresh Rate</a>
+    <a href="/about" class:list={['nav-btn', currentPath === '/about' ? 'active' : '']}>About</a>
+
+    <!-- Tools Mega Dropdown — rightmost -->
+    <div class="nav-dropdown" id="tools-dropdown">
+      <button class="nav-btn" aria-haspopup="true" aria-expanded="false" id="tools-menu-btn">
+        Tools
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="nav-mega" role="menu" aria-label="Tools menu">
+        {toolCategories.map(cat => (
+          <div class="mega-col">
+            <div class="mega-category-title">
+              <span aria-hidden="true">{cat.icon}</span>
+              {cat.name}
+            </div>
+            {cat.tools.map(tool => (
+              <a
+                href={tool.path}
+                role="menuitem"
+                class:list={['mega-link', currentPath === tool.path ? 'mega-link-active' : '']}
+              >
+                {tool.label}
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
-  <a href="#guides" class="btn-primary" style="height: 32px; font-size: 14px; border-radius: 6px; padding: 0 12px; font-weight: 600;">Guides</a>
+
+  <!-- Right Controls -->
+  <div style="display:flex; align-items:center; gap:0.75rem; flex-shrink:0;">
+    <button class="theme-toggle" id="theme-toggle-btn" onclick="window.toggleTheme()" aria-label="Toggle theme" title="Toggle dark/light mode">
+      ☀️
+    </button>
+    <a href="/benchmark" class="btn-primary" style="height:36px; font-size:13px; padding:0 1rem; border-radius:var(--rounded-pill);" id="run-benchmark-nav-btn">
+      Run Benchmark
+    </a>
+    <!-- Hamburger -->
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- Mobile Drawer -->
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;">
+    <a href="/benchmark" class="btn-primary" style="text-align:center;" id="run-benchmark-drawer-btn">⚡ Run Full Benchmark</a>
+  </div>
+  {toolCategories.map(cat => (
+    <div class="drawer-category">
+      <div class="drawer-category-title">{cat.icon} {cat.name}</div>
+      {cat.tools.map(tool => (
+        <a href={tool.path} class="drawer-link">{tool.label}</a>
+      ))}
+    </div>
+  ))}
+  <div class="drawer-category">
+    <div class="drawer-category-title">📖 Guides</div>
+    <a href="/guides/refresh-rate" class="drawer-link">Hz vs FPS Explained</a>
+    <a href="/guides/mouse-dpi" class="drawer-link">What is Mouse DPI?</a>
+    <a href="/guides/improve-fps" class="drawer-link">Improve Gaming FPS</a>
+    <a href="/guides/poll-rate" class="drawer-link">Mouse Poll Rate</a>
+    <a href="/guides/gsync-vs-freesync" class="drawer-link">G-Sync vs FreeSync</a>
+    <a href="/guides/motion-blur" class="drawer-link">Motion Blur Explained</a>
+  </div>
+</div>
+
+<style>
+  .mega-link-active { color: var(--primary) !important; }
+
+  /* Mega menu grid: 4 cols on large, 2 on medium */
+  .nav-mega { grid-template-columns: repeat(4, 1fr); }
+  @media(max-width:1200px) { .nav-mega { grid-template-columns: repeat(3, 1fr); } }
+  @media(max-width:960px)  { .nav-mega { grid-template-columns: repeat(2, 1fr); } }
+  .mega-col { display: flex; flex-direction: column; }
+</style>
+
+<script>
+  const hamburger   = document.getElementById('nav-hamburger');
+  const drawer      = document.getElementById('nav-drawer');
+  const toolsBtn    = document.getElementById('tools-menu-btn');
+  const dropdown    = document.getElementById('tools-dropdown');
+
+  // ── Mega-menu: debounced mouseenter / mouseleave ──
+  // Without a debounce the menu closes the instant the mouse crosses
+  // the tiny space between the button and the menu panel.
+  let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+  const openMenu  = () => {
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    dropdown?.classList.add('open');
+    toolsBtn?.setAttribute('aria-expanded', 'true');
+  };
+  const closeMenu = (delay = 150) => {
+    closeTimer = setTimeout(() => {
+      dropdown?.classList.remove('open');
+      toolsBtn?.setAttribute('aria-expanded', 'false');
+      closeTimer = null;
+    }, delay);
+  };
+
+  dropdown?.addEventListener('mouseenter', openMenu);
+  dropdown?.addEventListener('mouseleave', () => closeMenu(150));
+
+  // Keep open while mouse is inside the mega-panel itself
+  dropdown?.querySelector('.nav-mega')?.addEventListener('mouseenter', openMenu);
+  dropdown?.querySelector('.nav-mega')?.addEventListener('mouseleave', () => closeMenu(100));
+
+  // Keyboard: close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu(0);
+  });
+
+  // Click outside closes it
+  document.addEventListener('click', (e) => {
+    if (dropdown && !dropdown.contains(e.target as Node)) closeMenu(0);
+  });
+
+  // ── Hamburger (mobile) ──
+  hamburger?.addEventListener('click', () => {
+    const isOpen = drawer?.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    drawer?.setAttribute('aria-hidden', String(!isOpen));
+    const spans = hamburger.querySelectorAll('span');
+    if (isOpen) {
+      (spans[0] as HTMLElement).style.transform = 'rotate(45deg) translate(5px, 5px)';
+      (spans[1] as HTMLElement).style.opacity   = '0';
+      (spans[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      spans.forEach((s) => {
+        (s as HTMLElement).style.transform = '';
+        (s as HTMLElement).style.opacity   = '';
+      });
+    }
+  });
+
+  drawer?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      drawer!.classList.remove('open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Theme toggle icon ──
+  const themeBtn = document.getElementById('theme-toggle-btn');
+  const theme    = document.documentElement.getAttribute('data-theme');
+  if (themeBtn) themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+</script>

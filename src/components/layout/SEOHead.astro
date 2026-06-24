@@ -3,24 +3,76 @@ export interface Props {
   title: string;
   description: string;
   slug: string;
-  jsonLd: any;
+  jsonLd?: any;
+  ogImage?: string;
 }
-const { title, description, slug, jsonLd } = Astro.props;
-const canonicalUrl = `https://screenhz.com${slug}`;
+const { title, description, slug, jsonLd, ogImage } = Astro.props;
+const canonicalUrl = `https://screenhz.app${slug}`;
+const ogImg = ogImage || 'https://screenhz.app/og-image.png';
+const fullTitle = `${title} | ScreenHz — Free Monitor & Display Benchmark`;
 ---
 
-<!-- SEO / Meta -->
+<!-- Core Meta -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{title} | ScreenHz — Display Benchmark</title>
+<title>{fullTitle}</title>
 <meta name="description" content={description} />
+<meta name="author" content="ScreenHz" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#080808" />
 <link rel="canonical" href={canonicalUrl} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:type" content="website" />
-<meta property="og:url" content={canonicalUrl} />
-<meta name="theme-color" content="#0a0a0a" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<!-- JSON-LD -->
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<!-- Open Graph -->
+<meta property="og:type"        content="website" />
+<meta property="og:site_name"   content="ScreenHz" />
+<meta property="og:title"       content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url"         content={canonicalUrl} />
+<meta property="og:image"       content={ogImg} />
+<meta property="og:image:width"  content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt"    content="ScreenHz — Monitor & Display Benchmark" />
+<meta property="og:locale"       content="en_US" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:site"        content="@screenhz" />
+<meta name="twitter:title"       content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image"       content={ogImg} />
+<meta name="twitter:image:alt"   content="ScreenHz — Monitor & Display Benchmark" />
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon"  href="/favicon.ico" />
+
+<!-- JSON-LD Structured Data -->
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+<!-- Base Website Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ScreenHz",
+  "url": "https://screenhz.app",
+  "description": "Free browser-based monitor benchmark and display test suite. Test refresh rate, motion blur, input latency, and more.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://screenhz.app/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+})} />
+
+<!-- Theme init (prevent flash) -->
+<script is:inline>
+  (function() {
+    try {
+      const t = localStorage.getItem('screenhz-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    } catch(e) {}
+  })();
+</script>

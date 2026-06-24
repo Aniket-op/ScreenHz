@@ -1,121 +1,399 @@
 ---
 import Base from '../layouts/Base.astro';
-import UFOCanvas from '../components/benchmarks/UFOCanvas.tsx';
+import SpeedometerHero from '../components/SpeedometerHero.tsx';
 
-const title = "Browser Refresh Rate & Frame Rate Test";
-const description = "Test your monitor's exact refresh rate and compare frame rates with our high-precision UFO motion blur test.";
+const title       = 'Monitor Benchmark & Display Test Suite';
+const description = 'Test your monitor\'s refresh rate, motion clarity, input latency, and overall display performance. Free browser-native benchmark suite — no downloads required.';
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Browser Refresh Rate & Frame Rate Test",
-  "url": "https://screenhz.com/",
-  "description": description,
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web Browser",
-  "featureList": ["Live Hz counter", "Multi-lane frame rate comparison", "Adjustable UFO speed"],
-  "offers": { "@type": "Offer", "price": "0" }
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'ScreenHz — Monitor Benchmark',
+  url: 'https://screenhz.app/',
+  description,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  featureList: [
+    'Live refresh rate detection',
+    'Motion blur and ghosting tests',
+    'Input latency estimation',
+    'Frame rate consistency analysis',
+    'Full display benchmark scoring',
+  ],
 };
+
+const toolCategories = [
+  {
+    name: 'Motion Tests',
+    icon: '🎮',
+    slug: 'motion',
+    tools: [
+      { path: '/', label: 'UFO Frame Compare', desc: 'Compare motion clarity at different frame rates' },
+      { path: '/video-game-motion', label: 'Video Game Motion', desc: 'Simulate gaming motion at any refresh rate' },
+      { path: '/vertical-scrolling', label: 'Vertical Scrolling', desc: 'Test scroll motion clarity and blur' },
+      { path: '/marquee', label: 'Text Marquee', desc: 'Horizontal scrolling text clarity test' },
+      { path: '/black-frame-insertion', label: 'Black Frame Insertion', desc: 'BFI strobe backlight simulation' },
+      { path: '/persistence', label: 'Persistence Test', desc: 'Pixel persistence and phosphor decay' },
+      { path: '/eye-tracking-blur', label: 'Eye Tracking Blur', desc: 'How eye movement creates perceived blur' },
+      { path: '/phantom-array', label: 'Phantom Array', desc: 'Saccade-induced phantom lines test' },
+      { path: '/chase-squares', label: 'Chase Squares', desc: 'Motion tracking precision test' },
+    ]
+  },
+  {
+    name: 'Refresh Rate Tools',
+    icon: '⚡',
+    slug: 'refresh',
+    tools: [
+      { path: '/refresh-rate', label: 'Refresh Rate Detector', desc: 'Measure your exact display Hz with high precision' },
+      { path: '/vrr-simulation', label: 'VRR Simulation', desc: 'Variable refresh rate G-Sync / FreeSync test' },
+      { path: '/stutter-tearing', label: 'Stutter & Tearing', desc: 'Detect screen tearing and frame stutters' },
+      { path: '/frame-skipping', label: 'Frame Skipping', desc: 'Identify dropped and skipped frames' },
+      { path: '/browser-timing', label: 'Browser Timing', desc: 'Browser requestAnimationFrame timing precision' },
+      { path: '/blur-busters-law', label: 'Blur Busters Law', desc: 'Motion blur relationship to Hz and fps' },
+    ]
+  },
+  {
+    name: 'Latency & Input',
+    icon: '⏱️',
+    slug: 'latency',
+    tools: [
+      { path: '/reaction-time', label: 'Reaction Time Test', desc: 'Measure your human reaction latency in ms' },
+      { path: '/mouse-poll-rate', label: 'Mouse Poll Rate', desc: 'Detect your mouse\'s polling rate (125–8000 Hz)' },
+      { path: '/aim-trainer', label: 'Aim Trainer', desc: 'Precision target tracking for FPS players' },
+      { path: '/dpi-calculator', label: 'DPI Calculator', desc: 'Convert between DPI, sensitivity, and eDPI' },
+    ]
+  },
+  {
+    name: 'Display Tests',
+    icon: '🖥️',
+    slug: 'display',
+    tools: [
+      { path: '/ghosting', label: 'Ghosting Test', desc: 'Detect pixel response time trailing artifacts' },
+      { path: '/hdr', label: 'HDR & Wide Color', desc: 'Test HDR range and color gamut coverage' },
+      { path: '/black-levels', label: 'Black Levels (PLUGE)', desc: 'Calibrate shadow detail and near-black crush' },
+      { path: '/white-levels', label: 'White Levels', desc: 'Test peak brightness and clipping' },
+      { path: '/color-ghosting', label: 'Color Ghosting', desc: 'Color-specific trailing artifact test' },
+      { path: '/chroma-subsampling', label: 'Chroma Subsampling', desc: 'Detect 4:4:4 vs 4:2:0 color encoding' },
+      { path: '/resolution-scaling', label: 'Resolution Scaling', desc: 'Test pixel sharpness at various resolutions' },
+      { path: '/local-dimming', label: 'Local Dimming', desc: 'OLED/MiniLED local dimming halos test' },
+      { path: '/rtings-test', label: 'Calibration Patterns', desc: 'Professional display calibration test charts' },
+    ]
+  },
+  {
+    name: 'Response Time',
+    icon: '🔬',
+    slug: 'response',
+    tools: [
+      { path: '/gtg-vs-mprt', label: 'GtG vs MPRT', desc: 'Gray-to-gray vs MPRT response time comparison' },
+      { path: '/mprt', label: 'MPRT Test', desc: 'Moving picture response time simulation' },
+      { path: '/lcd-pixel-response', label: 'LCD Pixel Response', desc: 'Raw LCD pixel switching speed test' },
+      { path: '/moving-line', label: 'Moving Line & PWM', desc: 'Detect PWM flicker via moving line test' },
+      { path: '/moving-photo', label: 'Moving Photo', desc: 'Motion clarity with photographic content' },
+    ]
+  },
+  {
+    name: 'Visual Artifacts',
+    icon: '🔍',
+    slug: 'artifacts',
+    tools: [
+      { path: '/aliasing', label: 'Aliasing Test', desc: 'Detect jagged edges and sub-pixel rendering' },
+      { path: '/strobe-crosstalk', label: 'Strobe Crosstalk', desc: 'BFI ghosting and crosstalk artifacts' },
+      { path: '/inversion-artifacts', label: 'Inversion Artifacts', desc: 'LCD pixel inversion pattern detection' },
+      { path: '/scan-out', label: 'Scan-Out Test', desc: 'Display scan-out pattern visualization' },
+      { path: '/scan-out-skew', label: 'Scan-Out Skew', desc: 'Rolling scan artifact measurement' },
+      { path: '/flicker', label: 'Display Flicker', desc: 'PWM backlight flicker sensitivity test' },
+      { path: '/crt-simulator', label: 'CRT Simulator', desc: 'Simulate CRT electron beam scan patterns' },
+      { path: '/video-interlacing', label: 'Video Interlacing', desc: 'Interlaced vs progressive scan comparison' },
+    ]
+  },
+  {
+    name: 'Utilities',
+    icon: '🛠️',
+    slug: 'utilities',
+    tools: [
+      { path: '/setup-score', label: 'Setup Score', desc: 'Rate your overall gaming setup performance' },
+      { path: '/color-rainbow', label: 'Color Rainbow', desc: 'Full spectrum color gradient test' },
+      { path: '/leaderboard', label: 'Leaderboard', desc: 'See top-performing monitor configurations' },
+    ]
+  },
+];
+
+const whyCards = [
+  {
+    icon: '🎯',
+    title: 'Verify Your Hz',
+    desc: 'Your monitor may be running below its rated spec. Test instantly to confirm your actual refresh rate.',
+  },
+  {
+    icon: '⚡',
+    title: 'Detect Frame Issues',
+    desc: 'Identify stutters, dropped frames, and screen tearing before they ruin your competitive game.',
+  },
+  {
+    icon: '👁️',
+    title: 'Reduce Motion Blur',
+    desc: 'Understand how refresh rate, pixel response time, and sample-and-hold affect motion clarity.',
+  },
+  {
+    icon: '🏆',
+    title: 'Benchmark & Compare',
+    desc: 'Get a comprehensive display score and compare your setup against industry standards.',
+  },
+];
+
+const faqItems = [
+  {
+    q: 'How accurate is the refresh rate measurement?',
+    a: 'ScreenHz uses requestAnimationFrame timing, measuring the delta between successive frames with sub-millisecond resolution. After sampling 60+ frames, it snaps to the nearest standard refresh rate (60Hz, 144Hz, 240Hz, etc.) with very high confidence.',
+  },
+  {
+    q: 'Why is my detected Hz lower than my monitor\'s rated Hz?',
+    a: 'Several factors can cause this: browser power-saving throttling, GPU driver issues, an incorrect cable (HDMI 1.4 limits 4K to 60Hz), or background applications limiting performance. Make sure hardware acceleration is enabled in your browser settings.',
+  },
+  {
+    q: 'What\'s the difference between Hz and FPS?',
+    a: 'Refresh Rate (Hz) is a hardware property of your monitor — how many times per second it can display a new image. FPS (Frames Per Second) is how fast your CPU/GPU renders frames. For the smoothest experience, your FPS should meet or exceed your monitor\'s Hz, and VRR technologies like G-Sync/FreeSync can synchronize them dynamically.',
+  },
+  {
+    q: 'Does the benchmark require any software installation?',
+    a: 'No. ScreenHz is entirely browser-native, built on the Web Performance APIs and requestAnimationFrame. Zero downloads, zero plugins, zero data collection.',
+  },
+  {
+    q: 'What is the full benchmark testing?',
+    a: 'The benchmark runs 7 sequential tests: Refresh Rate Accuracy, Frame Consistency (jitter/variance), Motion Smoothness (dropped frames), Browser Render Latency, Rendering Performance (stress test), Animation Frame Rate, and Display Responsiveness. Each is scored 0–100 and combined into a final grade.',
+  },
+  {
+    q: 'What does motion blur reduction actually mean?',
+    a: 'Motion blur on LCD displays is mostly caused by sample-and-hold: the display holds a static image for the entire frame duration, causing smearing when eyes track motion. Higher refresh rates reduce this proportionally. Black Frame Insertion (BFI) inserts dark frames to mimic CRT-style strobe, dramatically reducing motion blur at the cost of brightness.',
+  },
+];
 ---
 
 <Base title={title} description={description} jsonLd={jsonLd}>
-  <div class="hero">
-    <div class="hero-mesh"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow caption-mono">ScreenHz Beta</div>
-      <h1 class="hero-title display-xl">Measure your screen. <br/>With exact precision.</h1>
-      <p class="hero-sub body-lg">{description}</p>
-      <div style="display: flex; gap: var(--spacing-sm); justify-content: center; margin-bottom: var(--spacing-4xl);">
-        <a href="/refresh-rate" class="btn-primary">Start Benchmark</a>
+
+  <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+  <section class="hero scan-line-effect" aria-labelledby="hero-title">
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <div class="fade-in-up" style="width:100%; max-width:1100px; display:flex; flex-direction:column; align-items:center; gap:0;">
+      <div class="hero-eyebrow fade-in-up-delay-1">Free · Browser Native · No Install</div>
+      <h1 class="hero-title fade-in-up-delay-2" id="hero-title">
+        Know Your Display.<br/>
+        <span class="accent-gradient">Benchmark Smarter.</span>
+      </h1>
+      <p class="hero-sub fade-in-up-delay-3">{description}</p>
+
+      <div class="hero-ctas fade-in-up-delay-3">
+        <a href="/benchmark" class="btn-primary" id="hero-run-benchmark-btn">
+          ⚡ Run Full Benchmark
+        </a>
+        <a href="#tools" class="btn-secondary" id="hero-explore-tools-btn">
+          Explore All Tools ↓
+        </a>
       </div>
+
+      <!-- Speedometer -->
+      <div class="hero-speedometer fade-in-up-delay-4">
+        <SpeedometerHero client:load />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ LIVE STATS BAR ════════════════════════ -->
+  <div class="live-stats-bar" aria-live="polite" aria-label="Live display statistics">
+    <div class="live-badge">Live Measuring</div>
+    <div class="live-stat-item" id="stat-hz">
+      <span>Refresh Rate</span>
+      <span class="live-stat-val" id="live-hz-val">— Hz</span>
+    </div>
+    <div class="live-stat-item" id="stat-fps">
+      <span>Browser FPS</span>
+      <span class="live-stat-val" id="live-fps-val">— fps</span>
+    </div>
+    <div class="live-stat-item" id="stat-ft">
+      <span>Frame Time</span>
+      <span class="live-stat-val" id="live-ft-val">— ms</span>
+    </div>
+    <div class="live-stat-item" id="stat-res">
+      <span>Resolution</span>
+      <span class="live-stat-val" id="live-res-val">—</span>
     </div>
   </div>
 
-  <div class="bench-page" style="padding-top: var(--spacing-xl);">
-    <UFOCanvas client:load />
+  <!-- ════════════════════════ WHY TEST SECTION ═════════════════════════ -->
+  <section class="section" aria-labelledby="why-title">
+    <div class="section-label">Why it matters</div>
+    <h2 class="section-title" id="why-title">Why Test Your Monitor?</h2>
+    <p class="section-subtitle">Your display is the final link between your GPU and your eyes. Even premium monitors can underperform if misconfigured.</p>
 
-    <section class="seo-article">
-      <h2>What is Screen Refresh Rate?</h2>
-      <p>Refresh rate is the number of times per second your monitor or display updates with new images. It is measured in Hertz (Hz). A 60Hz display refreshes 60 times per second, while a 144Hz display refreshes 144 times per second.</p>
-      
-      <h3>Hz vs FPS Explained</h3>
-      <p>While <strong>Refresh Rate (Hz)</strong> is a hardware specification of your monitor, <strong>Frames Per Second (FPS)</strong> is how fast your computer's graphics card can render new frames. For the smoothest experience, your FPS should match or exceed your monitor's Hz.</p>
-    </section>
+    <div class="why-grid">
+      {whyCards.map(card => (
+        <div class="why-card">
+          <div class="why-icon" aria-hidden="true">{card.icon}</div>
+          <h3 class="why-title">{card.title}</h3>
+          <p class="why-desc">{card.desc}</p>
+        </div>
+      ))}
+    </div>
 
-    <section class="tools-grid" style="max-width: 1200px; margin: 0 auto; padding: 64px 24px;">
-      <h2 style="font-size: 24px; margin-bottom: 32px; border-bottom: 1px solid #333; padding-bottom: 16px;">All Display Benchmarks</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
-        <a href="/refresh-rate" class="tool-card">Refresh Rate Test</a>
-        <a href="/video-game-motion" class="tool-card">Video Game Motion</a>
-        <a href="/vertical-scrolling" class="tool-card">Vertical Scrolling</a>
-        <a href="/marquee" class="tool-card">Text Marquee Test</a>
-        <a href="/black-frame-insertion" class="tool-card">Black Frame Insertion</a>
-        <a href="/persistence" class="tool-card">Persistence Test</a>
-        <a href="/eye-tracking-blur" class="tool-card">Eye Tracking Blur</a>
-        <a href="/phantom-array" class="tool-card">Phantom Array Effect</a>
-        <a href="/stutter-tearing" class="tool-card">Stutter & Tearing</a>
-        <a href="/vrr-simulation" class="tool-card">VRR Simulation</a>
-        <a href="/resolution-scaling" class="tool-card">Resolution Scaling</a>
-        <a href="/chroma-subsampling" class="tool-card">Chroma Subsampling</a>
-        <a href="/hdr" class="tool-card">HDR & Wide Color Gamut</a>
-        <a href="/ghosting" class="tool-card">Monitor Ghosting</a>
-        <a href="/local-dimming" class="tool-card">Local Dimming</a>
-        <a href="/mprt" class="tool-card">MPRT Test</a>
-        <a href="/color-ghosting" class="tool-card">Color Ghosting</a>
-        <a href="/black-levels" class="tool-card">Black Levels (PLUGE)</a>
-        <a href="/white-levels" class="tool-card">White Levels</a>
-        <a href="/moving-line" class="tool-card">Moving Line & PWM</a>
-        <a href="/moving-photo" class="tool-card">Moving Photo</a>
-        <a href="/chase-squares" class="tool-card">Chase Squares</a>
-        <a href="/aliasing" class="tool-card">Aliasing Test</a>
-        <a href="/strobe-crosstalk" class="tool-card">Strobe Crosstalk</a>
-        <a href="/inversion-artifacts" class="tool-card">Inversion Artifacts</a>
-        <a href="/scan-out" class="tool-card">Scan-Out Test</a>
-        <a href="/flicker" class="tool-card">Display Flicker</a>
-        <a href="/rtings-test" class="tool-card">Calibration Patterns</a>
-        <a href="/crt-simulator" class="tool-card">CRT Simulator</a>
-        <a href="/lcd-pixel-response" class="tool-card">LCD Pixel Response</a>
-        <a href="/color-rainbow" class="tool-card">Color Rainbow</a>
-        <a href="/video-interlacing" class="tool-card">Video Interlacing</a>
-        <a href="/gtg-vs-mprt" class="tool-card">GtG vs MPRT</a>
-        <a href="/blur-busters-law" class="tool-card">Blur Busters Law</a>
-        <a href="/scan-out-skew" class="tool-card">Scan-Out Skew</a>
-        <a href="/browser-timing" class="tool-card">Browser Timing</a>
-        <a href="/dpi-calculator" class="tool-card">DPI Calculator</a>
-        <a href="/aim-trainer" class="tool-card">Aim Trainer</a>
-        <a href="/setup-score" class="tool-card">Setup Score</a>
-        <a href="/leaderboard" class="tool-card">Leaderboard</a>
+    <!-- Stats row -->
+    <div class="stats-row" aria-label="Platform statistics">
+      <div class="stats-row-item">
+        <div class="stats-row-val">46+</div>
+        <div class="stats-row-label">Display Tests</div>
       </div>
-      
-      <h2 style="font-size: 24px; margin-top: 64px; margin-bottom: 32px; border-bottom: 1px solid #333; padding-bottom: 16px;">Guides</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
-        <a href="/guides/refresh-rate" class="tool-card">Hz vs FPS Explained</a>
-        <a href="/guides/mouse-dpi" class="tool-card">What is Mouse DPI?</a>
-        <a href="/guides/improve-fps" class="tool-card">Improve Gaming FPS</a>
-        <a href="/guides/poll-rate" class="tool-card">Mouse Poll Rate</a>
-        <a href="/guides/gsync-vs-freesync" class="tool-card">G-Sync vs FreeSync</a>
-        <a href="/guides/motion-blur" class="tool-card">Motion Blur Explained</a>
+      <div class="stats-row-item">
+        <div class="stats-row-val">7</div>
+        <div class="stats-row-label">Test Categories</div>
       </div>
-    </section>
-  </div>
+      <div class="stats-row-item">
+        <div class="stats-row-val">0ms</div>
+        <div class="stats-row-label">Load Time</div>
+      </div>
+      <div class="stats-row-item">
+        <div class="stats-row-val">Free</div>
+        <div class="stats-row-label">Always</div>
+      </div>
+    </div>
+  </section>
 
-  <style is:global>
-    .tool-card {
-      display: block;
-      padding: 20px;
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 6px;
-      color: #e8e8e8;
-      text-decoration: none;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 14px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .tool-card:hover {
-      border-color: #555;
-      background: #1a1a1a;
-      color: #fff;
-    }
-  </style>
+  <!-- ════════════════════════ BENCHMARK TEASER ════════════════════════ -->
+  <section class="section" style="padding-top:0;" aria-labelledby="benchmark-heading">
+    <div class="bench-teaser">
+      <div class="bench-teaser-label">Full Display Score</div>
+      <h2 class="bench-teaser-title" id="benchmark-heading">
+        Run the Complete Benchmark
+      </h2>
+      <p class="bench-teaser-sub">
+        7 sequential tests. One comprehensive score from 0–100. See how your display stacks up against 60Hz, 144Hz, and 360Hz standards.
+      </p>
+
+      <div class="score-chips" aria-label="Grade examples">
+        <div class="score-chip a-plus">A+ Elite 360Hz</div>
+        <div class="score-chip a">A  144Hz Tier</div>
+        <div class="score-chip b">B  120Hz Tier</div>
+        <div class="score-chip c">C  60Hz Tier</div>
+      </div>
+
+      <a href="/benchmark" class="btn-primary" style="font-size:1rem; padding:1rem 2.5rem;" id="teaser-run-benchmark-btn">
+        ⚡ Start Benchmark — Free
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ TOOLS BY CATEGORY ════════════════════════ -->
+  <section class="section" id="tools" aria-labelledby="tools-heading">
+    <div class="section-label">All tools</div>
+    <h2 class="section-title" id="tools-heading">46+ Display Tests</h2>
+    <p class="section-subtitle">Every tool runs directly in your browser using the Web Performance API and Canvas — no installs, no data collection.</p>
+
+    {toolCategories.map(cat => (
+      <div class="tools-section" id={`cat-${cat.slug}`}>
+        <div class="tools-section-header">
+          <span class="tools-section-icon" aria-hidden="true">{cat.icon}</span>
+          <h3 class="tools-section-name">{cat.name}</h3>
+          <span class="tools-section-count">{cat.tools.length} tools</span>
+        </div>
+        <div class="tool-cards-grid">
+          {cat.tools.map(tool => (
+            <a href={tool.path} class="tool-card" title={tool.desc}>
+              <div style="flex:1; min-width:0;">
+                <div style="font-weight:600; color:var(--ink); margin-bottom:0.15rem; font-size:0.875rem;">
+                  {tool.label}
+                </div>
+                <div style="font-size:0.75rem; color:var(--mute); line-height:1.4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                  {tool.desc}
+                </div>
+              </div>
+              <span class="tool-card-arrow" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- Guides subsection -->
+    <div class="tools-section" id="cat-guides">
+      <div class="tools-section-header">
+        <span class="tools-section-icon" aria-hidden="true">📖</span>
+        <h3 class="tools-section-name">Guides</h3>
+        <span class="tools-section-count">6 guides</span>
+      </div>
+      <div class="tool-cards-grid">
+        {[
+          { path: '/guides/refresh-rate', label: 'Hz vs FPS Explained', desc: 'Understand the relationship between refresh rate and frame rate' },
+          { path: '/guides/mouse-dpi', label: 'What is Mouse DPI?', desc: 'DPI, eDPI, sensitivity explained for gamers' },
+          { path: '/guides/improve-fps', label: 'Improve Gaming FPS', desc: 'Optimize your PC for higher and more stable frame rates' },
+          { path: '/guides/poll-rate', label: 'Mouse Poll Rate Guide', desc: 'Why 1000Hz and 8000Hz polling matters' },
+          { path: '/guides/gsync-vs-freesync', label: 'G-Sync vs FreeSync', desc: 'Which VRR technology is right for you?' },
+          { path: '/guides/motion-blur', label: 'Motion Blur Explained', desc: 'How sample-and-hold creates motion blur on LCDs' },
+        ].map(guide => (
+          <a href={guide.path} class="tool-card" title={guide.desc}>
+            <div style="flex:1; min-width:0;">
+              <div style="font-weight:600; color:var(--ink); margin-bottom:0.15rem; font-size:0.875rem;">{guide.label}</div>
+              <div style="font-size:0.75rem; color:var(--mute); line-height:1.4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{guide.desc}</div>
+            </div>
+            <span class="tool-card-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FAQ SECTION ════════════════════════════ -->
+  <section class="section" style="padding-bottom:6rem;" aria-labelledby="faq-heading">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
+
+    <div style="margin-top:2rem; max-width:760px;">
+      {faqItems.map((item, i) => (
+        <details class="faq-item" id={`faq-${i + 1}`}>
+          <summary class="faq-question">
+            {item.q}
+            <span class="faq-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <p class="faq-answer">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
 </Base>
+
+<script>
+  // Live stats bar — minimal Hz measurement
+  (() => {
+    const hzEl  = document.getElementById('live-hz-val');
+    const fpsEl = document.getElementById('live-fps-val');
+    const ftEl  = document.getElementById('live-ft-val');
+    const resEl = document.getElementById('live-res-val');
+
+    if (resEl) {
+      resEl.textContent = `${window.screen.width} × ${window.screen.height}`;
+    }
+
+    const STANDARDS = [60, 75, 90, 100, 120, 144, 165, 180, 240, 300, 360];
+    const times: number[] = [];
+    let last = performance.now();
+
+    const loop = (now: number) => {
+      const delta = now - last;
+      last = now;
+      if (delta > 1 && delta < 200) {
+        times.push(delta);
+        if (times.length > 120) times.shift();
+        if (times.length >= 20) {
+          const avg = times.reduce((a, b) => a + b, 0) / times.length;
+          const measured = 1000 / avg;
+          const snapped  = STANDARDS.reduce((a, b) => Math.abs(b - measured) < Math.abs(a - measured) ? b : a);
+          if (hzEl)  hzEl.textContent  = `${snapped} Hz`;
+          if (fpsEl) fpsEl.textContent = `${measured.toFixed(1)} fps`;
+          if (ftEl)  ftEl.textContent  = `${avg.toFixed(2)} ms`;
+        }
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  })();
+</script>
