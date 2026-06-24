@@ -20,6 +20,15 @@ const { title, description, jsonLd, ogImage } = Astro.props;
 <html lang="en" data-theme="dark">
   <head>
     <SEOHead title={title} description={description} slug={Astro.url.pathname} jsonLd={jsonLd} ogImage={ogImage} />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-00Y7CHDZZS"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-00Y7CHDZZS');
+    </script>
   </head>
   <body>
     <Nav />
