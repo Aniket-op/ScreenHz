@@ -7,8 +7,8 @@ export interface Props {
   ogImage?: string;
 }
 const { title, description, slug, jsonLd, ogImage } = Astro.props;
-const canonicalUrl = `https://screenhz.app${slug}`;
-const ogImg = ogImage || 'https://screenhz.app/og-image.png';
+const canonicalUrl = `https://screenhz.com${slug}`;
+const ogImg = ogImage || 'https://screenhz.com/og-image.png';
 const fullTitle = `${title} | ScreenHz — Free Monitor & Display Benchmark`;
 ---
 
@@ -58,11 +58,11 @@ const fullTitle = `${title} | ScreenHz — Free Monitor & Display Benchmark`;
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "ScreenHz",
-  "url": "https://screenhz.app",
+  "url": "https://screenhz.com",
   "description": "Free browser-based monitor benchmark and display test suite. Test refresh rate, motion blur, input latency, and more.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://screenhz.app/?q={search_term_string}",
+    "target": "https://screenhz.com/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 })} />

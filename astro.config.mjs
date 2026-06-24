@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://screenhz.app',
+  site: 'https://screenhz.com',
   output: 'server',
   adapter: cloudflare(),
   integrations: [sitemap(), react()],

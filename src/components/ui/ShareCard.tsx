@@ -49,7 +49,7 @@ const ShareCard: React.FC<ShareCardProps> = ({ stats }) => {
             <span className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest">Hardware Score</span>
             <span className="text-5xl font-bold text-brand tracking-tighter leading-none">92</span>
           </div>
-          <span className="text-xs font-medium text-muted mb-1 lowercase">screenhz.app</span>
+          <span className="text-xs font-medium text-muted mb-1 lowercase">screenhz.com</span>
         </div>
 
         <button 
