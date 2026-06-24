@@ -1,0 +1,10 @@
+{
+  "name": "screenhz",
+  "compatibility_date": "2024-01-01",
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "75b4afcd9f654f6eae7909db9df76153"
+    }
+  ]
+}
