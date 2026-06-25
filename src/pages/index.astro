@@ -2,26 +2,76 @@
 import Base from '../layouts/Base.astro';
 import SpeedometerHero from '../components/SpeedometerHero.tsx';
 
-const title       = 'Monitor Benchmark & Display Test Suite';
-const description = 'Test your monitor\'s refresh rate, motion clarity, input latency, and overall display performance. Free browser-native benchmark suite — no downloads required.';
+const title       = 'Screen Hz — Free Refresh Rate Test & Monitor Benchmark';
+const description = 'Free refresh rate test and screen Hz checker. Instantly measure your monitor’s Hz — 60Hz, 120Hz, 144Hz, 240Hz and beyond. 46+ display tests, no downloads required.';
+const keywords    = 'screen hz test, screen hz, refresh rate test, refresh rate, high refresh rate monitor, monitor refresh rate, refresh rate monitor, how to check monitor refresh rate, what is refresh rate, refresh rate for gaming';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'ScreenHz — Monitor Benchmark',
-  url: 'https://screenhz.com/',
-  description,
-  applicationCategory: 'UtilitiesApplication',
-  operatingSystem: 'Web Browser',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  featureList: [
-    'Live refresh rate detection',
-    'Motion blur and ghosting tests',
-    'Input latency estimation',
-    'Frame rate consistency analysis',
-    'Full display benchmark scoring',
-  ],
-};
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'ScreenHz — Screen Hz Test & Monitor Benchmark',
+    url: 'https://screenhz.com/',
+    description,
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Web Browser',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    featureList: [
+      'Screen Hz test — live refresh rate detection',
+      'Monitor refresh rate checker',
+      'Motion blur and ghosting tests',
+      'Input latency estimation',
+      'Frame rate consistency analysis',
+      'Full display benchmark scoring',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is 60Hz or 120Hz better?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '120Hz is significantly better than 60Hz for most uses. A 120Hz monitor refreshes twice as fast, producing visibly smoother motion in games, video, and everyday desktop use. You will notice reduced motion blur and a more responsive feel. If your GPU can push enough frames, upgrading from 60Hz to 120Hz is one of the most impactful display upgrades you can make.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is 144Hz my refresh rate?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Not necessarily. Even if your monitor is rated for 144Hz, it may be running at a lower refresh rate if it is connected via the wrong cable (e.g., HDMI 1.4 instead of DisplayPort or HDMI 2.0+), if your GPU drivers are not configured correctly, or if your operating system has set a lower refresh rate. Use the ScreenHz refresh rate test to check your actual Hz in real time.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does refresh rate do?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Refresh rate (measured in Hz) is the number of times per second your monitor updates the image on screen. A higher refresh rate means smoother motion, less motion blur, and a more responsive feel — especially in fast-paced games. A 60Hz monitor shows 60 frames per second, while a 144Hz monitor can show up to 144 frames per second.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Which is better, 60Hz or 100Hz?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '100Hz is better than 60Hz. It provides noticeably smoother motion — about 67% more frames per second than 60Hz. The improvement is especially visible in gaming and fast-paced video content. If you have the choice between a 60Hz and 100Hz monitor at similar price points, the 100Hz panel will deliver a meaningfully better experience.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is 120Hz or 144Hz better?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '144Hz is slightly better than 120Hz on paper, but the real-world difference is subtle. Both are a massive upgrade from 60Hz. 144Hz monitors tend to be gaming-focused panels (often TN or IPS with fast response times), while 120Hz is common on high-quality OLED TVs and displays. Choose based on panel quality and your GPU\'s ability to sustain frame rates above 120 FPS.',
+        },
+      },
+    ],
+  },
+];
 
 const toolCategories = [
   {
@@ -144,33 +194,37 @@ const whyCards = [
 
 const faqItems = [
   {
-    q: 'How accurate is the refresh rate measurement?',
-    a: 'ScreenHz uses requestAnimationFrame timing, measuring the delta between successive frames with sub-millisecond resolution. After sampling 60+ frames, it snaps to the nearest standard refresh rate (60Hz, 144Hz, 240Hz, etc.) with very high confidence.',
+    q: 'Is 60Hz or 120Hz better?',
+    a: '120Hz is significantly better than 60Hz. A 120Hz monitor refreshes twice as fast, delivering visibly smoother motion in games, video, and everyday desktop use — with noticeably reduced motion blur and a more responsive feel. Upgrading from 60Hz to 120Hz is one of the most impactful display improvements you can make.',
   },
   {
-    q: 'Why is my detected Hz lower than my monitor\'s rated Hz?',
-    a: 'Several factors can cause this: browser power-saving throttling, GPU driver issues, an incorrect cable (HDMI 1.4 limits 4K to 60Hz), or background applications limiting performance. Make sure hardware acceleration is enabled in your browser settings.',
+    q: 'What does refresh rate do?',
+    a: 'Refresh rate (measured in Hz) is how many times per second your monitor updates the image on screen. A higher refresh rate means smoother motion, less motion blur, and a more responsive experience — especially critical in fast-paced gaming. A 60Hz display shows 60 frames per second maximum; a 144Hz display can show up to 144 frames per second.',
+  },
+  {
+    q: 'Which is better, 60Hz or 100Hz?',
+    a: '100Hz is noticeably better than 60Hz — it delivers roughly 67% more frames per second, resulting in visibly smoother motion in games and video. At similar price points, a 100Hz monitor is a meaningful upgrade. Use our screen Hz test to confirm which refresh rate your monitor is actually running at.',
+  },
+  {
+    q: 'Is 120Hz or 144Hz better?',
+    a: '144Hz is technically faster, but the perceptual difference from 120Hz is subtle. Both are massive upgrades from 60Hz. 144Hz panels are typically gaming-focused (TN/IPS), while 120Hz is common on premium OLEDs. Choose based on panel quality, price, and whether your GPU can sustain frame rates above 120 FPS.',
+  },
+  {
+    q: 'Is 144Hz my refresh rate?',
+    a: 'Not necessarily — even a 144Hz monitor may run at a lower Hz if connected via the wrong cable (e.g., HDMI 1.4 instead of DisplayPort or HDMI 2.0+), if GPU drivers are misconfigured, or if the OS has set a lower rate. Use ScreenHz\'s refresh rate test to check your actual Hz in real time and confirm your monitor is running at its full spec.',
+  },
+  {
+    q: 'How accurate is the refresh rate measurement?',
+    a: 'ScreenHz uses requestAnimationFrame timing, measuring the delta between successive frames with sub-millisecond resolution. After sampling 60+ frames, it snaps to the nearest standard refresh rate (60Hz, 144Hz, 240Hz, etc.) with very high confidence.',
   },
   {
     q: 'What\'s the difference between Hz and FPS?',
     a: 'Refresh Rate (Hz) is a hardware property of your monitor — how many times per second it can display a new image. FPS (Frames Per Second) is how fast your CPU/GPU renders frames. For the smoothest experience, your FPS should meet or exceed your monitor\'s Hz, and VRR technologies like G-Sync/FreeSync can synchronize them dynamically.',
   },
-  {
-    q: 'Does the benchmark require any software installation?',
-    a: 'No. ScreenHz is entirely browser-native, built on the Web Performance APIs and requestAnimationFrame. Zero downloads, zero plugins, zero data collection.',
-  },
-  {
-    q: 'What is the full benchmark testing?',
-    a: 'The benchmark runs 7 sequential tests: Refresh Rate Accuracy, Frame Consistency (jitter/variance), Motion Smoothness (dropped frames), Browser Render Latency, Rendering Performance (stress test), Animation Frame Rate, and Display Responsiveness. Each is scored 0–100 and combined into a final grade.',
-  },
-  {
-    q: 'What does motion blur reduction actually mean?',
-    a: 'Motion blur on LCD displays is mostly caused by sample-and-hold: the display holds a static image for the entire frame duration, causing smearing when eyes track motion. Higher refresh rates reduce this proportionally. Black Frame Insertion (BFI) inserts dark frames to mimic CRT-style strobe, dramatically reducing motion blur at the cost of brightness.',
-  },
 ];
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description} jsonLd={jsonLd} keywords={keywords}>
 
   <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
   <section class="hero scan-line-effect" aria-labelledby="hero-title">
@@ -179,8 +233,8 @@ const faqItems = [
     <div class="fade-in-up" style="width:100%; max-width:1100px; display:flex; flex-direction:column; align-items:center; gap:0;">
       <div class="hero-eyebrow fade-in-up-delay-1">Free · Browser Native · No Install</div>
       <h1 class="hero-title fade-in-up-delay-2" id="hero-title">
-        Know Your Display.<br/>
-        <span class="accent-gradient">Benchmark Smarter.</span>
+        Free Screen Hz Test &amp;<br/>
+        <span class="accent-gradient">Monitor Benchmark.</span>
       </h1>
       <p class="hero-sub fade-in-up-delay-3">{description}</p>
 

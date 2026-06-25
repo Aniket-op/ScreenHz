@@ -5,4 +5,4 @@ Allow: /
 Disallow: /dist/
 Disallow: /.astro/
 
-Sitemap: https://screenhz.com/sitemap-index.xml
+Sitemap: https://screenhz.com/sitemap.xml

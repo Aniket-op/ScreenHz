@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title       = 'Display & Monitor Guides — Screen Hz, Refresh Rate & Gaming';
+const description = 'Free guides on monitor refresh rate, screen Hz, mouse DPI, gaming FPS, and display technology. Learn what matters for competitive gaming and everyday use.';
+const keywords    = 'monitor guides, refresh rate guide, screen hz explained, gaming monitor tips, mouse dpi guide, what is refresh rate, how to improve fps';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  'name': 'ScreenHz Guides',
+  'url': 'https://screenhz.com/guides',
+  'description': description,
+  'publisher': { '@type': 'Organization', 'name': 'ScreenHz', 'url': 'https://screenhz.com' },
+};
+
+const guides = [
+  {
+    href: '/guides/what-is-refresh-rate',
+    title: 'What is Monitor Refresh Rate (Hz)?',
+    desc: 'Everything about Hz — what it is, why it matters for gaming, and how 60Hz vs 144Hz vs 240Hz compare.',
+    readTime: '5 min',
+    tag: 'Display',
+  },
+  {
+    href: '/guides/mouse-dpi',
+    title: 'What is Mouse DPI? Sensitivity for Gamers',
+    desc: 'Understand DPI, eDPI, and how to find the perfect mouse sensitivity for competitive gaming.',
+    readTime: '4 min',
+    tag: 'Input',
+  },
+  {
+    href: '/guides/improve-fps',
+    title: 'How to Improve Gaming FPS — Complete Guide',
+    desc: 'Actionable steps to increase your frame rate, reduce stuttering, and optimize your PC for gaming.',
+    readTime: '6 min',
+    tag: 'Performance',
+  },
+  {
+    href: '/guides/poll-rate',
+    title: 'What is Mouse Poll Rate? 125Hz vs 1000Hz',
+    desc: 'Why your mouse polling rate matters, what 8000Hz means, and whether you need it.',
+    readTime: '4 min',
+    tag: 'Input',
+  },
+  {
+    href: '/guides/gsync-vs-freesync',
+    title: 'G-Sync vs FreeSync — Full Comparison',
+    desc: 'Which variable refresh rate technology is right for your setup? Complete breakdown of NVIDIA and AMD VRR.',
+    readTime: '5 min',
+    tag: 'Display',
+  },
+  {
+    href: '/guides/motion-blur',
+    title: 'Monitor Motion Blur & Ghosting Explained',
+    desc: 'How sample-and-hold creates motion blur on LCDs, and what BFI and high Hz do to combat it.',
+    readTime: '5 min',
+    tag: 'Display',
+  },
+];
+
+const tagColors: Record<string, string> = {
+  Display: 'var(--primary)',
+  Input: '#00e5ff',
+  Performance: '#00ff87',
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd} keywords={keywords}>
+  <section class="section" aria-labelledby="guides-heading">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" style="margin-bottom:2rem; font-size:0.8rem; color:var(--mute);">
+      <a href="/" style="color:var(--mute); text-decoration:none;">Home</a>
+      <span aria-hidden="true" style="margin:0 0.4rem;">/</span>
+      <span style="color:var(--ink);">Guides</span>
+    </nav>
+
+    <div class="section-label">Knowledge Base</div>
+    <h1 class="section-title" id="guides-heading">Display & Gaming Guides</h1>
+    <p class="section-subtitle">
+      In-depth guides on refresh rate, screen Hz, mouse DPI, FPS optimization, and display technology —
+      written for gamers and enthusiasts.
+    </p>
+
+    <div style="margin-top:3rem; display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.5rem; max-width:1100px; margin-left:auto; margin-right:auto;">
+      {guides.map(guide => (
+        <a href={guide.href} style="display:flex; flex-direction:column; gap:0.75rem; padding:1.5rem; border:1px solid var(--hairline); border-radius:var(--rounded-lg); background:var(--canvas-soft); text-decoration:none; transition:border-color 0.2s, background 0.2s;" 
+           class="guide-card">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style={`font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:${tagColors[guide.tag] || 'var(--primary)'}; border:1px solid currentColor; padding:0.15rem 0.5rem; border-radius:100px;`}>
+              {guide.tag}
+            </span>
+            <span style="font-size:0.75rem; color:var(--mute);">{guide.readTime} read</span>
+          </div>
+          <h2 style="font:var(--font-heading-sm); color:var(--ink); margin:0; line-height:1.35;">
+            {guide.title}
+          </h2>
+          <p style="font:var(--font-body-sm); color:var(--body); margin:0; line-height:1.6;">
+            {guide.desc}
+          </p>
+          <span style="font-size:0.8rem; color:var(--primary); margin-top:auto;">Read guide →</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div style="margin-top:4rem; text-align:center; padding:2.5rem; border:1px solid var(--hairline); border-radius:var(--rounded-xl); background:var(--canvas-soft); max-width:680px; margin-left:auto; margin-right:auto;">
+      <h2 style="font:var(--font-heading-md); color:var(--ink); margin-bottom:0.75rem;">Ready to test your display?</h2>
+      <p style="color:var(--body); margin-bottom:1.5rem;">Run our free screen Hz test and full monitor benchmark — no download required.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="/refresh-rate" class="btn-primary" id="guides-hz-test-btn">⚡ Screen Hz Test</a>
+        <a href="/benchmark" class="btn-secondary" id="guides-benchmark-btn">Run Benchmark</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .guide-card:hover {
+    border-color: var(--primary);
+    background: var(--canvas);
+  }
+  .guide-card h2 {
+    font-size: 1rem;
+  }
+</style>

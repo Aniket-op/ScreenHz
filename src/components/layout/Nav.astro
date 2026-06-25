@@ -94,7 +94,7 @@ const toolCategories = [
 <nav class="nav" id="main-nav">
   <!-- Logo -->
   <a href="/" class="nav-logo" aria-label="ScreenHz Home">
-    <img src="/icon.svg" class="nav-logo-icon" alt="" width="32" height="32" />
+    <img src="/icon.svg" class="nav-logo-icon" alt="ScreenHz logo" width="32" height="32" />
     ScreenHz<span class="nav-logo-dot" aria-hidden="true"></span>
   </a>
 
@@ -131,6 +131,20 @@ const toolCategories = [
             ))}
           </div>
         ))}
+        <!-- Guides column -->
+        <div class="mega-col">
+          <div class="mega-category-title">
+            <span aria-hidden="true">📖</span>
+            Guides
+          </div>
+          <a href="/guides" role="menuitem" class:list={['mega-link', currentPath === '/guides' ? 'mega-link-active' : '']}>All Guides</a>
+          <a href="/guides/what-is-refresh-rate" role="menuitem" class:list={['mega-link', currentPath === '/guides/what-is-refresh-rate' ? 'mega-link-active' : '']}>What is Refresh Rate?</a>
+          <a href="/guides/mouse-dpi" role="menuitem" class:list={['mega-link', currentPath === '/guides/mouse-dpi' ? 'mega-link-active' : '']}>What is Mouse DPI?</a>
+          <a href="/guides/improve-fps" role="menuitem" class:list={['mega-link', currentPath === '/guides/improve-fps' ? 'mega-link-active' : '']}>Improve Gaming FPS</a>
+          <a href="/guides/poll-rate" role="menuitem" class:list={['mega-link', currentPath === '/guides/poll-rate' ? 'mega-link-active' : '']}>Mouse Poll Rate</a>
+          <a href="/guides/gsync-vs-freesync" role="menuitem" class:list={['mega-link', currentPath === '/guides/gsync-vs-freesync' ? 'mega-link-active' : '']}>G-Sync vs FreeSync</a>
+          <a href="/guides/motion-blur" role="menuitem" class:list={['mega-link', currentPath === '/guides/motion-blur' ? 'mega-link-active' : '']}>Motion Blur Explained</a>
+        </div>
       </div>
     </div>
   </div>

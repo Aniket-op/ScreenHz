@@ -5,25 +5,28 @@ export interface Props {
   slug: string;
   jsonLd?: any;
   ogImage?: string;
+  keywords?: string;
+  ogType?: string;
+  robots?: string;
 }
-const { title, description, slug, jsonLd, ogImage } = Astro.props;
+const { title, description, slug, jsonLd, ogImage, keywords, ogType = 'website', robots = 'index, follow, max-image-preview:large' } = Astro.props;
 const canonicalUrl = `https://screenhz.com${slug}`;
 const ogImg = ogImage || 'https://screenhz.com/og-image.png';
-const fullTitle = `${title} | ScreenHz — Free Monitor & Display Benchmark`;
+const fullTitle = `${title} | ScreenHz (Screen Hz) — Free Monitor & Display Benchmark`;
 ---
 
 <!-- Core Meta -->
-<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
 <meta name="author" content="ScreenHz" />
-<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="robots" content={robots} />
 <meta name="theme-color" content="#080808" />
 <link rel="canonical" href={canonicalUrl} />
 
 <!-- Open Graph -->
-<meta property="og:type"        content="website" />
+<meta property="og:type"        content={ogType} />
 <meta property="og:site_name"   content="ScreenHz" />
 <meta property="og:title"       content={fullTitle} />
 <meta property="og:description" content={description} />
@@ -49,9 +52,13 @@ const fullTitle = `${title} | ScreenHz — Free Monitor & Display Benchmark`;
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/icon.svg" />
 <link rel="icon" type="image/png" href="/icon.png" />
+<link rel="apple-touch-icon" href="/icon.png" />
 
 <!-- JSON-LD Structured Data -->
-{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+{jsonLd && Array.isArray(jsonLd)
+  ? jsonLd.map((schema: any) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)
+  : jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+}
 
 <!-- Base Website Schema -->
 <script type="application/ld+json" set:html={JSON.stringify({

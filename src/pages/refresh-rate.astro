@@ -2,23 +2,72 @@
 import Base from '../layouts/Base.astro';
 import HzDetector from '../components/benchmarks/HzDetector.tsx';
 
-const title = "Exact Refresh Rate Test — Decimal Precision Hz Meter";
-const description = "Test your exact monitor refresh rate with 4 decimal places of precision using our high-resolution browser Hz meter.";
+const title       = 'Refresh Rate Test — Measure Your Monitor Hz Instantly';
+const description = 'Free refresh rate test. Instantly measure your display\'s refresh rate in Hertz (Hz). Check if your monitor runs at 60Hz, 120Hz, 144Hz, 240Hz or higher — no download required.';
+const keywords    = 'refresh rate test, screen hz test, how to check monitor refresh rate, how to check refresh rate on monitor, what is refresh rate, how to change refresh rate on monitor, what does refresh rate mean, refresh rate for gaming, what is a good refresh rate for gaming, high refresh rate monitor';
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Exact Refresh Rate Test",
-  "url": "https://screenhz.com/refresh-rate",
-  "description": description,
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web Browser",
-  "featureList": ["Sub-millisecond precision", "Frame time distribution graph", "Rolling average Hz"],
-  "offers": { "@type": "Offer", "price": "0" }
-};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Refresh Rate Test — Screen Hz Checker",
+    "url": "https://screenhz.com/refresh-rate",
+    "description": description,
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web Browser",
+    "featureList": ["Sub-millisecond precision", "Frame time distribution graph", "Rolling average Hz"],
+    "offers": { "@type": "Offer", "price": "0" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I check my monitor refresh rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can check your monitor refresh rate using this free online screen Hz test — it measures your actual refresh rate in real time using your browser. Alternatively, on Windows, right-click your desktop → Display Settings → Advanced Display → Refresh Rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is refresh rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Refresh rate is the number of times per second your monitor updates the displayed image, measured in Hertz (Hz). A 60Hz monitor refreshes 60 times per second; a 144Hz monitor refreshes 144 times per second. Higher refresh rates produce smoother, more fluid motion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good refresh rate for gaming?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For casual gaming, 60Hz is acceptable. For competitive gaming, 144Hz is the current standard offering a significant advantage in smoothness and response. Enthusiast players use 240Hz or 360Hz. A good refresh rate for gaming is generally 144Hz or higher."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I change my monitor refresh rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On Windows: Right-click Desktop → Display Settings → Advanced Display → Choose Refresh Rate from the dropdown. On Mac: System Settings → Displays → select your Hz. Make sure your cable (DisplayPort or HDMI 2.0+) supports your monitor's maximum refresh rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is variable refresh rate (VRR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Variable Refresh Rate (VRR) is a technology that synchronises your monitor's refresh rate with your GPU's frame output in real time. G-Sync (NVIDIA) and FreeSync (AMD) are the two main standards. VRR eliminates screen tearing and reduces stutter without the input lag of V-Sync."
+        }
+      }
+    ]
+  }
+];
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description} jsonLd={jsonLd} keywords={keywords}>
   <div class="bench-page">
     <div class="bench-header">
       <a href="/" class="bench-back">← Back</a>
@@ -28,15 +77,132 @@ const jsonLd = {
     
     <HzDetector client:load />
 
+    <!-- Share / Link bar -->
+    <div class="share-bar" id="share-bar" aria-label="Share this tool">
+      <span class="share-label">🔗 Share this test:</span>
+      <a
+        href="https://screenhz.com/refresh-rate"
+        class="share-url"
+        id="share-url-link"
+        aria-label="Permalink to Refresh Rate Test"
+      >
+        https://screenhz.com/refresh-rate
+      </a>
+      <button
+        class="share-copy-btn"
+        id="copy-url-btn"
+        aria-label="Copy link to clipboard"
+        type="button"
+      >
+        Copy
+      </button>
+    </div>
+
     <section class="seo-article">
       <h2>What is Screen Refresh Rate?</h2>
-      <p>Refresh rate is the number of times per second your monitor or display updates with new images. It is measured in Hertz (Hz). A 60Hz display refreshes 60 times per second, while a 144Hz display refreshes 144 times per second.</p>
-      
+      <p>Refresh rate is the number of times per second your monitor or display updates with new images. It is measured in Hertz (Hz). A 60Hz display refreshes 60 times per second, while a 144Hz display refreshes 144 times per second. The higher the refresh rate, the smoother and more fluid motion appears on screen.</p>
+
       <h3>Hz vs FPS Explained</h3>
-      <p>While <strong>Refresh Rate (Hz)</strong> is a hardware specification of your monitor, <strong>Frames Per Second (FPS)</strong> is how fast your computer's graphics card can render new frames. For the smoothest experience, your FPS should match or exceed your monitor's Hz.</p>
-      
+      <p>While <strong>Refresh Rate (Hz)</strong> is a hardware specification of your monitor, <strong>Frames Per Second (FPS)</strong> is how fast your computer's graphics card can render new frames. For the smoothest experience, your FPS should match or exceed your monitor's Hz. Technologies like G-Sync and FreeSync (Variable Refresh Rate / VRR) can dynamically sync the two to eliminate tearing and stutter.</p>
+
+      <h3>How to Check Your Monitor Refresh Rate</h3>
+      <p>The easiest way to check your monitor refresh rate is to use this free <strong>screen Hz test</strong> above — it detects your actual refresh rate in real time directly in your browser. For the OS-level setting on Windows: right-click your Desktop → <em>Display Settings</em> → <em>Advanced Display</em> → look for <em>Refresh Rate</em>. On Mac: <em>System Settings → Displays</em> and select your Hz from the dropdown.</p>
+
+      <h3>How to Change Your Refresh Rate on a Monitor</h3>
+      <p>On <strong>Windows</strong>: Right-click Desktop → Display Settings → Advanced Display → select your desired Hz from the dropdown. On <strong>Mac</strong>: System Settings → Displays → choose Hz. Make sure you're using a cable that supports your target refresh rate — HDMI 1.4 is limited to 60Hz at 1080p/4K, while DisplayPort or HDMI 2.0+ can handle 144Hz and above.</p>
+
+      <h3>What is a Good Refresh Rate for Gaming?</h3>
+      <p>60Hz is the minimum for playable gaming. <strong>144Hz</strong> is the current sweet spot for competitive gaming, offering dramatically smoother motion compared to 60Hz. Enthusiast players targeting pro-level performance often use <strong>240Hz or 360Hz</strong> monitors. If your GPU can maintain frame rates above 144 FPS, a high refresh rate monitor will make a tangible difference in gameplay.</p>
+
+      <h3>What is Variable Refresh Rate (VRR)?</h3>
+      <p>Variable Refresh Rate (VRR) technology synchronises your monitor's refresh rate dynamically with your GPU's frame output. <strong>G-Sync</strong> (NVIDIA) and <strong>FreeSync</strong> (AMD) are the two main implementations. VRR eliminates screen tearing and reduces stutter without the input-lag penalty of traditional V-Sync.</p>
+
       <h3>Why Exact Decimals Matter</h3>
       <p>Many "60Hz" monitors actually run at 59.94Hz due to legacy NTSC video standards. High-precision measurement helps debug stuttering issues and verify monitor overclocks by showing the exact microsecond timing of your display.</p>
     </section>
   </div>
 </Base>
+
+<style>
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1.25rem auto 0;
+    max-width: 860px;
+    padding: 0.75rem 1.25rem;
+    background: var(--canvas-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--rounded-lg);
+    font-size: 0.85rem;
+  }
+
+  .share-label {
+    color: var(--mute);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .share-url {
+    flex: 1;
+    min-width: 0;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--primary);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0.3rem 0.6rem;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+    border-radius: var(--rounded);
+    transition: background 0.2s;
+  }
+
+  .share-url:hover {
+    background: color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+
+  .share-copy-btn {
+    flex-shrink: 0;
+    padding: 0.3rem 0.85rem;
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--rounded);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.04em;
+  }
+
+  .share-copy-btn:hover  { opacity: 0.85; }
+  .share-copy-btn:active { transform: scale(0.96); }
+  .share-copy-btn.copied {
+    background: #00c97a;
+    color: #000;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('copy-url-btn');
+  btn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('https://screenhz.com/refresh-rate');
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    } catch {
+      // Fallback for older browsers
+      const el = document.getElementById('share-url-link') as HTMLAnchorElement;
+      el?.select?.();
+    }
+  });
+</script>

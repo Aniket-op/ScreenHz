@@ -1,11 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const title = "About Screen HZ | How We Measure Your Setup";
-const description = "Learn how Screen HZ measures monitor refresh rate, FPS, mouse DPI, and input latency with professional accuracy.";
+const title = 'About ScreenHz — How We Measure Your Monitor & Setup';
+const description = 'Learn how ScreenHz measures monitor refresh rate, FPS, mouse DPI, and input latency with professional accuracy. Built for gamers, free forever.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  'name': 'About ScreenHz',
+  'url': 'https://screenhz.com/about',
+  'description': description,
+  'publisher': { '@type': 'Organization', 'name': 'ScreenHz', 'url': 'https://screenhz.com' }
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} jsonLd={jsonLd}>
   <section class="py-[80px] w-full">
     <div class="max-w-[760px] mx-auto px-6">
       <div class="text-[11px] font-mono font-bold text-muted tracking-[0.14em] uppercase mb-4">

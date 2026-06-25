@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import cloudflare from '@astrojs/cloudflare';
 
@@ -11,7 +10,7 @@ export default defineConfig({
   site: 'https://screenhz.com',
   output: 'server',
   adapter: cloudflare(),
-  integrations: [sitemap(), react()],
+  integrations: [react()],
   vite: {
     build: {
       cssCodeSplit: true,
