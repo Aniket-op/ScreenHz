@@ -6,5 +6,11 @@
       "binding": "SESSION",
       "id": "75b4afcd9f654f6eae7909db9df76153"
     }
-  ]
+  ],
+  "observability": {
+    "logs": {
+      "enabled": false,
+      "invocation_logs": true
+    }
+  }
 }
