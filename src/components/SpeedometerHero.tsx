@@ -7,6 +7,20 @@ interface Stats {
   status: 'measuring' | 'detected';
 }
 
+/** Read current theme and subscribe to changes */
+function useTheme() {
+  const [isDark, setIsDark] = useState(true);
+  useEffect(() => {
+    const read = () =>
+      setIsDark(document.documentElement.getAttribute('data-theme') !== 'light');
+    read();
+    const obs = new MutationObserver(read);
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => obs.disconnect();
+  }, []);
+  return isDark;
+}
+
 export default function SpeedometerHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameTimesRef = useRef<number[]>([]);
@@ -15,6 +29,7 @@ export default function SpeedometerHero() {
   const animHzRef = useRef(0);
   const [stats, setStats] = useState<Stats>({ hz: 0, fps: 0, frameTime: 0, status: 'measuring' });
   const [resolution, setResolution] = useState('');
+  const isDark = useTheme();
 
   useEffect(() => {
     setResolution(`${window.screen.width} × ${window.screen.height}`);
@@ -56,6 +71,15 @@ export default function SpeedometerHero() {
       const ctx = canvas.getContext('2d');
       if (!ctx) { rafRef.current = requestAnimationFrame(draw); return; }
 
+      const dark = document.documentElement.getAttribute('data-theme') !== 'light';
+      const trackColor     = dark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.08)';
+      const tickMajor      = dark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.45)';
+      const tickMinor      = dark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.18)';
+      const labelColor     = dark ? 'rgba(255,255,255,0.4)'  : 'rgba(0,0,0,0.5)';
+      const hubInner       = dark ? '#333' : '#e0e0e0';
+      const hubOuter       = dark ? '#111' : '#c8c8c8';
+      const hubStroke      = dark ? 'rgba(255,255,255,0.2)'  : 'rgba(0,0,0,0.15)';
+
       const dpr = window.devicePixelRatio || 1;
       const W = canvas.width / dpr;
       const H = canvas.height / dpr;
@@ -79,7 +103,7 @@ export default function SpeedometerHero() {
       ctx.beginPath();
       ctx.arc(cx, cy, R, START_ANGLE, END_ANGLE);
       ctx.lineWidth = 14;
-      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+      ctx.strokeStyle = trackColor;
       ctx.lineCap = 'round';
       ctx.stroke();
 
@@ -127,14 +151,14 @@ export default function SpeedometerHero() {
         ctx.moveTo(t1x, t1y);
         ctx.lineTo(t2x, t2y);
         ctx.lineWidth = isMajor ? 2 : 1;
-        ctx.strokeStyle = isMajor ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.15)';
+        ctx.strokeStyle = isMajor ? tickMajor : tickMinor;
         ctx.lineCap = 'round';
         ctx.stroke();
 
         if (isMajor) {
           const lx = cx + (R + 20) * Math.cos(angle);
           const ly = cy + (R + 20) * Math.sin(angle);
-          ctx.fillStyle = 'rgba(255,255,255,0.4)';
+          ctx.fillStyle = labelColor;
           ctx.font = `500 10px 'JetBrains Mono', monospace`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
@@ -174,11 +198,11 @@ export default function SpeedometerHero() {
       ctx.beginPath();
       ctx.arc(cx, cy, 10, 0, Math.PI * 2);
       const hubGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 10);
-      hubGrad.addColorStop(0, '#333');
-      hubGrad.addColorStop(1, '#111');
+      hubGrad.addColorStop(0, hubInner);
+      hubGrad.addColorStop(1, hubOuter);
       ctx.fillStyle = hubGrad;
       ctx.fill();
-      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+      ctx.strokeStyle = hubStroke;
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
@@ -206,9 +230,13 @@ export default function SpeedometerHero() {
     return () => ro.disconnect();
   }, []);
 
-  const isDark = typeof document !== 'undefined'
-    ? document.documentElement.getAttribute('data-theme') !== 'light'
-    : true;
+  // Reactive colors based on theme
+  const ink        = isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.80)';
+  const muted      = isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.45)';
+  const hzColor    = isDark ? '#00e5ff' : '#0070f3';
+  const hzInactive = isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.18)';
+  const hzShadow   = isDark ? '0 0 24px rgba(0,229,255,0.5)' : '0 0 20px rgba(0,112,243,0.25)';
+  const hertzLabel = isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.4)';
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', width: '100%' }}>
@@ -233,8 +261,8 @@ export default function SpeedometerHero() {
             fontSize: stats.hz > 0 ? 'clamp(2.5rem, 8vw, 4rem)' : '3rem',
             lineHeight: 1,
             letterSpacing: '-0.05em',
-            color: stats.hz > 0 ? '#00e5ff' : 'rgba(255,255,255,0.2)',
-            textShadow: stats.hz > 0 ? '0 0 24px rgba(0,229,255,0.5)' : 'none',
+            color: stats.hz > 0 ? hzColor : hzInactive,
+            textShadow: stats.hz > 0 ? hzShadow : 'none',
             transition: 'color 0.4s, text-shadow 0.4s',
           }}>
             {stats.hz > 0 ? stats.hz : '—'}
@@ -243,7 +271,7 @@ export default function SpeedometerHero() {
             fontFamily: "'JetBrains Mono', monospace",
             fontWeight: 500, fontSize: '0.7rem',
             letterSpacing: '0.15em', textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.35)', marginTop: '0.15rem',
+            color: hertzLabel, marginTop: '0.15rem',
           }}>
             Hertz
           </div>
@@ -262,14 +290,14 @@ export default function SpeedometerHero() {
           <div key={item.label} style={{ textAlign: 'center' }}>
             <div style={{
               fontFamily: "'JetBrains Mono', monospace", fontWeight: 600,
-              fontSize: '1rem', color: 'rgba(255,255,255,0.85)',
+              fontSize: '1rem', color: ink,
             }}>
               {item.value}
             </div>
             <div style={{
               fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem',
               textTransform: 'uppercase', letterSpacing: '0.12em',
-              color: 'rgba(255,255,255,0.3)', marginTop: '0.2rem',
+              color: muted, marginTop: '0.2rem',
             }}>
               {item.label}
             </div>
