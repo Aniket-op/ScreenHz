@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import HzDetector from '../components/benchmarks/HzDetector.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title       = 'Refresh Rate Test — Measure Your Monitor Hz Instantly';
 const description = 'Free refresh rate test. Instantly measure your display\'s refresh rate in Hertz (Hz). Check if your monitor runs at 60Hz, 120Hz, 144Hz, 240Hz or higher — no download required.';
@@ -120,7 +122,10 @@ const jsonLd = [
       <h3>Why Exact Decimals Matter</h3>
       <p>Many "60Hz" monitors actually run at 59.94Hz due to legacy NTSC video standards. High-precision measurement helps debug stuttering issues and verify monitor overclocks by showing the exact microsecond timing of your display.</p>
     </section>
+
+    <RelatedTools category="refresh" heading="Keep Testing Your Display" />
   </div>
+  <BenchmarkCTA message="Got your refresh rate? Run the complete display benchmark." />
 </Base>
 
 <style>

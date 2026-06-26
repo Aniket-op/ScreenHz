@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import GuideCTA from '../../components/layout/GuideCTA.astro';
 
 const title = "How to Improve Gaming FPS — 2025 Guide";
 const description = "Actionable steps to increase your frame rate, reduce stuttering, and optimize your PC for gaming.";
@@ -29,6 +30,17 @@ const jsonLd = {
 <h2>Key Optimizations</h2>
 <p>Ensure XMP/EXPO is enabled in your BIOS for maximum RAM speed. Disable background apps, and consider using upscaling technologies like DLSS or FSR if your GPU is struggling to maintain your monitor's native refresh rate.</p>
       </div>
+
+      <GuideCTA
+        heading="Verify Your FPS & Display"
+        subtext="Check if your monitor is actually running at its rated rate."
+        tools={[
+          { path: '/refresh-rate', label: 'Refresh Rate Test', icon: '⚡' },
+          { path: '/frame-skipping', label: 'Frame Skip Detector', icon: '⏭️' },
+          { path: '/ghosting', label: 'Ghosting Test', icon: '👻' },
+          { path: '/benchmark', label: 'Full Benchmark', icon: '🏆' },
+        ]}
+      />
     </article>
   </div>
 </Base>

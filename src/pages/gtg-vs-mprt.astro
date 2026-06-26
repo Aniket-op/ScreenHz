@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import GtGvsMPRT from '../components/benchmarks/GtGvsMPRT.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "GtG vs MPRT Comparison";
 const description = "Visualize the difference between pixel transition blur (GtG) and persistence blur (MPRT).";
@@ -33,5 +35,8 @@ const jsonLd = {
       <h2 style="font-size: 20px; margin-bottom: 16px;">The Two Types of Blur</h2>
       <p style="margin-bottom: 16px;">Motion blur on modern displays comes from two sources: the physical time it takes the pixel to change color (GtG), and the time the frame remains static on the screen while your eye is moving (MPRT).</p>
     </section>
+
+    <RelatedTools category="response" heading="Related Response Time Tests" />
   </div>
+  <BenchmarkCTA message="Understand blur types? Get your full display performance score." />
 </Base>

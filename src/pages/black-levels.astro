@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import BlackLevels from '../components/benchmarks/BlackLevels.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "Black Level Test (PLUGE)";
 const description = "Calibrate your monitor's black levels and contrast using a classic PLUGE pattern.";
@@ -33,5 +35,8 @@ const jsonLd = {
       <h2 style="font-size: 20px; margin-bottom: 16px;">Calibrating Black Levels</h2>
       <p style="margin-bottom: 16px;">A properly calibrated monitor should be able to distinguish between pure black (RGB 0) and near-black (RGB 1-5). If near-black details are crushed into pure black, your brightness or gamma is set too low.</p>
     </section>
+
+    <RelatedTools category="display" heading="More Display Calibration Tests" />
   </div>
+  <BenchmarkCTA message="Calibrating your display? Run the full benchmark to score it." />
 </Base>

@@ -1,0 +1,125 @@
+---
+/**
+ * GuideCTA.astro
+ * Call-to-action block at the end of guide articles,
+ * bridging readers to the relevant interactive tools.
+ */
+
+interface CTATool {
+  path: string;
+  label: string;
+  icon: string;
+}
+
+interface Props {
+  heading?: string;
+  subtext?: string;
+  tools: CTATool[];
+}
+
+const {
+  heading = 'Try It Yourself',
+  subtext = 'Apply what you just learned with our free, browser-native tools.',
+  tools,
+} = Astro.props;
+---
+
+<div class="guide-cta" aria-label="Try the tools">
+  <div class="guide-cta-header">
+    <div class="guide-cta-label">Interactive Tools</div>
+    <h3 class="guide-cta-heading">{heading}</h3>
+    <p class="guide-cta-sub">{subtext}</p>
+  </div>
+  <div class="guide-cta-tools">
+    {tools.map(tool => (
+      <a href={tool.path} class="guide-cta-tool" title={tool.label}>
+        <span class="guide-cta-icon" aria-hidden="true">{tool.icon}</span>
+        <span class="guide-cta-tool-label">{tool.label}</span>
+        <span class="guide-cta-arrow" aria-hidden="true">→</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .guide-cta {
+    margin: 3rem 0 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(121,40,202,0.08) 0%, rgba(0,229,255,0.06) 100%);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: var(--rounded-2xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .guide-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--gradient-accent);
+    opacity: 0.5;
+  }
+
+  .guide-cta-label {
+    font: var(--font-caption-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .guide-cta-heading {
+    font: var(--font-heading-md);
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .guide-cta-sub {
+    font-size: 0.85rem;
+    color: var(--mute);
+    margin-bottom: 1.25rem;
+  }
+
+  .guide-cta-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .guide-cta-tool {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--rounded-pill);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+    transition: border-color 0.18s, background 0.18s, transform 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .guide-cta-tool:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(0,229,255,0.06);
+    transform: translateY(-2px);
+  }
+
+  .guide-cta-icon { font-size: 1rem; }
+
+  .guide-cta-arrow {
+    color: var(--mute);
+    font-size: 0.75rem;
+    transition: color 0.15s, transform 0.15s;
+  }
+  .guide-cta-tool:hover .guide-cta-arrow {
+    color: var(--primary);
+    transform: translateX(2px);
+  }
+</style>

@@ -1,0 +1,229 @@
+---
+/**
+ * RelatedTools.astro
+ * Reusable "Try next" section shown at the bottom of every tool page.
+ * Pass a `category` slug to auto-select relevant suggestions,
+ * or pass explicit `tools` to override.
+ */
+
+interface Tool {
+  path: string;
+  label: string;
+  desc: string;
+  icon: string;
+}
+
+interface Props {
+  /** Slug of the current page's category — used for auto-suggestions */
+  category?: 'motion' | 'refresh' | 'latency' | 'display' | 'response' | 'artifacts' | 'utilities' | 'guides';
+  /** Explicit overrides — takes precedence over category */
+  tools?: Tool[];
+  /** Heading override */
+  heading?: string;
+}
+
+const TOOL_MAP: Record<string, Tool[]> = {
+  motion: [
+    { path: '/refresh-rate',       label: 'Refresh Rate Test',  desc: 'Measure your exact Hz in real time',          icon: '⚡' },
+    { path: '/ghosting',           label: 'Ghosting Test',       desc: 'Check pixel response trailing artifacts',      icon: '👻' },
+    { path: '/frame-skipping',     label: 'Frame Skipping',      desc: 'Identify dropped and skipped frames',         icon: '⏭️' },
+    { path: '/benchmark',          label: 'Full Benchmark',      desc: 'Comprehensive display score 0–100',           icon: '🏆' },
+  ],
+  refresh: [
+    { path: '/ghosting',           label: 'Ghosting Test',       desc: 'Check pixel response trailing artifacts',     icon: '👻' },
+    { path: '/stutter-tearing',    label: 'Stutter & Tearing',   desc: 'Detect screen tearing and frame stutters',    icon: '📺' },
+    { path: '/frame-skipping',     label: 'Frame Skipping',      desc: 'Identify dropped and skipped frames',         icon: '⏭️' },
+    { path: '/benchmark',          label: 'Full Benchmark',      desc: 'Comprehensive display score 0–100',           icon: '🏆' },
+  ],
+  latency: [
+    { path: '/refresh-rate',       label: 'Refresh Rate Test',   desc: 'Measure your exact Hz in real time',         icon: '⚡' },
+    { path: '/mouse-poll-rate',    label: 'Mouse Poll Rate',      desc: 'Detect your mouse polling rate',             icon: '🖱️' },
+    { path: '/aim-trainer',        label: 'Aim Trainer',          desc: 'Precision target tracking for FPS players',  icon: '🎯' },
+    { path: '/benchmark',          label: 'Full Benchmark',       desc: 'Comprehensive display score 0–100',          icon: '🏆' },
+  ],
+  display: [
+    { path: '/ghosting',           label: 'Ghosting Test',        desc: 'Check pixel response trailing artifacts',    icon: '👻' },
+    { path: '/refresh-rate',       label: 'Refresh Rate Test',    desc: 'Measure your exact Hz in real time',         icon: '⚡' },
+    { path: '/black-levels',       label: 'Black Levels (PLUGE)', desc: 'Calibrate shadow detail and near-black',     icon: '⬛' },
+    { path: '/benchmark',          label: 'Full Benchmark',       desc: 'Comprehensive display score 0–100',          icon: '🏆' },
+  ],
+  response: [
+    { path: '/ghosting',           label: 'Ghosting Test',        desc: 'Check pixel response trailing artifacts',    icon: '👻' },
+    { path: '/gtg-vs-mprt',        label: 'GtG vs MPRT',          desc: 'Compare response time standards',            icon: '🔬' },
+    { path: '/refresh-rate',       label: 'Refresh Rate Test',    desc: 'Measure your exact Hz in real time',         icon: '⚡' },
+    { path: '/benchmark',          label: 'Full Benchmark',       desc: 'Comprehensive display score 0–100',          icon: '🏆' },
+  ],
+  artifacts: [
+    { path: '/ghosting',           label: 'Ghosting Test',        desc: 'Check pixel response trailing artifacts',    icon: '👻' },
+    { path: '/flicker',            label: 'Display Flicker',      desc: 'PWM backlight flicker sensitivity test',     icon: '💡' },
+    { path: '/refresh-rate',       label: 'Refresh Rate Test',    desc: 'Measure your exact Hz in real time',         icon: '⚡' },
+    { path: '/benchmark',          label: 'Full Benchmark',       desc: 'Comprehensive display score 0–100',          icon: '🏆' },
+  ],
+  utilities: [
+    { path: '/refresh-rate',       label: 'Refresh Rate Test',    desc: 'Measure your exact Hz in real time',         icon: '⚡' },
+    { path: '/reaction-time',      label: 'Reaction Time Test',   desc: 'Measure your human reaction latency',        icon: '⏱️' },
+    { path: '/ghosting',           label: 'Ghosting Test',        desc: 'Check pixel response trailing artifacts',    icon: '👻' },
+    { path: '/benchmark',          label: 'Full Benchmark',       desc: 'Comprehensive display score 0–100',          icon: '🏆' },
+  ],
+  guides: [
+    { path: '/refresh-rate',       label: 'Refresh Rate Test',    desc: 'Test your actual Hz right now',              icon: '⚡' },
+    { path: '/ghosting',           label: 'Ghosting Test',        desc: 'Check pixel response trailing artifacts',    icon: '👻' },
+    { path: '/reaction-time',      label: 'Reaction Time Test',   desc: 'Measure your human reaction latency',        icon: '⏱️' },
+    { path: '/benchmark',          label: 'Full Benchmark',       desc: 'Comprehensive display score 0–100',          icon: '🏆' },
+  ],
+};
+
+const DEFAULT_TOOLS: Tool[] = [
+  { path: '/refresh-rate',    label: 'Refresh Rate Test',   desc: 'Measure your exact Hz in real time',       icon: '⚡' },
+  { path: '/ghosting',        label: 'Ghosting Test',        desc: 'Check pixel response trailing artifacts',  icon: '👻' },
+  { path: '/reaction-time',   label: 'Reaction Time Test',   desc: 'Measure your human reaction latency',     icon: '⏱️' },
+  { path: '/benchmark',       label: 'Full Benchmark',       desc: 'Comprehensive display score 0–100',        icon: '🏆' },
+];
+
+const { category, tools: toolsOverride, heading = 'Try These Next' } = Astro.props;
+const tools: Tool[] = toolsOverride ?? (category ? TOOL_MAP[category] : DEFAULT_TOOLS) ?? DEFAULT_TOOLS;
+---
+
+<section class="related-tools-section" aria-label="Related tools">
+  <div class="related-tools-header">
+    <span class="related-tools-label">Explore More</span>
+    <h2 class="related-tools-heading">{heading}</h2>
+  </div>
+
+  <div class="related-tools-grid">
+    {tools.map(tool => (
+      <a href={tool.path} class="related-tool-card" title={tool.desc}>
+        <span class="related-tool-icon" aria-hidden="true">{tool.icon}</span>
+        <div class="related-tool-body">
+          <div class="related-tool-name">{tool.label}</div>
+          <div class="related-tool-desc">{tool.desc}</div>
+        </div>
+        <span class="related-tool-arrow" aria-hidden="true">→</span>
+      </a>
+    ))}
+  </div>
+
+  <div class="related-tools-footer">
+    <a href="/#tools" class="related-tools-all-link">View all 46+ tests ↗</a>
+  </div>
+</section>
+
+<style>
+  .related-tools-section {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    padding: 2.5rem 1.5rem 0;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .related-tools-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .related-tools-label {
+    display: inline-block;
+    font: var(--font-caption-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .related-tools-heading {
+    font: var(--font-heading-md);
+    color: var(--ink);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .related-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .related-tool-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--rounded-lg);
+    text-decoration: none;
+    transition: border-color 0.18s, background 0.18s, transform 0.18s;
+  }
+
+  .related-tool-card:hover {
+    border-color: var(--card-hover-border);
+    background: var(--gradient-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .related-tool-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    width: 2rem;
+    text-align: center;
+  }
+
+  .related-tool-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .related-tool-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .related-tool-desc {
+    font-size: 0.72rem;
+    color: var(--mute);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .related-tool-arrow {
+    color: var(--mute);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    transition: color 0.18s, transform 0.18s;
+  }
+
+  .related-tool-card:hover .related-tool-arrow {
+    color: var(--primary);
+    transform: translateX(3px);
+  }
+
+  .related-tools-footer {
+    margin-top: 1rem;
+    text-align: right;
+  }
+
+  .related-tools-all-link {
+    font-size: 0.8rem;
+    color: var(--primary);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.18s;
+  }
+  .related-tools-all-link:hover { opacity: 1; }
+
+  @media (max-width: 600px) {
+    .related-tools-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 400px) {
+    .related-tools-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

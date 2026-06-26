@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import GhostingTest from '../components/benchmarks/GhostingTest.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "Monitor Ghosting Test";
 const description = "Test your monitor's pixel response time and overdrive settings for trailing ghost artifacts.";
@@ -33,5 +35,8 @@ const jsonLd = {
       <h2 style="font-size: 20px; margin-bottom: 16px;">Monitor Ghosting</h2>
       <p style="margin-bottom: 16px;">Ghosting is the faint trail left behind moving objects. It happens because liquid crystals (LCDs) take time to physically twist and change color from one frame to the next.</p>
     </section>
+
+    <RelatedTools category="response" heading="Related Display Tests" />
   </div>
+  <BenchmarkCTA message="Checked for ghosting? Get your complete display benchmark score." />
 </Base>

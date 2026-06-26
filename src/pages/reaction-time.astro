@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import ReactionTimer from '../components/benchmarks/ReactionTimer.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "Reaction Time Test — Measure Your Milliseconds";
 const description = "Test your human reaction time down to the millisecond. See how fast you react to visual stimuli compared to professional esports players.";
@@ -41,5 +43,8 @@ const jsonLd = {
       </ul>
       <p>If you have a 60Hz monitor and a cheap mouse, you might have an extra 30-50ms of lag built into your score compared to a pro using a 360Hz monitor and a 4000Hz mouse.</p>
     </section>
+
+    <RelatedTools category="latency" heading="More Latency & Input Tests" />
   </div>
+  <BenchmarkCTA message="Know your reaction time? Benchmark your full display setup." />
 </Base>

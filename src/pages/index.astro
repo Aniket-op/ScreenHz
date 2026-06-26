@@ -226,8 +226,8 @@ const faqItems = [
 
 <Base title={title} description={description} jsonLd={jsonLd} keywords={keywords}>
 
-  <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
-  <section class="hero scan-line-effect" aria-labelledby="hero-title">
+  <!-- ═════════════════════════════ HERO (full viewport) ════════════════════════════ -->
+  <section class="hero hero--full-slide scan-line-effect" aria-labelledby="hero-title">
     <div class="hero-grid" aria-hidden="true"></div>
 
     <div class="fade-in-up" style="width:100%; max-width:1100px; display:flex; flex-direction:column; align-items:center; gap:0;">
@@ -251,8 +251,43 @@ const faqItems = [
       <div class="hero-speedometer fade-in-up-delay-4">
         <SpeedometerHero client:load />
       </div>
+
+      <!-- Start here steps — integrated into hero -->
+      <div class="hero-start-here fade-in-up-delay-4">
+        <div class="hero-start-label">New here? Start in 3 steps</div>
+        <div class="start-here-steps">
+          <a href="/refresh-rate" class="start-step" id="start-step-hz">
+            <div class="start-step-num">1</div>
+            <div class="start-step-body">
+              <div class="start-step-title">⚡ Check Your Hz</div>
+              <div class="start-step-desc">Confirm your monitor is at its rated rate</div>
+            </div>
+            <span class="start-step-arrow" aria-hidden="true">→</span>
+          </a>
+          <div class="start-step-connector" aria-hidden="true"></div>
+          <a href="/benchmark" class="start-step" id="start-step-bench">
+            <div class="start-step-num">2</div>
+            <div class="start-step-body">
+              <div class="start-step-title">🏆 Run Benchmark</div>
+              <div class="start-step-desc">Get your full display score 0–100</div>
+            </div>
+            <span class="start-step-arrow" aria-hidden="true">→</span>
+          </a>
+          <div class="start-step-connector" aria-hidden="true"></div>
+          <a href="#tools" class="start-step" id="start-step-explore">
+            <div class="start-step-num">3</div>
+            <div class="start-step-body">
+              <div class="start-step-title">🔍 Explore 46+ Tests</div>
+              <div class="start-step-desc">Motion, latency, color and more</div>
+            </div>
+            <span class="start-step-arrow" aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
+
+
 
   <!-- ═══════════════════════════ LIVE STATS BAR ════════════════════════ -->
   <div class="live-stats-bar" aria-live="polite" aria-label="Live display statistics">
@@ -274,6 +309,55 @@ const faqItems = [
       <span class="live-stat-val" id="live-res-val">—</span>
     </div>
   </div>
+
+  <!-- ══════════════════════ QUICK TEST ROW ═══════════════════════════ -->
+  <section class="quick-tests-section" aria-labelledby="quick-tests-heading">
+    <div class="quick-tests-label" id="quick-tests-heading">Most Popular</div>
+    <div class="quick-tests-grid">
+      <a href="/refresh-rate" class="quick-test-card" id="quick-test-hz">
+        <span class="quick-test-icon">⚡</span>
+        <div>
+          <div class="quick-test-name">Refresh Rate</div>
+          <div class="quick-test-sub">Check your Hz</div>
+        </div>
+      </a>
+      <a href="/ghosting" class="quick-test-card" id="quick-test-ghosting">
+        <span class="quick-test-icon">👻</span>
+        <div>
+          <div class="quick-test-name">Ghosting Test</div>
+          <div class="quick-test-sub">Pixel response</div>
+        </div>
+      </a>
+      <a href="/reaction-time" class="quick-test-card" id="quick-test-reaction">
+        <span class="quick-test-icon">⏱️</span>
+        <div>
+          <div class="quick-test-name">Reaction Time</div>
+          <div class="quick-test-sub">Measure ms</div>
+        </div>
+      </a>
+      <a href="/mouse-poll-rate" class="quick-test-card" id="quick-test-poll">
+        <span class="quick-test-icon">🖱️</span>
+        <div>
+          <div class="quick-test-name">Mouse Poll Rate</div>
+          <div class="quick-test-sub">125–8000 Hz</div>
+        </div>
+      </a>
+      <a href="/black-levels" class="quick-test-card" id="quick-test-black">
+        <span class="quick-test-icon">⬛</span>
+        <div>
+          <div class="quick-test-name">Black Levels</div>
+          <div class="quick-test-sub">PLUGE calibration</div>
+        </div>
+      </a>
+      <a href="/benchmark" class="quick-test-card quick-test-card--featured" id="quick-test-bench">
+        <span class="quick-test-icon">🏆</span>
+        <div>
+          <div class="quick-test-name">Full Benchmark</div>
+          <div class="quick-test-sub">Score 0–100</div>
+        </div>
+      </a>
+    </div>
+  </section>
 
   <!-- ════════════════════════ WHY TEST SECTION ═════════════════════════ -->
   <section class="section" aria-labelledby="why-title">

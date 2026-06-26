@@ -173,10 +173,16 @@ body {
    HERO
 ====================================================== */
 .hero {
-  min-height: 100vh; display: flex; flex-direction: column;
+  min-height: calc(100svh - 60px); display: flex; flex-direction: column;
   align-items: center; justify-content: center; text-align: center;
-  padding: 5rem 2rem; position: relative; overflow: hidden;
+  padding: 3rem 2rem 2rem; position: relative; overflow: hidden;
   background: var(--gradient-hero-bg);
+}
+.hero--full-slide {
+  /* Pack everything into one viewport — tighter internal spacing */
+  padding: 2rem 2rem 1.5rem;
+  justify-content: center;
+  gap: 0;
 }
 .hero-grid {
   position: absolute; inset: 0;
@@ -192,14 +198,14 @@ body {
   border: 1px solid var(--hairline-accent);
   padding: 0.4rem 1rem; border-radius: var(--rounded-pill);
   background: rgba(0,229,255,0.05); display: inline-block;
-  margin-bottom: 1.75rem; box-shadow: var(--glow-cyan);
+  margin-bottom: 1.25rem; box-shadow: var(--glow-cyan);
 }
 [data-theme="light"] .hero-eyebrow { background: rgba(0,112,243,0.06); }
 .hero-title {
   font: var(--font-display-xl);
   letter-spacing: var(--tracking-tighter);
   color: var(--ink);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   max-width: 14ch;
 }
 .hero-title .accent-gradient {
@@ -209,13 +215,30 @@ body {
 }
 .hero-sub {
   font: var(--font-body-lg); color: var(--body);
-  max-width: 560px; margin-bottom: 2.5rem;
+  max-width: 560px; margin-bottom: 1.75rem;
 }
 .hero-ctas {
   display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
-.hero-speedometer { width: min(440px, 90vw); margin: 0 auto; }
+.hero-speedometer { width: min(400px, 88vw); margin: 0 auto; }
+
+/* Hero-embedded start-here steps */
+.hero-start-here {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+}
+.hero-start-label {
+  font: var(--font-caption-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  margin-bottom: 0.85rem;
+  text-align: left;
+}
 
 /* Live stats bar */
 .live-stats-bar {
@@ -553,4 +576,176 @@ details[open] .faq-question { color: var(--primary); }
   .hero-title { font-size: 2.75rem; }
   .hero { padding: 3rem 1.25rem; }
   .live-stats-bar { gap: 1.5rem; padding: 0.75rem 1rem; }
+}
+
+/* ======================================================
+   START HERE — 3-step onboarding guide
+====================================================== */
+.start-here-section {
+  padding: 2rem 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.start-here-steps {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+.start-step {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex: 1;
+  min-width: 180px;
+  padding: 1rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--rounded-xl);
+  text-decoration: none;
+  transition: border-color 0.18s, background 0.18s, transform 0.18s;
+}
+
+.start-step:hover {
+  border-color: var(--card-hover-border);
+  background: var(--gradient-card-hover);
+  transform: translateY(-2px);
+}
+
+.start-step-num {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  color: #000;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--glow-cyan);
+}
+
+.start-step-body { flex: 1; min-width: 0; }
+
+.start-step-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.start-step-desc {
+  font-size: 0.75rem;
+  color: var(--mute);
+  line-height: 1.4;
+}
+
+.start-step-arrow {
+  font-size: 1rem;
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: transform 0.18s;
+}
+.start-step:hover .start-step-arrow { transform: translateX(3px); }
+
+.start-step-connector {
+  width: 1.5rem;
+  height: 2px;
+  background: var(--hairline);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .start-here-steps { flex-direction: column; align-items: stretch; }
+  .start-step-connector { width: 2px; height: 1.25rem; align-self: center; }
+}
+
+/* ======================================================
+   QUICK TESTS ROW — most popular tools above fold
+====================================================== */
+.quick-tests-section {
+  padding: 1.5rem 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.quick-tests-label {
+  font: var(--font-caption-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.quick-tests-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.6rem;
+}
+
+@media (max-width: 900px) { .quick-tests-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 500px) { .quick-tests-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.quick-test-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--rounded-lg);
+  text-decoration: none;
+  transition: border-color 0.18s, background 0.18s, transform 0.15s;
+}
+
+.quick-test-card:hover {
+  border-color: var(--card-hover-border);
+  background: var(--gradient-card-hover);
+  transform: translateY(-2px);
+}
+
+.quick-test-card--featured {
+  border-color: rgba(0,229,255,0.2);
+  background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(121,40,202,0.06));
+}
+
+.quick-test-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+.quick-test-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.quick-test-sub {
+  font-size: 0.68rem;
+  color: var(--mute);
+  white-space: nowrap;
+}
+
+/* ======================================================
+   HERO--FULL-SLIDE responsive overrides
+====================================================== */
+@media (max-width: 1024px) {
+  .hero--full-slide .hero-title { font-size: 4rem; }
+  .hero-start-here { max-width: 100%; }
+}
+@media (max-width: 768px) {
+  .hero--full-slide { padding: 1.5rem 1.25rem 1rem; min-height: auto; }
+  .hero--full-slide .hero-title { font-size: 3rem; }
+  .hero--full-slide .hero-sub { font-size: 0.95rem; margin-bottom: 1.25rem; }
+  .hero--full-slide .hero-ctas { margin-bottom: 1.25rem; }
+  .hero-start-here { margin-top: 1.25rem; padding-top: 1rem; }
+  .hero-start-label { font-size: 0.65rem; }
+}
+@media (max-width: 480px) {
+  .hero--full-slide .hero-title { font-size: 2.4rem; }
+  .hero-speedometer { width: min(320px, 90vw); }
 }

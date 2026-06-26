@@ -1,0 +1,172 @@
+---
+/**
+ * BenchmarkCTA.astro
+ * Sticky "next step" banner shown at bottom of tool pages.
+ * Prompts users to go from an individual test → full benchmark.
+ */
+
+interface Props {
+  /** Custom message to display */
+  message?: string;
+}
+
+const { message = "Liked this test? Get your full display score." } = Astro.props;
+---
+
+<div class="bench-cta-bar" id="bench-cta-bar" role="complementary" aria-label="Run full benchmark">
+  <div class="bench-cta-inner">
+    <div class="bench-cta-text">
+      <span class="bench-cta-badge">⚡ Next Step</span>
+      <span class="bench-cta-msg">{message}</span>
+    </div>
+    <div class="bench-cta-actions">
+      <a href="/benchmark" class="btn-primary bench-cta-btn" id="bench-cta-run-btn">
+        Run Full Benchmark →
+      </a>
+      <button class="bench-cta-dismiss" id="bench-cta-dismiss" aria-label="Dismiss" title="Dismiss">
+        ✕
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .bench-cta-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    background: linear-gradient(135deg, rgba(121,40,202,0.96) 0%, rgba(0,229,255,0.18) 100%);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-top: 1px solid rgba(0,229,255,0.3);
+    box-shadow: 0 -4px 32px rgba(0,0,0,0.5);
+    padding: 0.75rem 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .bench-cta-bar.visible {
+    transform: translateY(0);
+  }
+
+  .bench-cta-bar.dismissed {
+    display: none;
+  }
+
+  .bench-cta-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .bench-cta-text {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .bench-cta-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #000;
+    background: var(--primary);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--rounded-pill);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .bench-cta-msg {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .bench-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .bench-cta-btn {
+    height: 36px;
+    font-size: 0.8rem;
+    padding: 0 1.25rem;
+    border-radius: var(--rounded-pill);
+    white-space: nowrap;
+  }
+
+  .bench-cta-dismiss {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: color 0.18s;
+  }
+
+  .bench-cta-dismiss:hover {
+    color: #fff;
+  }
+
+  [data-theme="light"] .bench-cta-bar {
+    background: linear-gradient(135deg, rgba(121,40,202,0.92) 0%, rgba(0,112,243,0.88) 100%);
+  }
+
+  @media (max-width: 540px) {
+    .bench-cta-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .bench-cta-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const bar = document.getElementById('bench-cta-bar');
+    const dismissBtn = document.getElementById('bench-cta-dismiss');
+
+    if (!bar) return;
+
+    // Show after 8 seconds or after 30% scroll — whichever comes first
+    const showBar = () => {
+      if (!bar.classList.contains('dismissed')) {
+        bar.classList.add('visible');
+      }
+    };
+
+    const timer = setTimeout(showBar, 8000);
+
+    const onScroll = () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      if (pct > 0.30) {
+        showBar();
+        window.removeEventListener('scroll', onScroll);
+        clearTimeout(timer);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    dismissBtn?.addEventListener('click', () => {
+      bar.classList.remove('visible');
+      bar.classList.add('dismissed');
+    });
+  })();
+</script>

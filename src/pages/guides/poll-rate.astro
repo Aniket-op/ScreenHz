@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import GuideCTA from '../../components/layout/GuideCTA.astro';
 
 const title = "What is Mouse Poll Rate? 125Hz vs 1000Hz";
 const description = "Learn why mouse polling rate matters for input lag and how high refresh rate monitors require higher polling rates.";
@@ -29,6 +30,17 @@ const jsonLd = {
 <h2>The 4000Hz and 8000Hz Debate</h2>
 <p>Modern gaming mice support polling rates up to 8000Hz (0.125ms delay). While the jump from 1000Hz to 8000Hz is mathematically small, it ensures that your mouse inputs perfectly align with the rendering pipeline of extremely high refresh rate (360Hz+) monitors.</p>
       </div>
+
+      <GuideCTA
+        heading="Test Your Mouse Poll Rate"
+        subtext="See your mouse's actual polling rate in real time."
+        tools={[
+          { path: '/mouse-poll-rate', label: 'Mouse Poll Rate Test', icon: '🖱️' },
+          { path: '/reaction-time', label: 'Reaction Time Test', icon: '⏱️' },
+          { path: '/dpi-calculator', label: 'DPI Calculator', icon: '🎯' },
+          { path: '/benchmark', label: 'Full Benchmark', icon: '🏆' },
+        ]}
+      />
     </article>
   </div>
 </Base>

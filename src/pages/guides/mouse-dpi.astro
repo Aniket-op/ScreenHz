@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import GuideCTA from '../../components/layout/GuideCTA.astro';
 
 const title = "What is Mouse DPI? Sensitivity for Gamers";
 const description = "Understand DPI, eDPI, and how to find the perfect mouse sensitivity for competitive gaming.";
@@ -29,6 +30,17 @@ const jsonLd = {
 <h2>eDPI (Effective DPI)</h2>
 <p>eDPI is calculated by multiplying your mouse DPI by your in-game sensitivity. This provides a standardized number that allows players to compare sensitivities across different games and DPI settings.</p>
       </div>
+
+      <GuideCTA
+        heading="Test Your Mouse Setup"
+        subtext="Apply your DPI knowledge with these interactive tools."
+        tools={[
+          { path: '/dpi-calculator', label: 'DPI Calculator', icon: '🎯' },
+          { path: '/mouse-poll-rate', label: 'Mouse Poll Rate Test', icon: '🖱️' },
+          { path: '/reaction-time', label: 'Reaction Time Test', icon: '⏱️' },
+          { path: '/benchmark', label: 'Full Benchmark', icon: '🏆' },
+        ]}
+      />
     </article>
   </div>
 </Base>

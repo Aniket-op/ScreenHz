@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import GuideCTA from '../../components/layout/GuideCTA.astro';
 
 const title = "Monitor Motion Blur & Ghosting Explained";
 const description = "Discover why LCD and OLED screens exhibit motion blur, MPRT vs GtG, and how strobe backlights work.";
@@ -29,6 +30,17 @@ const jsonLd = {
 <h2>Persistence Blur</h2>
 <p>As your eyes smoothly track a moving object across the screen, the static image gets smeared across your retina. The only ways to reduce this persistence blur are to increase the frame rate (and refresh rate) or use a strobing backlight to insert black frames.</p>
       </div>
+
+      <GuideCTA
+        heading="Test Your Display for Motion Blur"
+        subtext="See if your monitor suffers from persistence blur in practice."
+        tools={[
+          { path: '/ghosting', label: 'Ghosting Test', icon: '👻' },
+          { path: '/black-frame-insertion', label: 'BFI Strobe Test', icon: '⚫' },
+          { path: '/mprt', label: 'MPRT Test', icon: '🔬' },
+          { path: '/benchmark', label: 'Full Benchmark', icon: '🏆' },
+        ]}
+      />
     </article>
   </div>
 </Base>

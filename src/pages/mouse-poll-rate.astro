@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import PollRateMeter from '../components/benchmarks/PollRateMeter.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "Mouse Poll Rate & Jitter Test — 125Hz to 8000Hz";
 const description = "Test your gaming mouse polling rate online. Measure exact Hz, standard deviation, and detect jitter in your mouse sensor.";
@@ -38,5 +40,8 @@ const jsonLd = {
       <h3>What is Jitter?</h3>
       <p>Jitter is the variance or inconsistency in the time between mouse reports. Even if a mouse is rated for 1000Hz, unstable sensor firmware or wireless interference can cause some reports to be delayed, leading to micro-stutters during gameplay. A lower jitter score means a more stable connection.</p>
     </section>
+
+    <RelatedTools category="latency" heading="More Input & Latency Tests" />
   </div>
+  <BenchmarkCTA message="Checked your poll rate? Score your complete gaming setup." />
 </Base>

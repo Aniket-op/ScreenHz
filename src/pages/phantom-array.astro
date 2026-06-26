@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import PhantomArray from '../components/benchmarks/PhantomArray.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "Phantom Array Effect Test";
 const description = "Test your display for the phantom array effect (stroboscopic stepping) during fast mouse movement.";
@@ -33,5 +35,8 @@ const jsonLd = {
       <h2 style="font-size: 20px; margin-bottom: 16px;">The Phantom Array Effect</h2>
       <p style="margin-bottom: 16px;">Also known as the stroboscopic effect, this occurs when a high-contrast object moves quickly across the screen, appearing as a series of discrete, repeating steps rather than a smooth blur.</p>
     </section>
+
+    <RelatedTools category="motion" heading="More Motion Tests" />
   </div>
+  <BenchmarkCTA message="See how your display handles motion? Run the full benchmark." />
 </Base>

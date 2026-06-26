@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import FrameSkipDetector from '../components/benchmarks/FrameSkipDetector.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "Frame Skip Detector — Monitor Overclock Stability Test";
 const description = "Test if your monitor is dropping or skipping frames, especially useful when overclocking your display refresh rate.";
@@ -42,5 +44,8 @@ const jsonLd = {
         <li>Review the photo: a solid chain of white blocks means PASS. Gaps mean FAIL (frames skipped).</li>
       </ol>
     </section>
+
+    <RelatedTools category="refresh" heading="More Refresh Rate Tools" />
   </div>
+  <BenchmarkCTA message="No frame skips detected? Run the full benchmark to confirm." />
 </Base>

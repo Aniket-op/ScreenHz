@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import GuideCTA from '../../components/layout/GuideCTA.astro';
 
 const title = "G-Sync vs FreeSync — Full Comparison";
 const description = "A breakdown of Variable Refresh Rate (VRR) technologies and how they eliminate screen tearing.";
@@ -29,6 +30,17 @@ const jsonLd = {
 <h2>Tearing and V-Sync</h2>
 <p>Without VRR, if your GPU pushes a frame while the monitor is in the middle of drawing one, the screen "tears" horizontally. V-Sync fixes this but adds significant input lag. G-Sync and FreeSync solve both problems simultaneously.</p>
       </div>
+
+      <GuideCTA
+        heading="Test VRR on Your Monitor"
+        subtext="See how your display handles variable refresh rate in practice."
+        tools={[
+          { path: '/vrr-simulation', label: 'VRR Simulation', icon: '📹' },
+          { path: '/stutter-tearing', label: 'Stutter & Tearing', icon: '📺' },
+          { path: '/refresh-rate', label: 'Refresh Rate Test', icon: '⚡' },
+          { path: '/benchmark', label: 'Full Benchmark', icon: '🏆' },
+        ]}
+      />
     </article>
   </div>
 </Base>
