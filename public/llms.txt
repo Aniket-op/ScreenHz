@@ -1,0 +1,48 @@
+# ScreenHz — Monitor & Display Benchmark Suite
+# https://screenhz.com | llms.txt v1
+
+> ScreenHz is a free, browser-native monitor and display benchmark suite.
+> It tests refresh rate, motion clarity, input latency, ghosting, and more —
+> entirely in-browser with no installs, downloads, or sign-ups required.
+
+## About
+
+ScreenHz provides professional-grade display diagnostics accessible to everyone.
+Tests run using the browser's requestAnimationFrame API, high-resolution timers,
+and canvas rendering to measure real hardware behavior.
+
+## Key Tools
+
+- [Refresh Rate Test](https://screenhz.com/refresh-rate): Measures your monitor's actual Hz using frame-timing
+- [Ghosting Test](https://screenhz.com/ghosting): Detects pixel response time ghosting artifacts
+- [Reaction Time Test](https://screenhz.com/reaction-time): Measures human input latency in milliseconds
+- [Mouse Poll Rate](https://screenhz.com/mouse-poll-rate): Detects your mouse's USB polling frequency (125–8000 Hz)
+- [Frame Skipping Test](https://screenhz.com/frame-skipping): Identifies dropped or duplicated frames
+- [Aim Trainer](https://screenhz.com/aim-trainer): Browser-based target practice for FPS games
+- [DPI Calculator](https://screenhz.com/dpi-calculator): Computes effective DPI and eDPI for gaming mice
+- [VRR Simulation](https://screenhz.com/vrr-simulation): Simulates Variable Refresh Rate (G-Sync/FreeSync) behavior
+- [Stutter & Tearing](https://screenhz.com/stutter-tearing): Detects screen tearing and frametime inconsistency
+- [Motion Blur](https://screenhz.com/mprt): Tests MPRT (Moving Picture Response Time)
+- [Black Levels](https://screenhz.com/black-levels): Checks shadow/black-level calibration
+- [HDR Test](https://screenhz.com/hdr): Validates HDR capability and tone mapping
+- [Benchmark Suite](https://screenhz.com/benchmark): Full display benchmark with a shareable score
+
+## Guides
+
+- [What is Monitor Refresh Rate?](https://screenhz.com/guides/what-is-refresh-rate): Explains Hz, frame times, and why refresh rate matters for gaming
+- [Hz vs FPS Explained](https://screenhz.com/guides/refresh-rate): The relationship between monitor Hz and GPU frame rate
+- [What is Mouse DPI?](https://screenhz.com/guides/mouse-dpi): DPI, eDPI, sensitivity, and what settings pro gamers use
+- [How to Improve Gaming FPS](https://screenhz.com/guides/improve-fps): Settings, hardware, and driver tweaks to boost frame rate
+- [Mouse Poll Rate Guide](https://screenhz.com/guides/poll-rate): 125Hz vs 500Hz vs 1000Hz vs 8000Hz polling explained
+- [G-Sync vs FreeSync](https://screenhz.com/guides/gsync-vs-freesync): NVIDIA and AMD adaptive sync technologies compared
+- [Motion Blur Explained](https://screenhz.com/guides/motion-blur): What causes motion blur and how to reduce it
+
+## Sitemap
+
+https://screenhz.com/sitemap.xml
+
+## Contact / Attribution
+
+Site: https://screenhz.com
+Twitter/X: @screenhz
+License: Tools are free to use; content is © ScreenHz

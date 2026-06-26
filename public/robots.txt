@@ -1,8 +1,105 @@
+# ScreenHz robots.txt — https://screenhz.com
+# Updated: 2026-06-26
+
+# ─── Major Search Engines ───────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# ─── AI / LLM Crawlers ──────────────────────────────────────────────────
+
+# Anthropic (Claude)
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# OpenAI (ChatGPT / SearchGPT)
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# ByteDance (TikTok / Doubao)
+User-agent: Bytespider
+Allow: /
+
+# DuckDuckGo AI
+User-agent: DuckAssistBot
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Apple (Applebot)
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Google AI / Bard / Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Amazon Alexa
+User-agent: Amazonbot
+Allow: /
+
+# Brave Search
+User-agent: Brave
+Allow: /
+
+# ─── Default fallback ───────────────────────────────────────────────────
 User-agent: *
 Allow: /
 
-# Block development/build artifacts
+# Block build artifacts (not user-facing content)
 Disallow: /dist/
 Disallow: /.astro/
+Disallow: /api/
 
+# ─── Sitemaps ────────────────────────────────────────────────────────────
 Sitemap: https://screenhz.com/sitemap.xml
+Sitemap: https://screenhz.com/llms.txt

@@ -7,6 +7,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-XSS-Protection: 1; mode=block
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Robots-Tag: index, follow, max-image-preview:large
 
 # Long-lived cache for versioned static assets
 /icon.svg
@@ -21,3 +22,14 @@
 # Sitemap — cache 1 hour
 /sitemap.xml
   Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: application/xml; charset=utf-8
+
+# robots.txt — short cache so changes propagate quickly
+/robots.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: text/plain; charset=utf-8
+
+# llms.txt — AI crawler manifest, short cache
+/llms.txt
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: text/plain; charset=utf-8
