@@ -14,6 +14,8 @@ and canvas rendering to measure real hardware behavior.
 ## Key Tools
 
 - [Refresh Rate Test](https://screenhz.com/refresh-rate): Measures your monitor's actual Hz using frame-timing
+- [Phone Screen Hz Test](https://screenhz.com/phone-hz-test): Mobile refresh rate checker with LTPO detection, stutter jitter, and visual smoothness comparison
+- [Screen Resolution & DPI Test](https://screenhz.com/screen-resolution): Physical vs CSS resolution, device pixel ratio, 1:1 checker pattern, and live viewport tracker
 - [Ghosting Test](https://screenhz.com/ghosting): Detects pixel response time ghosting artifacts
 - [Reaction Time Test](https://screenhz.com/reaction-time): Measures human input latency in milliseconds
 - [Mouse Poll Rate](https://screenhz.com/mouse-poll-rate): Detects your mouse's USB polling frequency (125–8000 Hz)

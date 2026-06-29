@@ -1,0 +1,217 @@
+---
+import Base from '../layouts/Base.astro';
+import MobileHzDetector from '../components/benchmarks/MobileHzDetector.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+
+const title       = 'Phone Screen Hz Test — Mobile Refresh Rate & LTPO Checker';
+const description = 'Free phone screen Hz test. Measure your mobile display\'s real refresh rate, stutter jitter, and LTPO dynamic Hz changes — 60Hz, 90Hz, 120Hz, 144Hz. Works on iPhone, Samsung, Pixel and all Android devices.';
+const keywords    = 'phone hz test, mobile refresh rate test, phone screen hz, mobile screen hz, LTPO refresh rate, phone hz checker, 120hz phone test, iPhone refresh rate, Samsung refresh rate test, Android hz test, mobile display hz';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Phone Screen Hz Test — Mobile Refresh Rate Checker",
+    "url": "https://screenhz.com/phone-hz-test",
+    "description": description,
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web Browser",
+    "featureList": [
+      "Real-time mobile refresh rate detection",
+      "LTPO dynamic Hz tracking",
+      "Stutter jitter measurement",
+      "FPS consistency wave visualization",
+      "Hz visual smoothness comparison",
+      "Background color ghosting test"
+    ],
+    "offers": { "@type": "Offer", "price": "0" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I check my phone's refresh rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open this Phone Hz Test in your mobile browser. The tool uses requestAnimationFrame timing to precisely measure how fast your phone's display is actually refreshing — in real time. No app download needed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is LTPO refresh rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LTPO (Low Temperature Polycrystalline Oxide) is a display technology that lets phones dynamically switch their refresh rate — from as low as 1Hz when displaying a static image to 120Hz during scrolling or gaming. This saves battery while maintaining smooth motion. iPhones from Pro models (iPhone 13 Pro+) and Samsung Galaxy S22+ use LTPO."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is 120Hz better than 90Hz on phones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, 120Hz provides noticeably smoother scrolling, animations, and gaming compared to 90Hz. The difference is especially noticeable when scrolling through social media feeds or playing fast games. However, 120Hz uses more battery. Many flagships now offer LTPO displays that automatically switch between Hz levels."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is stutter jitter on a phone display?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stutter jitter is the inconsistency in frame delivery — measured in milliseconds (ms). A low jitter value (under 1ms) means frames are delivered perfectly evenly. High jitter causes perceived stutter even if the average Hz is correct. This test measures the standard deviation of your frame times."
+        }
+      }
+    ]
+  }
+];
+---
+
+<Base title={title} description={description} jsonLd={jsonLd} keywords={keywords}>
+  <div class="bench-page">
+    <div class="bench-header">
+      <a href="/" class="bench-back">← Back</a>
+      <h1 class="bench-title">{title}</h1>
+      <p class="bench-subtitle">{description}</p>
+    </div>
+
+    <!-- Mobile detection banner (shown on desktop) -->
+    <div id="desktop-banner" class="device-banner desktop-only" style="display:none">
+      🖥️ Looks like you're on a <strong>desktop</strong>. For PC monitors, try the
+      <a href="/refresh-rate">Monitor Refresh Rate Test →</a>
+    </div>
+
+    <MobileHzDetector client:load />
+
+    <!-- Share bar -->
+    <div class="share-bar" id="share-bar" aria-label="Share this tool">
+      <span class="share-label">🔗 Share this test:</span>
+      <a href="https://screenhz.com/phone-hz-test" class="share-url" id="share-url-link" aria-label="Permalink to Phone Hz Test">
+        https://screenhz.com/phone-hz-test
+      </a>
+      <button class="share-copy-btn" id="copy-url-btn" aria-label="Copy link to clipboard" type="button">Copy</button>
+    </div>
+
+    <section class="seo-article">
+      <h2>Phone Screen Hz Test — What It Measures</h2>
+      <p>This free <strong>phone screen Hz test</strong> measures your mobile display's actual refresh rate in real time using the browser's <code>requestAnimationFrame</code> API. Unlike OS settings menus which only show your configured maximum Hz, this tool shows the <em>actual live Hz</em> — including when LTPO panels dynamically switch between rates.</p>
+
+      <h3>What is LTPO and Why Does It Matter?</h3>
+      <p>LTPO (Low Temperature Polycrystalline Oxide) is the panel technology behind adaptive refresh rate on modern flagship phones. An iPhone 15 Pro or Samsung Galaxy S24 Ultra will dynamically vary from <strong>1Hz</strong> on a static lock screen to <strong>120Hz</strong> during scrolling — saving battery life while maintaining smoothness. Use this test to watch your phone's Hz change as you interact with the browser.</p>
+
+      <h3>What is Stutter Jitter?</h3>
+      <p>Stutter jitter is the standard deviation of your frame delivery times. Even if your phone averages 120Hz, inconsistent frame delivery creates perceived stuttering. A jitter value <strong>under 1ms</strong> is excellent. Values above 3ms may indicate thermal throttling, background app interference, or display driver issues.</p>
+
+      <h3>Hz Visual Smoothness Comparison</h3>
+      <p>The moving objects section lets you visually compare your screen's refresh rate against 60Hz and 30Hz reference speeds. Switch between UFO, Ball, and Bar animations, and try different background colors — <strong>Cyan and Lime</strong> are especially useful for revealing LCD pixel ghosting and overdrive artifacts on your phone's panel.</p>
+
+      <h3>Phone Refresh Rate Guide</h3>
+      <ul>
+        <li><strong>60Hz</strong> — Standard. Common on mid-range and budget phones. Adequate for everyday use.</li>
+        <li><strong>90Hz</strong> — Noticeably smoother scrolling. Common on mid-range flagships.</li>
+        <li><strong>120Hz</strong> — Flagship standard. Very smooth for gaming and social apps.</li>
+        <li><strong>144Hz</strong> — Gaming-focused phones (ASUS ROG Phone, RedMagic series).</li>
+        <li><strong>1–120Hz LTPO</strong> — Adaptive. Battery efficient with dynamic Hz switching.</li>
+      </ul>
+    </section>
+
+    <RelatedTools category="refresh" heading="More Display Tests" />
+  </div>
+</Base>
+
+<style>
+  .device-banner {
+    max-width: 860px;
+    margin: 0 auto 1rem;
+    padding: 0.7rem 1.25rem;
+    border-radius: var(--rounded-lg);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .device-banner.desktop-only {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+    color: var(--body);
+  }
+  .device-banner.mobile-only {
+    background: color-mix(in srgb, var(--cyan) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cyan) 30%, transparent);
+    color: var(--body);
+  }
+  .device-banner a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .device-banner a:hover { text-decoration: underline; }
+
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1.25rem auto 0;
+    max-width: 860px;
+    padding: 0.75rem 1.25rem;
+    background: var(--canvas-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--rounded-lg);
+    font-size: 0.85rem;
+  }
+  .share-label { color: var(--mute); font-size: 0.8rem; white-space: nowrap; flex-shrink: 0; }
+  .share-url {
+    flex: 1; min-width: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--primary);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0.3rem 0.6rem;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+    border-radius: var(--rounded);
+    transition: background 0.2s;
+  }
+  .share-url:hover { background: color-mix(in srgb, var(--primary) 15%, transparent); }
+  .share-copy-btn {
+    flex-shrink: 0;
+    padding: 0.3rem 0.85rem;
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--rounded);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.04em;
+  }
+  .share-copy-btn:hover  { opacity: 0.85; }
+  .share-copy-btn:active { transform: scale(0.96); }
+  .share-copy-btn.copied { background: #00c97a; color: #000; }
+</style>
+
+<script>
+  // Desktop detection — show banner if on desktop
+  const isDesktop = window.innerWidth >= 1024 && navigator.maxTouchPoints === 0;
+  if (isDesktop) {
+    const banner = document.getElementById('desktop-banner');
+    if (banner) banner.style.display = 'flex';
+  }
+
+  // Share button
+  const btn = document.getElementById('copy-url-btn');
+  btn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('https://screenhz.com/phone-hz-test');
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    } catch { /* no-op */ }
+  });
+</script>

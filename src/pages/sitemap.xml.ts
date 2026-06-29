@@ -9,6 +9,7 @@ const pages = [
 
   // Refresh rate & timing
   { url: '/refresh-rate',     priority: '0.9', changefreq: 'monthly' },
+  { url: '/phone-hz-test',    priority: '0.9', changefreq: 'monthly' },
   { url: '/vrr-simulation',   priority: '0.7', changefreq: 'monthly' },
   { url: '/stutter-tearing',  priority: '0.7', changefreq: 'monthly' },
   { url: '/frame-skipping',   priority: '0.7', changefreq: 'monthly' },
@@ -38,6 +39,7 @@ const pages = [
   { url: '/white-levels',       priority: '0.6', changefreq: 'monthly' },
   { url: '/color-ghosting',     priority: '0.6', changefreq: 'monthly' },
   { url: '/chroma-subsampling', priority: '0.6', changefreq: 'monthly' },
+  { url: '/screen-resolution',  priority: '0.9', changefreq: 'monthly' },
   { url: '/resolution-scaling', priority: '0.6', changefreq: 'monthly' },
   { url: '/local-dimming',      priority: '0.6', changefreq: 'monthly' },
   { url: '/rtings-test',        priority: '0.6', changefreq: 'monthly' },

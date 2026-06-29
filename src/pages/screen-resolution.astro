@@ -1,0 +1,171 @@
+---
+import Base from '../layouts/Base.astro';
+import ResolutionInfo from '../components/benchmarks/ResolutionInfo.tsx';
+import RelatedTools from '../components/layout/RelatedTools.astro';
+import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
+
+const title       = 'Screen Resolution Test — DPI, Scaling & 1:1 Pixel Checker';
+const description = 'Check your screen resolution, device pixel ratio (DPR), CSS vs physical pixels, aspect ratio, color depth, and live viewport size. Includes a 1:1 checker pattern test to reveal display scaling artifacts.';
+const keywords    = 'screen resolution test, DPI checker, device pixel ratio, DPR test, screen resolution checker, 1:1 pixel test, display scaling test, CSS pixels, physical pixels, retina display test, HiDPI checker, screen resolution tool';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Screen Resolution Test — DPI & Scaling Checker",
+    "url": "https://screenhz.com/screen-resolution",
+    "description": description,
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web Browser",
+    "featureList": [
+      "Physical vs CSS resolution detection",
+      "Device Pixel Ratio (DPR) checker",
+      "Aspect ratio calculation",
+      "Color bit depth detection",
+      "Live viewport size tracker",
+      "1:1 checker pattern test",
+      "Device comparison table"
+    ],
+    "offers": { "@type": "Offer", "price": "0" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is device pixel ratio (DPR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Device Pixel Ratio (DPR) is the ratio of physical screen pixels to CSS pixels. A DPR of 2 means 1 CSS pixel equals 2×2 physical pixels (4 total) — typical for Retina and HiDPI displays. A DPR of 1 means 1 CSS pixel = 1 physical pixel (standard displays). Higher DPR means crisper text and images."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between physical resolution and CSS resolution?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Physical resolution is the actual number of pixels your display hardware has. CSS resolution (logical resolution) is what the browser uses for layout — it equals physical resolution divided by the device pixel ratio. On a 4K monitor running at DPR 2, a 3840×2160 physical screen might present as 1920×1080 CSS pixels."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the 1:1 checker pattern test show?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 1:1 checker pattern renders alternating black and white pixels at your display's physical pixel density. If your display is applying scaling, the checker will appear blurred or gray due to sub-pixel anti-aliasing. A native-resolution Retina display renders it as a uniform 50% gray. This reveals whether OS scaling is affecting pixel-perfect rendering."
+        }
+      }
+    ]
+  }
+];
+---
+
+<Base title={title} description={description} jsonLd={jsonLd} keywords={keywords}>
+  <div class="bench-page">
+    <div class="bench-header">
+      <a href="/" class="bench-back">← Back</a>
+      <h1 class="bench-title">{title}</h1>
+      <p class="bench-subtitle">{description}</p>
+    </div>
+
+    <ResolutionInfo client:load />
+
+    <!-- Share bar -->
+    <div class="share-bar" id="share-bar" aria-label="Share this tool">
+      <span class="share-label">🔗 Share this test:</span>
+      <a href="https://screenhz.com/screen-resolution" class="share-url" id="share-url-link" aria-label="Permalink to Screen Resolution Test">
+        https://screenhz.com/screen-resolution
+      </a>
+      <button class="share-copy-btn" id="copy-url-btn" aria-label="Copy link to clipboard" type="button">Copy</button>
+    </div>
+
+    <section class="seo-article">
+      <h2>Screen Resolution & DPI — Complete Display Info Guide</h2>
+      <p>Your display has two distinct concepts of resolution: the <strong>physical resolution</strong> (actual hardware pixels) and the <strong>CSS / logical resolution</strong> (what the browser uses for layout). On modern HiDPI and Retina displays, the operating system scales content up so that text and UI elements aren't microscopic — the ratio between these two is called the <strong>Device Pixel Ratio (DPR)</strong>.</p>
+
+      <h3>Physical vs CSS Resolution</h3>
+      <p>A MacBook Pro 14" has a physical resolution of 3024×1964, but macOS scales it to present a logical resolution of around 1512×982 at DPR 2.0. This means each CSS pixel is rendered using 2×2 physical pixels (4 total), resulting in ultra-sharp text and UI while keeping web layouts the same size as a 1080p monitor.</p>
+
+      <h3>What is Device Pixel Ratio (DPR)?</h3>
+      <p>DPR is accessed via <code>window.devicePixelRatio</code>. Common values:</p>
+      <ul>
+        <li><strong>DPR 1.0</strong> — Standard/non-scaled display (1080p, 1440p monitors at native scale)</li>
+        <li><strong>DPR 1.5</strong> — Common on some Windows laptops with 150% scaling</li>
+        <li><strong>DPR 2.0</strong> — Retina MacBooks, iPad Pro, iPhone SE</li>
+        <li><strong>DPR 3.0</strong> — iPhone 15, Samsung Galaxy S24 (flagship phones)</li>
+        <li><strong>DPR 3.75+</strong> — Samsung Galaxy S24 Ultra</li>
+      </ul>
+
+      <h3>The 1:1 Checker Pattern Test</h3>
+      <p>This tool's most unique feature is the <strong>1:1 pixel checker pattern</strong>. It renders alternating black/white pixels at your screen's actual physical pixel count. On a native Retina display at DPR 2, it renders as a smooth 50% gray — because the 1px physical grid is below the human eye's resolution threshold at normal viewing distance. On a standard DPR 1 display, you'll see a sharp checkerboard. Scaling artifacts appear as moiré patterns.</p>
+
+      <h3>Color Bit Depth</h3>
+      <p>Color depth, accessed via <code>screen.colorDepth</code>, indicates how many bits per pixel your display uses. <strong>24-bit</strong> (8 bits per RGB channel) is standard SDR. <strong>30-bit</strong> (10 bits per channel) enables HDR with 1.07 billion colors vs 16.7 million for 24-bit, eliminating banding in gradients.</p>
+    </section>
+
+    <RelatedTools category="display" heading="More Display Tests" />
+    <BenchmarkCTA message="Know your resolution? Run the complete display benchmark." />
+  </div>
+</Base>
+
+<style>
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1.25rem auto 0;
+    max-width: 860px;
+    padding: 0.75rem 1.25rem;
+    background: var(--canvas-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--rounded-lg);
+    font-size: 0.85rem;
+  }
+  .share-label { color: var(--mute); font-size: 0.8rem; white-space: nowrap; flex-shrink: 0; }
+  .share-url {
+    flex: 1; min-width: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--primary);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0.3rem 0.6rem;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+    border-radius: var(--rounded);
+    transition: background 0.2s;
+  }
+  .share-url:hover { background: color-mix(in srgb, var(--primary) 15%, transparent); }
+  .share-copy-btn {
+    flex-shrink: 0;
+    padding: 0.3rem 0.85rem;
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--rounded);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.04em;
+  }
+  .share-copy-btn:hover  { opacity: 0.85; }
+  .share-copy-btn:active { transform: scale(0.96); }
+  .share-copy-btn.copied { background: #00c97a; color: #000; }
+</style>
+
+<script>
+  const btn = document.getElementById('copy-url-btn');
+  btn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('https://screenhz.com/screen-resolution');
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    } catch { /* no-op */ }
+  });
+</script>
