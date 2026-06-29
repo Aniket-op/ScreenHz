@@ -2,38 +2,137 @@
 import Base from '../../layouts/Base.astro';
 import GuideCTA from '../../components/layout/GuideCTA.astro';
 
-const title = "What is Mouse Poll Rate? 125Hz vs 1000Hz";
-const description = "Learn why mouse polling rate matters for input lag and how high refresh rate monitors require higher polling rates.";
+const title = "What is Mouse Poll Rate? 125Hz vs 1000Hz vs 8000Hz Explained";
+const description = "Mouse polling rate explained: how 125Hz, 500Hz, 1000Hz, 4000Hz and 8000Hz polling rates differ, which Hz you actually need, and how poll rate interacts with refresh rate.";
+
+const publishedTime = "2026-06-01T12:00:00Z";
+const modifiedTime  = new Date().toISOString();
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
   "description": description,
-  "author": { "@type": "Organization", "name": "ScreenHz" }
+  "author": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "publisher": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "datePublished": publishedTime,
+  "dateModified": modifiedTime
 };
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description} jsonLd={jsonLd} ogType="article">
   <div class="bench-page" style="display: flex; flex-direction: column; min-height: 100vh; background: #0c0c0c; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace;">
     <div class="bench-header" style="height: 48px; border-bottom: 1px solid #222; display: flex; align-items: center; padding: 0 24px; flex-shrink: 0; position: sticky; top: 0; background: #0c0c0c; z-index: 100;">
       <a href="/" class="bench-back" style="color: #555; text-decoration: none; margin-right: 16px;">← Back</a>
-      <span style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0; color: #555;">Guide</span>
+      <nav aria-label="Breadcrumb" style="font-size: 12px; color: #555;">
+        <a href="/" style="color: #555; text-decoration: none;">Home</a>
+        <span style="margin: 0 6px;">/</span>
+        <a href="/guides" style="color: #555; text-decoration: none;">Guides</a>
+        <span style="margin: 0 6px;">/</span>
+        <span style="color: #e8e8e8;">Poll Rate</span>
+      </nav>
     </div>
     
-    <article style="max-width: 680px; margin: 0 auto; padding: 40px 24px; width: 100%;">
-      <h1 style="font-size: 32px; margin-bottom: 8px; color: #e8e8e8;">{title}</h1>
-      <div style="font-size: 12px; color: #555; margin-bottom: 40px;">5 min read · Display Benchmarks</div>
+    <article style="max-width: 720px; margin: 0 auto; padding: 48px 24px; width: 100%;">
+      <h1 style="font-size: 32px; margin-bottom: 8px; color: #e8e8e8; line-height: 1.2;">{title}</h1>
+      <div style="font-size: 12px; color: #555; margin-bottom: 40px;">8 min read · Mouse & Input</div>
       
-      <div class="article-content" style="font-size: 14px; line-height: 1.8; color: #e8e8e8;">
-        <p>Polling rate determines how often your mouse reports its position to your computer, measured in Hertz (Hz). A 125Hz polling rate reports every 8ms, while 1000Hz reports every 1ms.</p>
-<h2>The 4000Hz and 8000Hz Debate</h2>
-<p>Modern gaming mice support polling rates up to 8000Hz (0.125ms delay). While the jump from 1000Hz to 8000Hz is mathematically small, it ensures that your mouse inputs perfectly align with the rendering pipeline of extremely high refresh rate (360Hz+) monitors.</p>
+      <div class="article-content" style="font-size: 14px; line-height: 1.8; color: #ccc;">
+
+        <p>Polling rate — also called report rate — is how many times per second your mouse sends its position data to your computer. It is measured in Hertz (Hz). A mouse with a polling rate of 1000 Hz reports its position 1000 times per second, meaning every 1 millisecond. At 125 Hz, the mouse reports only 8 times per second — every 8 milliseconds. That 7ms difference may sound small, but in competitive gaming it is quite significant.</p>
+
+        <h2>How Polling Rate Affects Input Latency</h2>
+        <p>Every time you move your mouse, that movement data sits in a buffer until the next poll occurs. At 125 Hz, you might wait up to 8ms before your PC even receives the movement. At 1000 Hz, the maximum wait is 1ms. At 8000 Hz, it drops to just 0.125ms.</p>
+        <p>This polling delay adds directly to your system's total input latency chain — which includes game engine processing time, render time, display response time, and monitor scan-out delay. Reducing poll rate delay is therefore one of the most hardware-accessible ways to reduce your total input-to-display lag.</p>
+
+        <div style="overflow-x:auto; margin:24px 0;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="border-bottom:1px solid #333;">
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Poll Rate</th>
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Report Interval</th>
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Max Added Latency</th>
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Typical Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">125 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">8 ms</td>
+                <td style="padding:8px 12px; color:#f87171;">8 ms</td>
+                <td style="padding:8px 12px; color:#ccc;">Office / budget mice</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">250 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">4 ms</td>
+                <td style="padding:8px 12px; color:#facc15;">4 ms</td>
+                <td style="padding:8px 12px; color:#ccc;">Entry gaming mice</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">500 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">2 ms</td>
+                <td style="padding:8px 12px; color:#facc15;">2 ms</td>
+                <td style="padding:8px 12px; color:#ccc;">Mid-range gaming</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">1000 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">1 ms</td>
+                <td style="padding:8px 12px; color:#86efac;">1 ms</td>
+                <td style="padding:8px 12px; color:#ccc;">Standard competitive gaming</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">4000 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">0.25 ms</td>
+                <td style="padding:8px 12px; color:#39ff14;">0.25 ms</td>
+                <td style="padding:8px 12px; color:#ccc;">High-end competitive (360Hz monitors)</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 12px; color:#ccc;">8000 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">0.125 ms</td>
+                <td style="padding:8px 12px; color:#39ff14;">0.125 ms</td>
+                <td style="padding:8px 12px; color:#ccc;">Enthusiast / esports pro</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Does Poll Rate Matter for You? The Refresh Rate Relationship</h2>
+        <p>Here is the key insight that most guides miss: your monitor's refresh rate is the practical ceiling for how useful a higher polling rate can be. At 60 Hz, a new frame is drawn every 16.7ms. If your mouse reports at 1000 Hz, 16 out of every 17 position reports are "wasted" in the sense that they arrive between frame renders. The game engine can only sample your latest position once per frame anyway.</p>
+        <p>This doesn't mean 1000 Hz is useless at 60 Hz — the game engine still benefits from having the latest position data available when it renders — but it does mean the jump from 1000 Hz to 8000 Hz is far more meaningful at 360 Hz than at 60 Hz.</p>
+
+        <div style="background:#111; border:1px solid #2a2a2a; border-left:3px solid #39ff14; padding:16px 20px; border-radius:6px; margin:24px 0;">
+          <strong style="color:#39ff14; font-size:12px; text-transform:uppercase; letter-spacing:0.08em;">Rule of Thumb</strong>
+          <p style="margin:8px 0 0; font-size:13px; color:#ccc;">Match your polling rate to your refresh rate. At 60–144 Hz, 500–1000 Hz polling is sufficient. At 240–360 Hz, 1000–4000 Hz is ideal. At 360 Hz+, 4000–8000 Hz becomes beneficial if your hardware supports it without CPU overhead issues.</p>
+        </div>
+
+        <h2>The CPU Overhead Problem at 4000 Hz and 8000 Hz</h2>
+        <p>Ultra-high polling rates come with a hidden cost: they increase CPU interrupt frequency dramatically. At 8000 Hz, your mouse is interrupting the CPU 8000 times per second. On high-end CPUs this overhead is negligible, but on older or budget processors — or systems with many other USB devices — it can actually <em>reduce</em> gaming performance by stealing CPU time from the game engine.</p>
+        <p>Several esports players and testers have reported that switching from 8000 Hz to 1000 Hz improved their FPS in CPU-limited games. Mice like the Razer DeathAdder V3 HyperSpeed and Logitech G Pro X Superlight 2 are designed to minimize this overhead, but it is still worth testing. If you notice FPS drops or stutters after enabling 8000 Hz, drop back to 4000 Hz or 1000 Hz.</p>
+
+        <h2>How to Check and Change Your Mouse Polling Rate</h2>
+        <p>Most gaming mice ship at 1000 Hz by default, but you can verify or change your polling rate using the manufacturer's software (Logitech G Hub, Razer Synapse, SteelSeries GG, etc.) or through the dedicated button/switch on some mice. To verify your actual polling rate in real time, use our <a href="/mouse-poll-rate" style="color:#39ff14; text-decoration:none;">Mouse Poll Rate Test</a> — it measures your mouse's reported position frequency directly in your browser.</p>
+
+        <h2>Wired vs Wireless: Does It Affect Poll Rate?</h2>
+        <p>Modern wireless gaming mice — particularly those using proprietary 2.4 GHz receivers (Logitech LIGHTSPEED, Razer HyperSpeed, SteelSeries Quantum Wireless) — achieve the same 1000 Hz polling as wired. Some flagship wireless mice like the Razer DeathAdder V3 HyperSpeed now support 4000 Hz wirelessly. The only wireless technology that has historically been limited in polling rate is Bluetooth, which typically caps at 125 Hz due to the protocol's design — avoid Bluetooth for competitive gaming.</p>
+
+        <h2>Polling Rate vs. DPI: What Should You Prioritize?</h2>
+        <p>DPI and polling rate are related but separate. DPI (Dots Per Inch) controls how many pixels your cursor moves per inch of physical mouse movement — it's a sensitivity multiplier. Polling rate controls how often that movement data is sent to the PC.</p>
+        <p>For most gamers, the optimal upgrade path is: (1) ensure your mouse runs at 1000 Hz, (2) set your DPI to match your preferred sensitivity and monitor resolution, then (3) if you have a 240 Hz+ monitor and a high-end PC, consider upgrading to a 4000 Hz capable mouse. Going straight to 8000 Hz without the rest of your system being up to spec is largely wasted investment.</p>
+
+        <h2>Which Polling Rate Should You Use?</h2>
+        <ul style="padding-left:20px; margin-bottom:24px;">
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Casual / office use:</strong> 125–500 Hz is perfectly fine</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">60–144 Hz gaming:</strong> 1000 Hz is the sweet spot — no benefit from going higher</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">240 Hz gaming:</strong> 1000–4000 Hz, depending on your CPU and mouse</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">360 Hz+ gaming:</strong> 4000–8000 Hz if your system can handle the overhead</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">CPU-limited system:</strong> Stick to 1000 Hz to avoid performance regressions</li>
+        </ul>
+
       </div>
 
       <GuideCTA
         heading="Test Your Mouse Poll Rate"
-        subtext="See your mouse's actual polling rate in real time."
+        subtext="See your mouse's actual polling rate in real time — right in your browser."
         tools={[
           { path: '/mouse-poll-rate', label: 'Mouse Poll Rate Test', icon: '🖱️' },
           { path: '/reaction-time', label: 'Reaction Time Test', icon: '⏱️' },
@@ -46,10 +145,10 @@ const jsonLd = {
 </Base>
 
 <style is:global>
-  .article-content h2 { font-size: 20px; margin-top: 40px; margin-bottom: 16px; color: #e8e8e8; }
-  .article-content p { margin-bottom: 24px; }
-  .article-content a { color: #e8e8e8; text-decoration: underline; text-decoration-color: #555; }
-  .article-content a:hover { color: #fff; text-decoration-color: #fff; }
-  .article-content details { margin-bottom: 16px; border: 1px solid #222; padding: 16px; border-radius: 4px; }
-  .article-content summary { cursor: pointer; font-weight: bold; color: #e8e8e8; outline: none; }
+  .article-content h2 { font-size: 20px; margin-top: 48px; margin-bottom: 16px; color: #e8e8e8; }
+  .article-content h3 { font-size: 16px; margin-top: 32px; margin-bottom: 12px; color: #ccc; }
+  .article-content p { margin-bottom: 20px; }
+  .article-content ul li { color: #ccc; }
+  .article-content a { color: #39ff14; text-decoration: none; }
+  .article-content a:hover { text-decoration: underline; }
 </style>

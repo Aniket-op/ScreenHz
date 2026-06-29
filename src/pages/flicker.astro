@@ -1,4 +1,4 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import FlickerTest from '../components/benchmarks/FlickerTest.tsx';
 
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Testing Flicker</h2>
-      <p style="margin-bottom: 16px;">This tool alternates the entire screen between two brightness levels at a precise frequency. It is primarily useful for hardware reviewers testing light sensors or camera rolling shutter effects.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">What is Display Flicker and PWM?</h2>
+      <p style="margin-bottom: 16px;">Display flicker occurs when a screen rapidly alternates between bright and dark states. Many LCD monitors control their backlight brightness using <strong>Pulse-Width Modulation (PWM)</strong> — a technique that rapidly switches the backlight on and off hundreds or thousands of times per second. At higher duty cycles (brighter settings), the on-time is longer and the off-time shorter. At lower brightness, the off-time increases, which can cause visible flicker and eye strain for sensitive users.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Who is Affected by PWM Flicker?</h3>
+      <p style="margin-bottom: 16px;">PWM sensitivity varies significantly between individuals. Some users experience headaches, eye strain, or visual discomfort from PWM frequencies under 1000 Hz, while others notice no effect at 60 Hz. People with migraines, photosensitive epilepsy, or those who work in front of screens for extended periods are generally most sensitive. Monitors advertised as "Flicker-Free" use DC dimming instead of PWM, keeping the backlight at a constant voltage — these are strongly recommended for long work sessions.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How to Use This Test</h3>
+      <p style="margin-bottom: 16px;">This tool generates a full-screen flash at a user-defined frequency. It is used by hardware reviewers to calibrate oscilloscopes and light sensors, and by photographers to identify camera shutter speeds that sync with display refresh rates. Photographers can use it to find the exact frequency needed to capture a fully-lit frame without dark bands (the rolling shutter effect). If you are sensitive to light, start at higher frequencies (500 Hz+) and work down cautiously.</p>
     </section>
   </div>
 </Base>

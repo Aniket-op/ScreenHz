@@ -1,4 +1,4 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import LocalDimming from '../components/benchmarks/LocalDimming.tsx';
 
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Local Dimming and Blooming</h2>
-      <p style="margin-bottom: 16px;">To achieve deep blacks, advanced LCDs dim the backlight in dark areas. However, because the dimming zones are larger than individual pixels, bright objects on dark backgrounds can have a glowing "halo" or bloom.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Full Array Local Dimming (FALD) Explained</h2>
+      <p style="margin-bottom: 16px;">Full Array Local Dimming (FALD) is a backlight technology used in premium LCD monitors and televisions to improve contrast ratio. Instead of a single uniform backlight behind the entire screen, FALD divides the backlight into dozens or hundreds of independently controllable zones. When a dark scene is displayed, zones behind the dark areas are dimmed or switched off entirely — allowing the panel to achieve near-black levels that are impossible with standard edge-lit LCD designs.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Blooming: The FALD Tradeoff</h3>
+      <p style="margin-bottom: 16px;">The fundamental limitation of FALD is zone size. Since each dimming zone covers many pixels, a small bright object on a dark background — like a white subtitle on a black cinema scene, or a star in space — forces its entire zone to stay lit. This creates a visible glow or "halo" around the bright object, called blooming. The more dimming zones a panel has, the smaller the halo. Mini-LED displays (like the Apple Pro Display XDR with 576 zones, or the ASUS ROG Swift PG32UQ with 1152 zones) dramatically reduce blooming compared to entry-level FALD panels with just 32 zones.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">FALD vs OLED vs MiniLED</h3>
+      <p style="margin-bottom: 16px;">OLED panels sidestep the blooming problem entirely by making each pixel its own light source — true per-pixel local dimming. This gives OLEDs infinite contrast ratios in theory. MiniLED is a middle ground: using microscopic LEDs to create thousands of dimming zones in an LCD, approaching OLED contrast without the burn-in risk. This test creates the worst-case scenario for local dimming — a small bright white object on a pure black background — so you can evaluate how well your panel handles the blooming challenge.</p>
     </section>
   </div>
 </Base>

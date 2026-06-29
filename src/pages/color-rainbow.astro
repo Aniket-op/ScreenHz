@@ -1,4 +1,4 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import ColorRainbow from '../components/benchmarks/ColorRainbow.tsx';
 
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">The Rainbow Effect</h2>
-      <p style="margin-bottom: 16px;">Because red, green, and blue subpixels sometimes transition at different speeds, or are drawn sequentially (as in single-chip DLP projectors), fast eye tracking across a high contrast edge will spread the white light into a distinct RGB rainbow.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">The Color Sequential Rainbow Effect</h2>
+      <p style="margin-bottom: 16px;">The color sequential rainbow effect — also called the "color break-up" artifact — occurs when red, green, and blue color channels are displayed at slightly different times or positions. Single-chip DLP projectors are the most notorious source: they use a rotating color wheel that shows R, G, and B in rapid sequence rather than simultaneously. When your eyes track quickly across the frame, they catch each color at a slightly different position, spreading white into a visible RGB rainbow streak.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Does it Affect LCD and OLED?</h3>
+      <p style="margin-bottom: 16px;">Modern LCD panels with proper RGB subpixels display all three colors simultaneously and do not suffer from classical color sequential artifacts. However, OLED displays with RGBG (Pentile) subpixel layouts — common on Samsung QD-OLED and some LG OLEDs — can show subtle color fringing at high contrast edges at standard viewing distances due to the uneven subpixel density. This is especially noticeable on diagonal lines and fine text at sub-4K resolutions.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How to Use This Test</h3>
+      <p style="margin-bottom: 16px;">The test generates a high-contrast black-and-white pattern. To see color break-up, move your eyes quickly and repeatedly across the pattern. On a pure RGB LCD, you should see only crisp black and white edges. If you see red, green, or blue fringes separating from the edges, your display's subpixel layout or sequential rendering is creating color artifacts. This is most visible in a darkened room at moderate screen brightness.</p>
     </section>
   </div>
 </Base>

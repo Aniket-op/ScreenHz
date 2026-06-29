@@ -1,4 +1,4 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import ChromaSubsampling from '../components/benchmarks/ChromaSubsampling.tsx';
 
@@ -31,7 +31,11 @@ const jsonLd = {
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
       <h2 style="font-size: 20px; margin-bottom: 16px;">What is Chroma Subsampling?</h2>
-      <p style="margin-bottom: 16px;">To save bandwidth, video signals sometimes send color data at a lower resolution than brightness data. This makes fine colored text look blurry or artifacted on PC monitors.</p>
+      <p style="margin-bottom: 16px;">Chroma subsampling is a video compression technique that reduces color (chroma) information at a lower resolution than brightness (luma) information. It exploits the fact that the human visual system is much more sensitive to differences in brightness than to differences in color. The most common formats are <strong>4:4:4</strong> (no compression — full color for every pixel), <strong>4:2:2</strong> (horizontal color resolution halved), and <strong>4:2:0</strong> (both horizontal and vertical color resolution halved, as used in HDMI 1.4 and most streaming video).</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Why it Matters for PC Monitors</h3>
+      <p style="margin-bottom: 16px;">Chroma subsampling is acceptable for video content (your eye doesn't notice halved color resolution in a moving scene), but it is <strong>catastrophic for PC desktop use</strong> and text rendering. When your display receives a 4:2:0 or 4:2:2 signal, colored text — especially at small font sizes — appears blurry, doubled, or with colored fringing. This commonly happens when a PC is connected to a TV or monitor via HDMI 1.4, which lacks the bandwidth for 4:4:4 at 4K/60Hz. The fix is usually switching to DisplayPort, or HDMI 2.0+ with proper driver settings.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How to Read the Test Results</h3>
+      <p style="margin-bottom: 16px;">This test displays fine colored lines and patterns that are only clearly visible at 4:4:4 chroma. If you see blurred or merged colored stripes, your display connection is operating at 4:2:2 or 4:2:0. On NVIDIA GPUs, you can force 4:4:4 in the NVIDIA Control Panel under Display → Change Resolution → Output Color Format → RGB. On AMD, use Radeon Software → Display → Pixel Format → Full RGB. For TVs, ensure "PC Mode" or "HDMI Black Level: Full" is enabled in the display settings menu.</p>
     </section>
   </div>
 </Base>

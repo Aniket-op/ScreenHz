@@ -6,6 +6,8 @@ const pages = [
   { url: '/benchmark',   priority: '0.9', changefreq: 'monthly' },
   { url: '/about',       priority: '0.6', changefreq: 'monthly' },
   { url: '/leaderboard', priority: '0.7', changefreq: 'daily'   },
+  { url: '/privacy',     priority: '0.3', changefreq: 'yearly'  },
+  { url: '/terms',       priority: '0.3', changefreq: 'yearly'  },
 
   // Refresh rate & timing
   { url: '/refresh-rate',     priority: '0.9', changefreq: 'monthly' },

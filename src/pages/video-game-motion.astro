@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import VideoGameMotion from '../components/benchmarks/VideoGameMotion.tsx';
 
 const title = "Video Game Motion Test";
-const description = "Compare motion clarity in video games across different frame rates with our multi-lane simulation.";
+const description = "Compare video game motion clarity across 30fps, 60fps, 144fps, and 240fps with a multi-lane side-by-side simulation. Shows exactly how higher refresh rates improve motion.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,11 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Understanding Video Game Motion</h2>
-      <p style="margin-bottom: 16px;">
-        When playing video games, the frame rate (FPS) significantly impacts motion clarity and perceived smoothness. 
-        Higher frame rates deliver a sharper image during fast motion, reducing the trailing blur effect inherent in sample-and-hold displays.
-      </p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Visualizing FPS Differences in Gaming</h2>
+      <p style="margin-bottom: 16px;">This multi-lane simulation provides a direct, side-by-side comparison of how different frame rates (FPS) affect motion clarity in video games. While it's easy to read that "144Hz is better than 60Hz," seeing the difference simultaneously is the best way to understand why competitive gamers invest in high refresh rate hardware.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">30 FPS vs 60 FPS (The Console Standard)</h3>
+      <p style="margin-bottom: 16px;">For decades, 30 FPS was the standard for console gaming, while 60 FPS was the gold standard for PC. Look at the 30 FPS lane: the motion appears choppy, and the gaps between frames are large. The 60 FPS lane is twice as smooth, but if you track the object with your eyes, you will still notice significant persistence blur (smearing of the details) caused by the 16.7ms hold time per frame.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">144 FPS and Beyond (The PC Standard)</h3>
+      <p style="margin-bottom: 16px;">Look at the 120/144 FPS lane (if your monitor supports it). The animation is not just smoother; the object itself appears sharper and more readable while in motion. The gaps between frames are tiny, making tracking targets much easier for your eyes. At 240Hz and 360Hz, motion blur is reduced to the point where text on moving objects remains highly legible even at high speeds. Note: This simulation is limited by your current monitor's refresh rate; you cannot see 144 FPS smoothness on a 60Hz display.</p>
       
       <h3 style="font-size: 16px; margin-bottom: 12px; color: #555;">How This Test Works</h3>
       <p style="margin-bottom: 16px;">

@@ -1,9 +1,9 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import PersistenceTest from '../components/benchmarks/PersistenceTest.tsx';
 
 const title = "Persistence of Vision Test";
-const description = "Visualize display persistence and motion clarity using a high-speed rotating spoke wheel pattern.";
+const description = "Visualize your monitor's persistence and sample-and-hold motion blur using a high-speed rotating spoke wheel. Compare clarity at 60Hz, 144Hz, and 240Hz side by side.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Understanding Display Persistence</h2>
-      <p style="margin-bottom: 16px;">Persistence refers to how long a pixel remains illuminated after a frame is rendered. High persistence causes moving images to appear smeared across the retina.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">What is Display Persistence?</h2>
+      <p style="margin-bottom: 16px;">Persistence describes how long a pixel remains at its target brightness between frame updates. Modern LCD and OLED panels use <strong>sample-and-hold</strong> technology — once a frame is rendered, the display locks that image in place until the next frame arrives. For a 60Hz display, this means every frame stays frozen on screen for 16.7ms. This extended hold time is the primary cause of motion blur on modern flat panels, even when the underlying pixel response time is near-zero.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How Persistence Causes Motion Blur</h3>
+      <p style="margin-bottom: 16px;">When you track a moving object with your eyes, your eyes perform a smooth pursuit movement. While your eyes move, the display holds its frame completely still. The moving object smears across your retina — not because anything is wrong with the monitor, but because your biology evolved for motion in the real world where objects don't freeze mid-movement. Higher refresh rates reduce the hold time per frame (144Hz = 6.9ms, 240Hz = 4.2ms), directly reducing persistence blur.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The Spinning Wheel Test</h3>
+      <p style="margin-bottom: 16px;">The rotating spoke wheel is the classic way to visualize persistence because it creates a predictable, uniform motion across the entire frame. At 60Hz, spokes appear wide and blurry. At 144Hz or higher, spokes become noticeably sharper and more distinct. With Black Frame Insertion enabled, the effective persistence drops dramatically and the spokes approach the sharpness of a CRT, even at the same refresh rate — because the backlight is briefly extinguished between frames, shortening the effective hold time.</p>
     </section>
   </div>
 </Base>

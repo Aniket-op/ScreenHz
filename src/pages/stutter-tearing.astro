@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import StutterTearing from '../components/benchmarks/StutterTearing.tsx';
 
 const title = "Stutter & Tearing Test";
-const description = "Detect micro-stutters and screen tearing with sub-millisecond precision frame pacing analysis.";
+const description = "Detect screen tearing and micro-stutter with sub-millisecond frame pacing analysis. Test if your VRR (G-Sync/FreeSync) setup is working correctly at your Hz target.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Stuttering vs Tearing</h2>
-      <p style="margin-bottom: 16px;">Stuttering happens when frames are delayed and displayed for varying amounts of time. Tearing happens when the display reads from the frame buffer while the GPU is still writing a new frame.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Screen Tearing and Micro-Stutter Explained</h2>
+      <p style="margin-bottom: 16px;">Screen tearing and micro-stutter are the two primary motion artifacts caused by desynchronization between a graphics card and a monitor. This test helps you visually identify both artifacts and verify if your display's synchronization technologies (V-Sync, G-Sync, or FreeSync) are functioning correctly.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">What is Screen Tearing?</h3>
+      <p style="margin-bottom: 16px;">Tearing occurs when a monitor is halfway through scanning a frame onto the screen (from top to bottom), and the graphics card suddenly sends a brand-new frame. The monitor seamlessly begins drawing the new frame from wherever the scanline currently is. The result is a visible horizontal "tear" line where the top half of the screen shows frame A, and the bottom half shows frame B. It is most obvious during fast horizontal camera pans in first-person shooters when V-Sync is disabled.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">What is Micro-Stutter?</h3>
+      <p style="margin-bottom: 16px;">Micro-stutter is often the penalty for preventing tearing. If you enable traditional V-Sync, the GPU is forced to wait for the monitor's next refresh cycle before sending a frame. If the GPU takes 17ms to render a frame on a 60Hz monitor (which requires a frame every 16.7ms), it misses the window. The monitor has nothing new to show, so it repeats the previous frame. This results in one frame being held twice as long as the others, causing a visible hitch or "stutter" in otherwise smooth motion. Variable Refresh Rate (VRR) is the only technology that eliminates both tearing and stutter simultaneously.</p>
     </section>
   </div>
 </Base>

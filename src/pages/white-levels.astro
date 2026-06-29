@@ -1,9 +1,9 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import WhiteLevels from '../components/benchmarks/WhiteLevels.tsx';
 
 const title = "White Level Clipping Test";
-const description = "Test if your monitor is clipping high-end white details (crushed highlights) at maximum brightness.";
+const description = "Test if your monitor is clipping bright highlights and crushing white detail. Calibrate peak brightness, detect blooming, and verify HDR tone-mapping at maximum luminance.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">White Clipping</h2>
-      <p style="margin-bottom: 16px;">If your monitor's contrast is set too high, it will "clip" bright details, making light grey (RGB 250) look exactly the same as pure white (RGB 255). You lose detail in clouds, snow, and bright skies.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Understanding White Level Clipping</h2>
+      <p style="margin-bottom: 16px;">White level clipping occurs when a monitor cannot distinguish between near-white shades, crushing multiple brightness levels into a single flat white. When your contrast is set too high, RGB values like 240, 245, 250, and 255 all appear identical — erasing detail in highlights like clouds, snow, bright windows, and overexposed skin tones. This is one of the most common calibration mistakes, and it is especially damaging in HDR content where the entire point is the extended range of bright detail.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How to Fix White Clipping</h3>
+      <p style="margin-bottom: 16px;">The fix is straightforward: reduce your monitor's <strong>Contrast</strong> setting (not brightness) until near-white steps become distinguishable again. Most monitors have a "sweet spot" contrast between 60–80 out of 100 where all brightness steps are visible without reducing peak white luminance. OLEDs rarely clip whites because each pixel self-emits at its own brightness level, but edge-lit LCDs and some VA panels are notorious for crushing near-white steps at factory default contrast settings.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">SDR vs HDR White Levels</h3>
+      <p style="margin-bottom: 16px;">In Standard Dynamic Range (SDR), white is defined as 100 nits (the reference monitor standard). In HDR10, the maximum brightness extends to 1000–4000 nits depending on the panel, with peak highlights reaching up to 10,000 nits (HDR10+). Tone mapping determines how these values are compressed for display. This test helps verify whether your browser and display are correctly passing HDR metadata, or incorrectly tone-mapping HDR signals into SDR range.</p>
     </section>
   </div>
 </Base>

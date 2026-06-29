@@ -1,4 +1,4 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import CRTCanvas from '../components/benchmarks/CRTCanvas.tsx';
 
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Why CRTs had Zero Motion Blur</h2>
-      <p style="margin-bottom: 16px;">CRTs fired an electron beam that caused the screen phosphors to glow for just a fraction of a millisecond. Because the screen was completely black for the rest of the frame, the eye did not perceive any sample-and-hold motion blur.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Why CRTs Had Near-Zero Motion Blur</h2>
+      <p style="margin-bottom: 16px;">Cathode Ray Tube (CRT) monitors used an electron beam that swept across the screen one line at a time, causing phosphors to glow for just a fraction of a millisecond before fading. Because the screen was dark for the vast majority of each frame period, there was no sample-and-hold effect — your eyes never saw a static, frozen frame. This is why competitive gamers still celebrate CRT displays: even a 60Hz CRT produced sharper motion than a 144Hz LCD running without Black Frame Insertion.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The Scan Line Effect</h3>
+      <p style="margin-bottom: 16px;">CRTs drew images by scanning from the top-left pixel to the bottom-right in horizontal lines — a process called raster scanning. This meant the top of the screen was drawn slightly before the bottom, creating a tiny rolling shutter effect. The visible dark horizontal gaps between scan lines (at standard resolutions) became an iconic part of the CRT aesthetic, and some retro gamers deliberately seek this look. This simulator recreates the visual signature of phosphor decay, scan-line gaps, and the characteristic beam bloom.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Modern CRT Alternatives: BFI</h3>
+      <p style="margin-bottom: 16px;">Today, high-end gaming monitors attempt to replicate the CRT's impulse-scan behavior using <strong>Black Frame Insertion (BFI)</strong> — briefly turning off the backlight between frames to create a short dark period similar to phosphor fade. Technologies like ULMB (ASUS), DyAc (BenQ), and ELMB (ASUS) implement this. The result is significantly sharper motion at the cost of reduced brightness. This simulator lets you see what the CRT scan pattern looked like and compare it to modern display behavior.</p>
     </section>
   </div>
 </Base>

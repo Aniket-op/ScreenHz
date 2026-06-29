@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import ResolutionScaling from '../components/benchmarks/ResolutionScaling.tsx';
 
 const title = "Screen Resolution & DPI Test";
-const description = "Verify display resolution, subpixel rendering, and CSS scaling with 1:1 pixel test patterns.";
+const description = "Verify your display resolution, subpixel rendering accuracy, and CSS scaling behavior with precise 1:1 pixel test patterns. Detect blurry upscaling or incorrect DPI settings.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Resolution and Scaling</h2>
-      <p style="margin-bottom: 16px;">Modern operating systems use display scaling (DPI scaling) to make text readable on high-resolution screens. This test verifies if the browser is mapping 1 CSS pixel to 1 physical device pixel.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Understanding Display Scaling</h2>
+      <p style="margin-bottom: 16px;">Modern high-resolution displays (like 4K monitors or Retina laptop screens) pack pixels so densely that running them at 100% native scale would make text unreadably small. Operating systems solve this using <strong>UI scaling</strong> (e.g., 150% in Windows or "Looks like 1080p" in macOS). Scaling instructs the OS to map multiple physical pixels to a single logical "CSS pixel" to keep UI elements large while rendering text and vector graphics sharply.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The 1:1 Checkerboard Test</h3>
+      <p style="margin-bottom: 16px;">The 1:1 checkerboard pattern is the ultimate test for perfect pixel mapping. It alternates black and white exactly every single physical pixel. If your monitor is running at its native resolution and your browser scaling is exactly 100% (or an exact integer multiple like 200%), the pattern will appear as a uniform, solid 50% gray block when viewed from a distance. Any fractional scaling (like 125% or 150%) will cause the alternating pixels to misalign, producing visible moiré patterns, wavy lines, or blurry gray blocks.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Common Scaling Issues</h3>
+      <p style="margin-bottom: 16px;">If the 1:1 pattern looks distorted even when your browser zoom is at 100%, check your operating system's display settings. Ensure the monitor resolution matches the panel's native spec. If you are gaming, running a game at a non-native resolution (e.g., 1080p on a 1440p monitor) forces the monitor's internal scaler to stretch the image, which adds a slight blur and sometimes a small amount of input lag compared to native 1:1 output.</p>
     </section>
   </div>
 </Base>

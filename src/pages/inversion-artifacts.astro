@@ -1,9 +1,9 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import InversionArtifacts from '../components/benchmarks/InversionArtifacts.tsx';
 
 const title = "LCD Inversion Artifacts Test";
-const description = "Test for voltage inversion artifacts, pixel walk, and checkerboard flicker on LCD panels.";
+const description = "Test your LCD panel for voltage inversion artifacts, pixel walk patterns, and checkerboard flicker � common quality defects in budget and older IPS and TN monitors.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">LCD Voltage Inversion</h2>
-      <p style="margin-bottom: 16px;">To prevent LCD crystals from burning in, monitors rapidly alternate the polarity of the voltage applied to the pixels. If the positive and negative voltages are slightly imbalanced, specific pixel patterns (like fine checkerboards) will visibly flicker.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Understanding LCD Voltage Inversion</h2>
+      <p style="margin-bottom: 16px;">Liquid Crystal Displays (LCDs) cannot have a continuous direct current (DC) voltage applied to them, or the liquid crystals will physically degrade and permanently burn in. To prevent this, monitors rapidly alternate the polarity of the voltage (positive to negative) every frame while maintaining the same root-mean-square voltage to keep the pixel at the target brightness. This alternating polarity process is called voltage inversion.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">What is Pixel Walk and Checkerboard Flicker?</h3>
+      <p style="margin-bottom: 16px;">If the positive and negative voltages aren't perfectly balanced by the display controller, a pixel will be slightly brighter on the positive frame and slightly dimmer on the negative frame. At 60Hz, this alternating brightness creates a 30Hz visible flicker. To hide this, monitor manufacturers use spatial inversion patterns (like a checkerboard) so that when one pixel is positive, its neighbor is negative — canceling out the overall screen flicker.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How to Read the Inversion Test</h3>
+      <p style="margin-bottom: 16px;">This test cycles through various sub-pixel checkerboard and line patterns designed to isolate specific inversion methods (1-dot, 2-dot, line inversion, etc.). If you see a specific pattern violently flickering, swimming, or showing solid blocks of color instead of a uniform gray, your monitor is failing to properly balance its inversion voltages for that specific pattern. This is a common flaw in budget IPS panels and older TN screens, and can occasionally cause artifacts in web browsing or gaming when fine textures align with the inversion grid.</p>
     </section>
   </div>
 </Base>

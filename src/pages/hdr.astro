@@ -1,9 +1,9 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import HDRTest from '../components/benchmarks/HDRTest.tsx';
 
 const title = "HDR & Wide Color Gamut Test";
-const description = "Check if your browser and display correctly render High Dynamic Range (HDR) and Wide Color Gamut.";
+const description = "Check if your browser and monitor support High Dynamic Range (HDR) and Wide Color Gamut (WCG). Test peak brightness, shadow detail, and DCI-P3 / Rec.2020 color coverage.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">High Dynamic Range (HDR)</h2>
-      <p style="margin-bottom: 16px;">HDR allows displays to output much brighter highlights and deeper blacks, along with a wider range of deeply saturated colors (DCI-P3 or Rec.2020) than standard SDR.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">High Dynamic Range (HDR) Explained</h2>
+      <p style="margin-bottom: 16px;">High Dynamic Range (HDR) is a display standard that dramatically expands the range of brightness and color a monitor can reproduce. Where Standard Dynamic Range (SDR) is limited to roughly 80–300 nits peak brightness and the sRGB color space, HDR10 supports peak brightness up to 4000 nits and covers the DCI-P3 wide color gamut (which is about 25% more colors than sRGB). HDR10+ and Dolby Vision further extend this with dynamic tone-mapping that adjusts metadata scene-by-scene for optimal rendering.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">HDR on PC: The Catch</h3>
+      <p style="margin-bottom: 16px;">Enabling HDR on Windows is notoriously complex. The HDR signal path requires your monitor to be HDR-capable, your cable to support sufficient bandwidth (HDMI 2.0+ or DisplayPort 1.4+), Windows HDR mode to be enabled, and your application to output HDR content. When any link in this chain breaks, you get washed-out, overly bright SDR content tone-mapped incorrectly. This test helps diagnose which part of the pipeline is working correctly — from browser support to display capability.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">What a Passing HDR Test Looks Like</h3>
+      <p style="margin-bottom: 16px;">On a properly HDR-enabled display, the brightest test patch should appear significantly more luminous than a standard white, highlights should be clean without clipping, and saturated colors should appear noticeably more vivid than on SDR. Shadows should retain detail without appearing crushed. If your display shows a washed-out or overly blue image, HDR is likely enabled in Windows but your browser or monitor is not correctly receiving the signal.</p>
     </section>
   </div>
 </Base>

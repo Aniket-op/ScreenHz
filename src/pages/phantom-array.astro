@@ -5,7 +5,7 @@ import RelatedTools from '../components/layout/RelatedTools.astro';
 import BenchmarkCTA from '../components/layout/BenchmarkCTA.astro';
 
 const title = "Phantom Array Effect Test";
-const description = "Test your display for the phantom array effect (stroboscopic stepping) during fast mouse movement.";
+const description = "Test for the phantom array (saccadic stepping) effect. Reveals stroboscopic line illusions caused by fast eye saccades on high-refresh displays - a BFI and PWM artifact.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -32,8 +32,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">The Phantom Array Effect</h2>
-      <p style="margin-bottom: 16px;">Also known as the stroboscopic effect, this occurs when a high-contrast object moves quickly across the screen, appearing as a series of discrete, repeating steps rather than a smooth blur.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">The Phantom Array Effect (Stroboscopic Stepping)</h2>
+      <p style="margin-bottom: 16px;">The Phantom Array effect — also known as stroboscopic stepping or saccadic phantom arrays — is a visual illusion that occurs when your eyes dart rapidly (a saccade) across a flickering or strobing light source. Instead of seeing a continuous blur, your brain perceives a trail of distinct, sharply separated, repeated images.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Why it Happens on Monitors</h3>
+      <p style="margin-bottom: 16px;">This effect is most commonly seen on monitors that use Pulse-Width Modulation (PWM) to dim their backlights, or monitors utilizing Black Frame Insertion (BFI/Strobing) for motion blur reduction. Because the backlight is turning on and off hundreds of times per second, a fast eye movement catches the screen in its "on" state at several different positions across your retina, creating a dotted line or array of phantom cursors in your vision.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The High Mouse Polling Connection</h3>
+      <p style="margin-bottom: 16px;">You can also see a similar stepping effect by rapidly shaking your mouse cursor across the screen. At 60Hz, you will see a trail of separated cursors spaced far apart. At 240Hz, the phantom cursors are packed much closer together. This visual stepping is one of the main reasons enthusiast gamers push for 1000Hz+ mouse polling rates paired with 360Hz+ monitors — higher refresh rates pack the stroboscopic steps closer together until the motion finally appears as a continuous, unbroken path to the human eye.</p>
     </section>
 
     <RelatedTools category="motion" heading="More Motion Tests" />

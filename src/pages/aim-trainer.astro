@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import AimCanvas from '../components/benchmarks/AimCanvas.tsx';
 
 const title = "Aim Trainer";
-const description = "Test your raw mechanical aim, tracking, and reaction time in a 30-second target-clicking scenario.";
+const description = "Train and test your raw mechanical aim, tracking, and click reaction time. Complete a 30-second target-clicking scenario and compare your score to esports player benchmarks.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Hardware and Aim</h2>
-      <p style="margin-bottom: 16px;">High refresh rates and low system latency directly improve your ability to acquire targets and react to sudden movements. Measure your baseline score here to see the impact of hardware upgrades.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">How Display Tech Affects Mechanical Aim</h2>
+      <p style="margin-bottom: 16px;">Mechanical aiming in first-person shooters (like Valorant, CS2, or Apex Legends) relies on a tight feedback loop: your eyes see a target, your brain processes the movement, your hand moves the mouse, and your eyes verify the crosshair position. Any delay in this loop makes precision aiming significantly harder. This aim trainer tests your raw flicking speed, tracking precision, and reaction time in a controlled environment.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The 144Hz and 240Hz Advantage</h3>
+      <p style="margin-bottom: 16px;">A 60Hz monitor updates every 16.7ms. A 240Hz monitor updates every 4.2ms. That 12.5ms difference is critical in two ways. First, a moving target is rendered closer to its actual engine position on a 240Hz display, meaning you are clicking where the target actually is, rather than where it was 12ms ago. Second, your crosshair updates more frequently as you flick toward the target, allowing for faster mid-flick micro-corrections.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Optimizing for the Best Score</h3>
+      <p style="margin-bottom: 16px;">To achieve your highest possible score, ensure your monitor is set to its maximum refresh rate in Windows settings. Disable V-Sync, which adds significant input lag. Ensure your mouse polling rate is set to 1000Hz or higher. Most players find a relatively low DPI/sensitivity (e.g., 800 DPI with 30-40cm per 360-degree turn) provides the best balance of speed and precision for target clicking tasks.</p>
     </section>
   </div>
 </Base>

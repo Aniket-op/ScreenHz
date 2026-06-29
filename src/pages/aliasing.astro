@@ -1,9 +1,9 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import AliasingTest from '../components/benchmarks/AliasingTest.tsx';
 
 const title = "Aliasing & Subpixel Rendering Test";
-const description = "Test display subpixel layout and OS-level font smoothing/anti-aliasing algorithms.";
+const description = "Test your display's subpixel layout and OS-level font smoothing. Reveal ClearType, subpixel anti-aliasing, and aliasing artifacts at your native screen resolution.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Subpixel Rendering</h2>
-      <p style="margin-bottom: 16px;">Operating systems use the physical layout of the red, green, and blue subpixels inside your monitor to smooth the edges of text (ClearType / Quartz). If your monitor uses an unusual subpixel layout (like BGR or WRGB), text will look fringed and blurry.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Aliasing and Subpixel Rendering Explained</h2>
+      <p style="margin-bottom: 16px;">Aliasing is the visual artifact that appears when a continuous line or curve is represented on a discrete pixel grid — the result is a "staircase" or jagged edge. Anti-aliasing techniques smooth these edges by blending intermediate colors at the boundary. <strong>Subpixel anti-aliasing</strong> (ClearType on Windows, Quartz on macOS) goes further by using the individual R, G, and B components of each pixel as separate rendering targets, effectively tripling the horizontal resolution of text rendering.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Why Monitor Subpixel Layout Matters</h3>
+      <p style="margin-bottom: 16px;">Subpixel anti-aliasing only works correctly when the OS knows the physical order of subpixels (RGB from left to right is the standard). Monitors with BGR layouts, vertical subpixels (common on some OLED panels), or WRGB layouts (white + RGB, used in some LG OLEDs) confuse standard ClearType rendering. The result is colored fringing around text — text that looks sharper at some rotations but blurry and fringed at others. This test lets you check whether your display's subpixel layout matches what your OS expects.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">High-DPI and Retina Displays</h3>
+      <p style="margin-bottom: 16px;">At very high pixel densities (200+ PPI, like Retina MacBook displays or 4K monitors at 27"), individual subpixels become too small for the eye to resolve at normal viewing distances. At these densities, subpixel anti-aliasing becomes less important and grayscale anti-aliasing is preferred. If you are running a 4K display at 100% scaling, you may notice that ClearType makes text look slightly worse than simple grayscale AA, which is why macOS disables subpixel rendering at high DPI.</p>
     </section>
   </div>
 </Base>

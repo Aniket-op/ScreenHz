@@ -32,8 +32,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">The Two Types of Blur</h2>
-      <p style="margin-bottom: 16px;">Motion blur on modern displays comes from two sources: the physical time it takes the pixel to change color (GtG), and the time the frame remains static on the screen while your eye is moving (MPRT).</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">GtG vs MPRT Explained</h2>
+      <p style="margin-bottom: 16px;">When evaluating monitor motion clarity, you will encounter two different metrics: <strong>Gray-to-Gray (GtG)</strong> and <strong>Moving Picture Response Time (MPRT)</strong>. While both are measured in milliseconds (ms), they measure entirely different aspects of display performance. GtG measures the physical speed of the pixels, while MPRT measures the persistence blur perceived by your eyes.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Gray-to-Gray (GtG)</h3>
+      <p style="margin-bottom: 16px;">GtG measures the time it takes for a liquid crystal pixel to physically transition from one gray shade to another. If a pixel takes too long to change (e.g., 10ms), it will still be mid-transition when the next frame arrives, creating a visible smear or "ghosting" trail behind moving objects. Fast TN and modern IPS panels achieve 1ms GtG, while OLED panels achieve near-instantaneous 0.1ms GtG.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Moving Picture Response Time (MPRT)</h3>
+      <p style="margin-bottom: 16px;">MPRT measures how long a pixel remains continuously visible on screen — the "sample-and-hold" time. Even if a pixel has a perfect 0ms GtG time (like an OLED), if the frame is held statically on screen for 16.7ms (at 60Hz), your eyes will still perceive motion blur as they track across the static image. The only way to lower MPRT is to increase the refresh rate (shorter frames) or use Black Frame Insertion (strobing the backlight to hide the hold time).</p>
     </section>
 
     <RelatedTools category="response" heading="Related Response Time Tests" />

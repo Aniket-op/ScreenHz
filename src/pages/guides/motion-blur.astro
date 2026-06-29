@@ -3,37 +3,136 @@ import Base from '../../layouts/Base.astro';
 import GuideCTA from '../../components/layout/GuideCTA.astro';
 
 const title = "Monitor Motion Blur & Ghosting Explained";
-const description = "Discover why LCD and OLED screens exhibit motion blur, MPRT vs GtG, and how strobe backlights work.";
+const description = "Why LCD and OLED screens produce motion blur, how MPRT vs GtG differ, when BFI strobing helps, and practical tips to get a sharper image.";
+
+const publishedTime = "2026-06-01T12:00:00Z";
+const modifiedTime  = new Date().toISOString();
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
   "description": description,
-  "author": { "@type": "Organization", "name": "ScreenHz" }
+  "author": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "publisher": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "datePublished": publishedTime,
+  "dateModified": modifiedTime
 };
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description} jsonLd={jsonLd} ogType="article">
   <div class="bench-page" style="display: flex; flex-direction: column; min-height: 100vh; background: #0c0c0c; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace;">
     <div class="bench-header" style="height: 48px; border-bottom: 1px solid #222; display: flex; align-items: center; padding: 0 24px; flex-shrink: 0; position: sticky; top: 0; background: #0c0c0c; z-index: 100;">
       <a href="/" class="bench-back" style="color: #555; text-decoration: none; margin-right: 16px;">← Back</a>
-      <span style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0; color: #555;">Guide</span>
+      <nav aria-label="Breadcrumb" style="font-size: 12px; color: #555;">
+        <a href="/" style="color: #555; text-decoration: none;">Home</a>
+        <span style="margin: 0 6px;">/</span>
+        <a href="/guides" style="color: #555; text-decoration: none;">Guides</a>
+        <span style="margin: 0 6px;">/</span>
+        <span style="color: #e8e8e8;">Motion Blur</span>
+      </nav>
     </div>
     
-    <article style="max-width: 680px; margin: 0 auto; padding: 40px 24px; width: 100%;">
-      <h1 style="font-size: 32px; margin-bottom: 8px; color: #e8e8e8;">{title}</h1>
-      <div style="font-size: 12px; color: #555; margin-bottom: 40px;">5 min read · Display Benchmarks</div>
+    <article style="max-width: 720px; margin: 0 auto; padding: 48px 24px; width: 100%;">
+      <h1 style="font-size: 32px; margin-bottom: 8px; color: #e8e8e8; line-height: 1.2;">{title}</h1>
+      <div style="font-size: 12px; color: #555; margin-bottom: 40px;">8 min read · Display Technology</div>
       
-      <div class="article-content" style="font-size: 14px; line-height: 1.8; color: #e8e8e8;">
-        <p>Motion blur on modern displays is primarily caused by "sample-and-hold" technology. The image is drawn and remains static on the screen until the next frame is ready.</p>
-<h2>Persistence Blur</h2>
-<p>As your eyes smoothly track a moving object across the screen, the static image gets smeared across your retina. The only ways to reduce this persistence blur are to increase the frame rate (and refresh rate) or use a strobing backlight to insert black frames.</p>
+      <div class="article-content" style="font-size: 14px; line-height: 1.8; color: #ccc;">
+
+        <p>Motion blur is one of the most common complaints about LCD and OLED monitors, yet it is widely misunderstood. There are actually two distinct types of motion blur that affect your display: <strong style="color:#e8e8e8;">persistence blur</strong> caused by sample-and-hold technology, and <strong style="color:#e8e8e8;">response-time blur</strong> caused by slow pixel transitions. Both reduce image clarity during motion, but they have completely different causes and different solutions.</p>
+
+        <h2>What is Sample-and-Hold Motion Blur?</h2>
+        <p>Modern flat-panel displays — whether LCD or OLED — use a technology called sample-and-hold. When a new frame is rendered, the display draws it and then holds that static image perfectly still on the screen until the next frame arrives. Your monitor does not flash and go dark between frames the way a CRT electron gun would; it simply locks the frame in place.</p>
+        <p>The problem arises because your eyes are not static. When a moving object appears on screen, your eyes instinctively track it with a smooth pursuit motion. While your eyes move, the display holds its frame completely still. The result is that the moving object smears across your retina — not because the monitor is slow, but because your biology is working against the technology.</p>
+
+        <div style="background:#111; border:1px solid #2a2a2a; border-left:3px solid #39ff14; padding:16px 20px; border-radius:6px; margin:24px 0;">
+          <strong style="color:#39ff14; font-size:12px; text-transform:uppercase; letter-spacing:0.08em;">Key Insight</strong>
+          <p style="margin:8px 0 0; font-size:13px; color:#ccc;">Persistence blur is a fundamental property of sample-and-hold displays. It exists even when a display has a <em>perfect</em> 0ms pixel response time. The only way to eliminate it is to reduce the duration each frame is visible — which means higher refresh rates or BFI strobing.</p>
+        </div>
+
+        <h2>The Refresh Rate Solution to Persistence Blur</h2>
+        <p>Because persistence blur is driven by how long a frame stays on screen, the most effective solution is to increase your refresh rate. At 60Hz, each frame is displayed for ~16.7ms. At 144Hz, each frame lasts only ~6.9ms. At 360Hz, a frame stays on screen for just ~2.8ms. The shorter the hold period, the less time your eye has to drift, and the less blur you perceive.</p>
+
+        <p>This relationship is described by Blur Busters Law: perceived motion blur in pixels is approximately equal to your eye-tracking speed (in pixels per frame) multiplied by the frame hold duration. The formula demonstrates that doubling your refresh rate roughly halves your motion blur — one of the most powerful reasons to upgrade from 60Hz to 144Hz.</p>
+
+        <div style="overflow-x:auto; margin:24px 0;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="border-bottom:1px solid #333;">
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Refresh Rate</th>
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Frame Hold Time</th>
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Approx. Blur (pixels @ 1000px/s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">60 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">16.67 ms</td>
+                <td style="padding:8px 12px; color:#f87171;">~17 px</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">120 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">8.33 ms</td>
+                <td style="padding:8px 12px; color:#facc15;">~8 px</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">144 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">6.94 ms</td>
+                <td style="padding:8px 12px; color:#facc15;">~7 px</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">240 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">4.17 ms</td>
+                <td style="padding:8px 12px; color:#86efac;">~4 px</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 12px; color:#ccc;">360 Hz</td>
+                <td style="padding:8px 12px; color:#ccc;">2.78 ms</td>
+                <td style="padding:8px 12px; color:#39ff14;">~3 px</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>What is Pixel Response Time Blur (GtG)?</h2>
+        <p>The second type of blur is caused by the physical speed of your pixels. In an LCD, each pixel is controlled by a liquid crystal that must physically rotate to change the polarization of the backlight. This transition from one gray level to another takes a measurable amount of time — this is your <strong style="color:#e8e8e8;">Gray-to-Gray (GtG)</strong> response time.</p>
+        <p>When the crystal is mid-transition, it is displaying an intermediate color — neither the old pixel value nor the new one. As the next frame arrives, the pixel may not have finished transitioning yet. The smearing caused by these partial transitions creates ghosting: a faint trail that follows moving objects. You can detect this with a ghosting test.</p>
+
+        <h2>Overdrive: The Double-Edged Sword</h2>
+        <p>Most modern monitors include an "overdrive" or "response time" setting in their OSD (On-Screen Display). Overdrive applies an overvolt to liquid crystals to force them to switch faster. At moderate levels it reduces GtG blur significantly — but push it too far and you get <strong style="color:#e8e8e8;">inverse ghosting</strong> (also called pixel overshoot or coronas): a bright halo that appears ahead of moving objects because the crystal overshot its target value and must reverse course.</p>
+        <p>Finding the right overdrive level for your monitor and refresh rate requires testing. Use our <a href="/ghosting" style="color:#39ff14; text-decoration:none;">Ghosting Test</a> at different overdrive levels to find the sweet spot — no trailing and no coronas.</p>
+
+        <h2>What is MPRT?</h2>
+        <p>While GtG measures pixel switch time, <strong style="color:#e8e8e8;">MPRT (Moving Picture Response Time)</strong> measures total perceived blur in a more holistic way. MPRT combines pixel response time AND frame hold time into a single figure, making it a better representation of what you actually see when watching motion on screen. A lower MPRT means sharper motion overall.</p>
+        <p>MPRT is always limited by your frame hold time — so even an OLED with instantaneous pixel response will have an MPRT of ~16.7ms at 60Hz because of sample-and-hold. This is why OLED panels at 60Hz can still look blurry in motion despite having zero traditional ghosting.</p>
+
+        <h2>Black Frame Insertion (BFI): CRT-Style Strobing</h2>
+        <p>Black Frame Insertion is a technique where a monitor briefly turns off its backlight between frames, inserting a dark "black frame" that your eye perceives as a flash. This mimics the way a CRT's electron gun would go dark between sweeps, dramatically reducing the effective hold time without needing to increase the refresh rate.</p>
+        <p>With BFI at 120Hz, the effective MPRT can drop from ~8ms to as low as ~2ms, approaching 240Hz clarity at half the frame budget. The tradeoff is a significant reduction in brightness (often 40-60% dimmer) and potential for flicker sensitivity in some users. Many high-end gaming monitors (ASUS ROG, BenQ ZOWIE, LG UltraGear) include BFI modes sometimes labeled "ULMB," "DyAc," "Motion Blur Reduction," or "1ms MPRT mode."</p>
+
+        <div style="background:#111; border:1px solid #2a2a2a; border-left:3px solid #facc15; padding:16px 20px; border-radius:6px; margin:24px 0;">
+          <strong style="color:#facc15; font-size:12px; text-transform:uppercase; letter-spacing:0.08em;">Note on BFI + VRR</strong>
+          <p style="margin:8px 0 0; font-size:13px; color:#ccc;">Most monitors cannot run BFI and Variable Refresh Rate (G-Sync / FreeSync) simultaneously. When you enable BFI, VRR is typically disabled automatically. Some newer displays (e.g. ASUS ROG Swift with ULMB 2) support a limited form of "VRR + strobe" at fixed frame rates.</p>
+        </div>
+
+        <h2>OLED vs LCD: Motion Blur Comparison</h2>
+        <p>OLED panels have near-instantaneous pixel response times (often under 0.1ms GtG), which completely eliminates response-time ghosting. However, OLEDs still suffer from persistence blur from sample-and-hold just like LCDs. The result is that a 60Hz OLED can appear blurry, while a 144Hz LCD with good overdrive can appear sharper for fast motion despite having slower pixel switching.</p>
+        <p>At 120Hz or higher, OLED panels combine their fast pixel response with a shorter hold time, making them the gold standard for motion clarity. This is why modern gaming OLEDs like the LG C3/C4, Samsung QD-OLED, and ASUS ROG OLED displays are so highly rated.</p>
+
+        <h2>Practical Tips to Reduce Motion Blur</h2>
+        <ul style="padding-left:20px; margin-bottom:24px;">
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Upgrade to 144Hz or higher</strong> — the single biggest improvement you can make</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Enable overdrive at the correct level</strong> — test with our Ghosting Test to avoid coronas</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Try BFI/strobe mode</strong> — if your monitor supports it and you can tolerate the brightness loss</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Maximize your FPS</strong> — blur is worse when FPS drops below your Hz; use frame-rate caps just at or above your Hz</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Use DisplayPort over HDMI</strong> — ensure you're not bandwidth-limited to a lower refresh rate than your monitor supports</li>
+        </ul>
+
       </div>
 
       <GuideCTA
         heading="Test Your Display for Motion Blur"
-        subtext="See if your monitor suffers from persistence blur in practice."
+        subtext="See if your monitor suffers from persistence blur and ghosting in practice."
         tools={[
           { path: '/ghosting', label: 'Ghosting Test', icon: '👻' },
           { path: '/black-frame-insertion', label: 'BFI Strobe Test', icon: '⚫' },
@@ -46,10 +145,10 @@ const jsonLd = {
 </Base>
 
 <style is:global>
-  .article-content h2 { font-size: 20px; margin-top: 40px; margin-bottom: 16px; color: #e8e8e8; }
-  .article-content p { margin-bottom: 24px; }
-  .article-content a { color: #e8e8e8; text-decoration: underline; text-decoration-color: #555; }
-  .article-content a:hover { color: #fff; text-decoration-color: #fff; }
-  .article-content details { margin-bottom: 16px; border: 1px solid #222; padding: 16px; border-radius: 4px; }
-  .article-content summary { cursor: pointer; font-weight: bold; color: #e8e8e8; outline: none; }
+  .article-content h2 { font-size: 20px; margin-top: 48px; margin-bottom: 16px; color: #e8e8e8; }
+  .article-content h3 { font-size: 16px; margin-top: 32px; margin-bottom: 12px; color: #ccc; }
+  .article-content p { margin-bottom: 20px; }
+  .article-content ul li { color: #ccc; }
+  .article-content a { color: #39ff14; text-decoration: none; }
+  .article-content a:hover { text-decoration: underline; }
 </style>

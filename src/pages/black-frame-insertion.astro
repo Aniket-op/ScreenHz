@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import BFITest from '../components/benchmarks/BFITest.tsx';
 
 const title = "Black Frame Insertion Test";
-const description = "Test display motion clarity with simulated Black Frame Insertion (BFI) and variable duty cycles.";
+const description = "Test display motion clarity with simulated Black Frame Insertion (BFI). Reduce persistence blur like a CRT strobe at adjustable duty cycles. Works best at 120Hz and above.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">What is Black Frame Insertion?</h2>
-      <p style="margin-bottom: 16px;">Black Frame Insertion (BFI) is a technique used by modern displays to reduce motion blur by inserting a black frame between every rendered frame. This forces the screen to behave more like a CRT, reducing sample-and-hold persistence.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">What is Black Frame Insertion (BFI)?</h2>
+      <p style="margin-bottom: 16px;">Black Frame Insertion (BFI) — also known as Backlight Strobing, ULMB (NVIDIA), DyAc (BenQ), or ELMB (ASUS) — is an advanced motion blur reduction technology. It addresses the fundamental flaw of modern LCD and OLED displays: sample-and-hold persistence blur.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How BFI Works</h3>
+      <p style="margin-bottom: 16px;">Instead of keeping the backlight on continuously while frames transition (which allows your eye to perceive the blur as it tracks motion), BFI briefly turns the monitor's backlight completely off between frames. This mimics the impulse-style drawing of a classic CRT electron gun. By extinguishing the backlight, BFI effectively reduces the amount of time the frame is held on screen (the persistence time) to just 1 or 2 milliseconds, even at 120Hz. The result is motion clarity that rivals a 360Hz display, but achieved at much lower frame rates.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The Tradeoffs of BFI</h3>
+      <p style="margin-bottom: 16px;">While BFI offers incredible motion sharpness for competitive gaming, it comes with three major drawbacks. First, it significantly reduces the display's peak brightness, often by 40-50%, because the backlight is off for a portion of the time. Second, the rapid strobing can cause visible flicker that leads to eye strain or headaches in sensitive users. Third, on most monitors, BFI cannot be used at the same time as Variable Refresh Rate (G-Sync/FreeSync), requiring you to choose between perfect motion clarity or tear-free variable frame pacing.</p>
     </section>
   </div>
 </Base>

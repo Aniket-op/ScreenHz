@@ -71,8 +71,10 @@ const footerAbout = [
 
   <div class="footer-bottom">
     <span>© {year} ScreenHz — Free, open display benchmark suite</span>
-    <span style="font:var(--font-caption-mono); color:var(--mute);">
-      Built with Astro · React · Browser APIs
+    <span style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap; justify-content:flex-end;">
+      <a href="/privacy" class="footer-link" style="font:var(--font-caption-mono); color:var(--mute);">Privacy Policy</a>
+      <a href="/terms" class="footer-link" style="font:var(--font-caption-mono); color:var(--mute);">Terms of Service</a>
+      <span style="font:var(--font-caption-mono); color:var(--mute);">Built with Astro · React · Browser APIs</span>
     </span>
   </div>
 </footer>

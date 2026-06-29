@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import VRRSimulation from '../components/benchmarks/VRRSimulation.tsx';
 
 const title = "Variable Refresh Rate Test";
-const description = "Simulate Variable Refresh Rate (VRR) to see how dynamic frame times affect motion smoothness.";
+const description = "Simulate Variable Refresh Rate (VRR) � G-Sync and FreeSync � to see how dynamic frame times affect motion smoothness compared to fixed 60Hz, 144Hz, or 240Hz output.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Variable Refresh Rate (VRR)</h2>
-      <p style="margin-bottom: 16px;">VRR technologies like G-Sync and FreeSync synchronize the monitor's refresh rate with the game's fluctuating frame rate, eliminating tearing without adding the input lag of V-Sync.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Understanding Variable Refresh Rate (VRR)</h2>
+      <p style="margin-bottom: 16px;">Variable Refresh Rate (VRR) — implemented via NVIDIA G-Sync, AMD FreeSync, or HDMI 2.1 VRR — is arguably the most important display technology for PC gaming developed in the last decade. Historically, monitors ran at a fixed refresh rate (e.g., exactly 60 times per second). But video games render frames dynamically; a complex explosion might drop the frame rate to 45 FPS, while a quiet hallway might spike to 100 FPS.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The Problem with Fixed Refresh Rates</h3>
+      <p style="margin-bottom: 16px;">When fixed refresh rates collide with variable frame rates, two bad things happen. If V-Sync is off, the monitor draws whatever the GPU gives it, often resulting in two different frames on screen at once (screen tearing). If V-Sync is on, the monitor waits for the next cycle to draw a late frame, resulting in duplicate frames being shown (stuttering) and increased input lag. Neither experience is smooth.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The VRR Solution</h3>
+      <p style="margin-bottom: 16px;">VRR solves this by giving the GPU control over the monitor. Instead of the monitor refreshing on a rigid schedule, it waits for the GPU to finish rendering the frame, and <em>then</em> refreshes immediately. If the game drops to 48 FPS, the monitor instantly becomes a 48Hz display. If it jumps to 112 FPS, the monitor instantly becomes a 112Hz display. The result is perfectly smooth motion without tearing, without stuttering, and with minimal input lag. This simulation visualizes the difference between a stuttery fixed-rate presentation and a perfectly paced VRR presentation.</p>
     </section>
   </div>
 </Base>

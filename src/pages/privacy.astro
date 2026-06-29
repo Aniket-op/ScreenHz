@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = "Privacy Policy";
+const description = "ScreenHz Privacy Policy. Learn how we collect and use data, including Google Analytics and advertising cookies, to operate this free display benchmark suite.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": title,
+  "url": "https://screenhz.com/privacy",
+  "description": description,
+  "publisher": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" }
+};
+
+const lastUpdated = "June 1, 2026";
+---
+
+<Base title={title} description={description} jsonLd={jsonLd} robots="noindex, follow">
+  <div style="min-height: 100vh; background: #0c0c0c; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace;">
+
+    <div style="max-width: 720px; margin: 0 auto; padding: 64px 24px;">
+
+      <nav style="font-size: 12px; color: #555; margin-bottom: 40px;">
+        <a href="/" style="color: #555; text-decoration: none;">Home</a>
+        <span style="margin: 0 8px;">/</span>
+        <span style="color: #e8e8e8;">Privacy Policy</span>
+      </nav>
+
+      <h1 style="font-size: 32px; font-weight: 700; color: #e8e8e8; margin-bottom: 8px; line-height: 1.2;">Privacy Policy</h1>
+      <p style="font-size: 12px; color: #555; margin-bottom: 48px;">Last updated: {lastUpdated}</p>
+
+      <div style="font-size: 14px; line-height: 1.8; color: #ccc;">
+
+        <p>ScreenHz ("we", "us", or "our") operates the website at <strong style="color:#e8e8e8;">screenhz.com</strong> (the "Service"). This Privacy Policy explains what information we collect, how we use it, and your choices about that information.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">1. Information We Collect</h2>
+        <p>ScreenHz is a browser-based tool suite. We do not require registration, accounts, or personal information to use any of our tools. However, the following data is collected automatically:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Usage Data:</strong> We use Google Analytics (GA4) to collect anonymized information about how visitors use the site, including pages visited, session duration, browser type, device type, and approximate geographic location (country/region level). IP addresses are anonymized by Google.</li>
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Cookies:</strong> Google Analytics sets cookies to distinguish users and sessions. These cookies do not contain personally identifiable information.</li>
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Advertising:</strong> We may display advertisements via Google AdSense. AdSense uses cookies to serve ads based on prior visits to our site and other sites. You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" style="color:#39ff14; text-decoration:none;">Google Ads Settings</a>.</li>
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Benchmark Scores (Optional):</strong> If you submit your display benchmark score to the Leaderboard, we store your submitted score, browser-reported hardware stats (Hz, resolution), and an anonymous session identifier. No name or email is required.</li>
+        </ul>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">2. How We Use Your Information</h2>
+        <p>We use collected data to:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;">Understand how our tools are used so we can improve them</li>
+          <li style="margin-bottom: 8px;">Diagnose technical issues and performance problems</li>
+          <li style="margin-bottom: 8px;">Display contextually relevant advertising to support the free service</li>
+          <li style="margin-bottom: 8px;">Power the public benchmark leaderboard</li>
+        </ul>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">3. Third-Party Services</h2>
+        <p>We use the following third-party services, each with their own privacy policies:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Google Analytics</strong> — <a href="https://policies.google.com/privacy" style="color:#39ff14; text-decoration:none;">Privacy Policy</a></li>
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Google AdSense</strong> — <a href="https://policies.google.com/privacy" style="color:#39ff14; text-decoration:none;">Privacy Policy</a></li>
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Cloudflare</strong> (hosting/CDN) — <a href="https://www.cloudflare.com/privacypolicy/" style="color:#39ff14; text-decoration:none;">Privacy Policy</a></li>
+        </ul>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">4. Cookies</h2>
+        <p>We use the following cookies:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">_ga, _ga_*</strong> (Google Analytics) — Session and user tracking. Expire after 2 years.</li>
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">screenhz-theme</strong> — Stores your dark/light theme preference. Expires at end of session.</li>
+          <li style="margin-bottom: 8px;"><strong style="color:#e8e8e8;">Google AdSense cookies</strong> — Used for ad personalization. Controlled by Google.</li>
+        </ul>
+        <p>You can disable cookies in your browser settings at any time. Note that disabling cookies may affect your theme preference and advertising relevance.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">5. Data Retention</h2>
+        <p>Google Analytics data is retained for 14 months by default, after which it is automatically deleted. Benchmark leaderboard entries are retained indefinitely unless you request removal by contacting us.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">6. Your Rights (GDPR / CCPA)</h2>
+        <p>Depending on your location, you may have the right to:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;">Access the personal data we hold about you</li>
+          <li style="margin-bottom: 8px;">Request correction or deletion of your data</li>
+          <li style="margin-bottom: 8px;">Opt out of analytics tracking (use browser-level opt-out or install <a href="https://tools.google.com/dlpage/gaoptout" style="color:#39ff14; text-decoration:none;">Google Analytics Opt-out Browser Add-on</a>)</li>
+          <li style="margin-bottom: 8px;">Opt out of personalized advertising (visit <a href="https://www.google.com/settings/ads" style="color:#39ff14; text-decoration:none;">Google Ad Settings</a>)</li>
+        </ul>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">7. Children's Privacy</h2>
+        <p>ScreenHz is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">8. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page will reflect any changes. Continued use of the Service after changes constitutes acceptance of the updated policy.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">9. Contact</h2>
+        <p>For privacy-related questions or data requests, please contact us at: <strong style="color:#e8e8e8;">privacy@screenhz.com</strong></p>
+
+      </div>
+
+      <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid #1a1a1a; display: flex; gap: 24px; font-size: 13px;">
+        <a href="/terms" style="color: #39ff14; text-decoration: none;">Terms of Service →</a>
+        <a href="/" style="color: #555; text-decoration: none;">← Back to ScreenHz</a>
+      </div>
+
+    </div>
+  </div>
+</Base>

@@ -2,38 +2,129 @@
 import Base from '../../layouts/Base.astro';
 import GuideCTA from '../../components/layout/GuideCTA.astro';
 
-const title = "How to Improve Gaming FPS — 2025 Guide";
-const description = "Actionable steps to increase your frame rate, reduce stuttering, and optimize your PC for gaming.";
+const title = "How to Improve Gaming FPS — 2026 Complete Guide";
+const description = "Actionable steps to increase your gaming frame rate: GPU/CPU bottleneck fixes, driver tweaks, DLSS/FSR upscaling, Windows optimizations, and game settings explained.";
+
+const publishedTime = "2026-06-01T12:00:00Z";
+const modifiedTime  = new Date().toISOString();
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
   "description": description,
-  "author": { "@type": "Organization", "name": "ScreenHz" }
+  "author": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "publisher": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "datePublished": publishedTime,
+  "dateModified": modifiedTime
 };
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description} jsonLd={jsonLd} ogType="article">
   <div class="bench-page" style="display: flex; flex-direction: column; min-height: 100vh; background: #0c0c0c; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace;">
     <div class="bench-header" style="height: 48px; border-bottom: 1px solid #222; display: flex; align-items: center; padding: 0 24px; flex-shrink: 0; position: sticky; top: 0; background: #0c0c0c; z-index: 100;">
       <a href="/" class="bench-back" style="color: #555; text-decoration: none; margin-right: 16px;">← Back</a>
-      <span style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0; color: #555;">Guide</span>
+      <nav aria-label="Breadcrumb" style="font-size: 12px; color: #555;">
+        <a href="/" style="color: #555; text-decoration: none;">Home</a>
+        <span style="margin: 0 6px;">/</span>
+        <a href="/guides" style="color: #555; text-decoration: none;">Guides</a>
+        <span style="margin: 0 6px;">/</span>
+        <span style="color: #e8e8e8;">Improve FPS</span>
+      </nav>
     </div>
     
-    <article style="max-width: 680px; margin: 0 auto; padding: 40px 24px; width: 100%;">
-      <h1 style="font-size: 32px; margin-bottom: 8px; color: #e8e8e8;">{title}</h1>
-      <div style="font-size: 12px; color: #555; margin-bottom: 40px;">5 min read · Display Benchmarks</div>
+    <article style="max-width: 720px; margin: 0 auto; padding: 48px 24px; width: 100%;">
+      <h1 style="font-size: 32px; margin-bottom: 8px; color: #e8e8e8; line-height: 1.2;">{title}</h1>
+      <div style="font-size: 12px; color: #555; margin-bottom: 40px;">10 min read · PC Performance</div>
       
-      <div class="article-content" style="font-size: 14px; line-height: 1.8; color: #e8e8e8;">
-        <p>Maximizing FPS is crucial for competitive gaming. Higher FPS means lower input latency and smoother visual feedback.</p>
-<h2>Key Optimizations</h2>
-<p>Ensure XMP/EXPO is enabled in your BIOS for maximum RAM speed. Disable background apps, and consider using upscaling technologies like DLSS or FSR if your GPU is struggling to maintain your monitor's native refresh rate.</p>
+      <div class="article-content" style="font-size: 14px; line-height: 1.8; color: #ccc;">
+
+        <p>Maximizing FPS in PC gaming is one of the most impactful things you can do for your experience. Higher frame rates mean lower input latency, smoother motion, and a competitive edge in fast-paced games. This guide covers every meaningful optimization — from hardware configuration to software tweaks — in order of impact.</p>
+
+        <h2>Step 1: Identify Your Bottleneck</h2>
+        <p>Before tuning anything, you need to know whether your FPS is limited by your <strong style="color:#e8e8e8;">GPU</strong> or your <strong style="color:#e8e8e8;">CPU</strong>. A GPU bottleneck means your graphics card can't render frames fast enough — raising in-game resolution or quality settings will drop FPS further. A CPU bottleneck means your processor can't feed the GPU fast enough — lowering resolution won't help much because the CPU is the choke point.</p>
+        <p>The fastest way to diagnose: run your game and watch GPU utilization. If GPU usage sits at 95-100% and FPS is below target, you're GPU-limited. If GPU usage is low (under 80%) and FPS is still low, you're CPU-limited. Tools like MSI Afterburner (with RivaTuner) or GPU-Z overlay can show this in-game in real time.</p>
+
+        <div style="overflow-x:auto; margin:24px 0;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="border-bottom:1px solid #333;">
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Bottleneck Type</th>
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">GPU Usage</th>
+                <th style="text-align:left; padding:8px 12px; color:#555; font-weight:600;">Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">GPU Bottleneck</td>
+                <td style="padding:8px 12px; color:#f87171;">95–100%</td>
+                <td style="padding:8px 12px; color:#ccc;">Lower resolution / quality, upscaling, or GPU upgrade</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1a1a1a;">
+                <td style="padding:8px 12px; color:#ccc;">CPU Bottleneck</td>
+                <td style="padding:8px 12px; color:#facc15;">Under 80%</td>
+                <td style="padding:8px 12px; color:#ccc;">Improve CPU performance, reduce draw calls, upgrade CPU</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 12px; color:#ccc;">RAM Bottleneck</td>
+                <td style="padding:8px 12px; color:#86efac;">Variable</td>
+                <td style="padding:8px 12px; color:#ccc;">Enable XMP/EXPO, add more RAM, check dual-channel</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Step 2: Enable XMP / EXPO in BIOS</h2>
+        <p>This is one of the most commonly missed free-performance upgrades. When you buy DDR4 or DDR5 RAM rated at 3600 MHz or 6000 MHz, it does <em>not</em> automatically run at that speed. By default, your BIOS runs all RAM at the JEDEC minimum — often 2133 MHz for DDR4 or 4800 MHz for DDR5.</p>
+        <p>Enabling <strong style="color:#e8e8e8;">XMP</strong> (Intel) or <strong style="color:#e8e8e8;">EXPO</strong> (AMD) in your BIOS unlocks your RAM's rated speed. For CPU-limited games — which includes most esports titles like CS2, Valorant, and Apex Legends — this can improve FPS by 10–25% with zero cost. Restart, enter BIOS (usually Del/F2), and find the memory profile setting under "OC" or "Tweaker."</p>
+
+        <h2>Step 3: Update and Optimize GPU Drivers</h2>
+        <p>Always use the latest GPU drivers from NVIDIA or AMD. Both companies regularly release game-ready driver updates that can improve FPS significantly in specific titles. For NVIDIA, use GeForce Experience or download directly from nvidia.com. For AMD, use Radeon Software or download from amd.com.</p>
+        <p>When installing new drivers, choose "Clean Install" (NVIDIA) or check "Factory Reset" (AMD) to wipe old settings that could cause conflicts. After installation, open the control panel and set Power Management Mode to <strong style="color:#e8e8e8;">Prefer Maximum Performance</strong> — this prevents the GPU from downclocking when it shouldn't.</p>
+
+        <h2>Step 4: Use Upscaling — DLSS, FSR, and XeSS</h2>
+        <p>Modern upscaling technologies render at a lower internal resolution and intelligently scale up to your display resolution. The quality/performance tradeoff is often very favorable:</p>
+        <ul style="padding-left:20px; margin-bottom:20px;">
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">DLSS 3.5 / 4 (NVIDIA RTX)</strong> — AI-based upscaling using Tensor cores. Produces excellent visual quality, especially in Quality mode. DLSS Frame Generation can double FPS in supported titles. RTX 2000 series and above.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">FSR 3 (AMD)</strong> — Open-source, works on any GPU including NVIDIA and Intel. Not as sharp as DLSS but very widely supported. FSR 3 Frame Generation available where implemented.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">XeSS (Intel)</strong> — Intel's upscaling, works best on Intel Arc GPUs but has fallback for all hardware.</li>
+        </ul>
+        <p>In competitive games where every frame matters, upscaling at Performance mode (rendering at ~67% resolution) can nearly double your FPS with minimal visual impact at typical viewing distances.</p>
+
+        <div style="background:#111; border:1px solid #2a2a2a; border-left:3px solid #39ff14; padding:16px 20px; border-radius:6px; margin:24px 0;">
+          <strong style="color:#39ff14; font-size:12px; text-transform:uppercase; letter-spacing:0.08em;">Pro Tip</strong>
+          <p style="margin:8px 0 0; font-size:13px; color:#ccc;">DLSS Frame Generation adds AI-generated in-between frames. This increases <em>displayed</em> FPS significantly, but the additional frames are generated after the GPU renders, so actual input latency isn't reduced in the same way real frames are. For competitive gaming, prefer real framerate gains over Frame Gen.</p>
+        </div>
+
+        <h2>Step 5: Windows Performance Optimizations</h2>
+        <p>Windows has several settings that can limit gaming performance by default:</p>
+        <ul style="padding-left:20px; margin-bottom:20px;">
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Power Plan:</strong> Set to "High Performance" or "Ultimate Performance" in Power Options. This prevents CPU throttling during gaming sessions.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Hardware-Accelerated GPU Scheduling (HAGS):</strong> Enable in Settings → Display → Graphics → Default Graphics Settings. Can reduce CPU overhead and lower latency, especially with VRR.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Game Mode:</strong> Enable in Settings → Gaming → Game Mode. Reduces background process priority during gaming.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Variable Refresh Rate (VRR):</strong> Enable in Settings → Display → Graphics for eligible monitors. This requires HAGS to be on.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Close background apps:</strong> Discord, browsers with video, streaming software — all consume GPU and CPU resources. Close what you don't need.</li>
+        </ul>
+
+        <h2>Step 6: In-Game Graphics Settings That Matter Most</h2>
+        <p>Not all graphics settings have equal impact on FPS. Adjusting these settings in roughly this order gives the best performance-per-visual-quality tradeoff:</p>
+        <ol style="padding-left:20px; margin-bottom:20px;">
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Resolution Scale / Render Scale</strong> — Lowering this has the biggest single impact on GPU load. Use upscaling instead for less quality loss.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Shadow Quality</strong> — High-quality shadows are very GPU-expensive. Dropping from Ultra to Medium often gives 15-30% more FPS with subtle visual difference in motion.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Ray Tracing</strong> — Disable for maximum performance unless you have an RTX 4070+ or better. RT is very expensive.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Anti-Aliasing</strong> — MSAA is expensive; use TAA, DLSS, or FSR instead. In competitive games, lower AA also gives slightly cleaner visuals on enemy models.</li>
+          <li style="margin-bottom:8px;"><strong style="color:#e8e8e8;">Texture Quality</strong> — High textures have minimal FPS impact but high VRAM impact. If you have 8GB+ VRAM, keep textures high.</li>
+        </ol>
+
+        <h2>Step 7: Frame Rate Caps and VRR</h2>
+        <p>Running uncapped FPS wastes GPU resources and can cause tearing. A better strategy: cap your FPS just at or slightly above your monitor's refresh rate. If you have a 144Hz monitor with FreeSync, cap at 141 FPS to keep VRR engaged. This reduces power consumption, GPU heat, and frame time variance — resulting in a smoother experience than uncapped.</p>
+        <p>Use RTSS (RivaTuner Statistics Server) for the most precise frame cap. In-game frame caps often have higher variance. NVIDIA users can also use the Low Latency mode in the driver control panel — set to "Ultra" for minimum input latency at the cost of slightly lower average FPS.</p>
+
       </div>
 
       <GuideCTA
         heading="Verify Your FPS & Display"
-        subtext="Check if your monitor is actually running at its rated rate."
+        subtext="Check if your monitor is actually running at its rated refresh rate."
         tools={[
           { path: '/refresh-rate', label: 'Refresh Rate Test', icon: '⚡' },
           { path: '/frame-skipping', label: 'Frame Skip Detector', icon: '⏭️' },
@@ -46,10 +137,10 @@ const jsonLd = {
 </Base>
 
 <style is:global>
-  .article-content h2 { font-size: 20px; margin-top: 40px; margin-bottom: 16px; color: #e8e8e8; }
-  .article-content p { margin-bottom: 24px; }
-  .article-content a { color: #e8e8e8; text-decoration: underline; text-decoration-color: #555; }
-  .article-content a:hover { color: #fff; text-decoration-color: #fff; }
-  .article-content details { margin-bottom: 16px; border: 1px solid #222; padding: 16px; border-radius: 4px; }
-  .article-content summary { cursor: pointer; font-weight: bold; color: #e8e8e8; outline: none; }
+  .article-content h2 { font-size: 20px; margin-top: 48px; margin-bottom: 16px; color: #e8e8e8; }
+  .article-content h3 { font-size: 16px; margin-top: 32px; margin-bottom: 12px; color: #ccc; }
+  .article-content p { margin-bottom: 20px; }
+  .article-content ul li, .article-content ol li { color: #ccc; }
+  .article-content a { color: #39ff14; text-decoration: none; }
+  .article-content a:hover { text-decoration: underline; }
 </style>

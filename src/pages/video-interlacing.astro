@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import VideoInterlacing from '../components/benchmarks/VideoInterlacing.tsx';
 
 const title = "Video Interlacing Test";
-const description = "Simulate the combing artifacts of interlaced video (1080i) compared to progressive scan (1080p).";
+const description = "Simulate interlaced video combing artifacts (1080i vs 1080p). Learn how progressive and interlaced scan differ and why high refresh rate monitors always prefer progressive output.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Interlaced vs Progressive</h2>
-      <p style="margin-bottom: 16px;">Legacy TV broadcasts send half the picture at a time (alternating odd and even horizontal lines). When motion occurs between the fields, the lines no longer align, causing jagged "combing" artifacts that must be repaired by a deinterlacer.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Progressive vs Interlaced Video Explained</h2>
+      <p style="margin-bottom: 16px;">Video signals are transmitted in one of two ways: progressive scan or interlaced scan. This test simulates the visual difference between the two, specifically demonstrating the "combing" artifacts that plague interlaced video during horizontal motion.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Interlaced Scan (e.g., 1080i)</h3>
+      <p style="margin-bottom: 16px;">Interlaced video was invented for early CRT televisions to double the perceived frame rate without increasing bandwidth. Instead of sending an entire frame at once, an interlaced signal sends only the odd-numbered horizontal lines in one pass (a "field"), and the even-numbered lines in the next pass. When motion is static, the brain blends them into a full image. However, when objects move horizontally, the object is in a different position in the odd field than it is in the even field. When displayed together, this creates jagged "combing" or "mouse teeth" artifacts on the edges of moving objects.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Progressive Scan (e.g., 1080p)</h3>
+      <p style="margin-bottom: 16px;">Progressive scan (the "p" in 1080p or 4K) draws every single line of the frame sequentially in a single pass. A 60fps progressive video sends 60 complete, full-resolution frames per second. All modern PC monitors, games, and web video (YouTube, Netflix) use progressive scan exclusively, resulting in perfectly clean motion without combing artifacts. If you ever see combing artifacts on a modern display, it means you are watching interlaced legacy broadcast footage (like 1080i television sports) that has not been properly de-interlaced by your playback software.</p>
     </section>
   </div>
 </Base>

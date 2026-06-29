@@ -1,9 +1,9 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import ScanOut from '../components/benchmarks/ScanOut.tsx';
 
 const title = "Scan-Out Pattern Test";
-const description = "Visualize how your monitor draws frames from top to bottom using precise alternating stripes.";
+const description = "Visualize your monitor's frame scan-out pattern from top to bottom. Reveals the rolling shutter effect and helps diagnose tearing artifacts at different refresh rates.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Display Scan-Out</h2>
-      <p style="margin-bottom: 16px;">Monitors do not update the whole screen instantly. They draw the image line-by-line from top to bottom. Pointing a slow-motion phone camera at this test will clearly reveal the dark scanning band traveling down the screen.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">What is Display Scan-Out?</h2>
+      <p style="margin-bottom: 16px;">Modern displays do not update the entire screen instantaneously. Instead, they receive data from the graphics card and draw the image line-by-line, typically from the top-left to the bottom-right. This process is called scan-out. At 60Hz, a full scan-out takes approximately 16.7 milliseconds. This means the bottom of your screen is physically displaying a slightly newer frame than the top of your screen at any given moment.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How Scan-Out Relates to Screen Tearing</h3>
+      <p style="margin-bottom: 16px;">Screen tearing occurs when your graphics card sends a new frame to the monitor while the monitor is only halfway through scanning out the previous frame. The monitor simply begins drawing the new frame from wherever it currently is, resulting in a horizontal "tear" line where the top half shows frame A and the bottom half shows frame B. V-Sync solves this by forcing the GPU to wait for the monitor's vertical blanking interval (VBLANK) — the tiny pause after reaching the bottom before starting the next scan at the top.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">How to See the Scan-Out Process</h3>
+      <p style="margin-bottom: 16px;">Our eyes are generally too slow to perceive the scan-out process directly. However, if you point a high-speed camera (like the 240fps slow-motion mode on most modern smartphones) at this test pattern, you will clearly see a dark horizontal band rapidly traveling from the top of the monitor to the bottom. This is the physical drawing of the frame occurring in real time.</p>
     </section>
   </div>
 </Base>

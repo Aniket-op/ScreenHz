@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import MovingPhoto from '../components/benchmarks/MovingPhoto.tsx';
 
 const title = "Moving Photo Test";
-const description = "Test motion clarity using complex, high-contrast, procedurally generated geometric patterns.";
+const description = "Test motion clarity using procedurally generated high-contrast geometric patterns. Reveals persistence blur, smearing, and pixel response artifacts at your display's Hz.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,8 +30,12 @@ const jsonLd = {
     </div>
 
     <section class="seo-article" style="padding: 32px 24px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #e8e8e8;">
-      <h2 style="font-size: 20px; margin-bottom: 16px;">Complex Motion Clarity</h2>
-      <p style="margin-bottom: 16px;">Simple shapes don't always reveal the full extent of motion blur. Complex, high-frequency details (like text and fine lines) are much more sensitive to blur, simulating the experience of panning a camera in a detailed video game.</p>
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Motion Clarity in Photographic Content</h2>
+      <p style="margin-bottom: 16px;">While abstract shapes (like UFOs or solid blocks) are excellent for measuring raw pixel response times and identifying overshoot coronas, they don't fully represent how we perceive motion blur in the real world. Real games and video content consist of complex, high-frequency textures — foliage, gravel, brick walls, and detailed character models. This test uses a moving photographic image to demonstrate how motion blur destroys fine texture detail during fast camera pans.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">The Loss of Texture Resolution</h3>
+      <p style="margin-bottom: 16px;">On a standard 60Hz sample-and-hold display, a fast-panning camera can reduce your perceived resolution from 4K down to the equivalent of 480p while in motion. The fine details in the photograph will smear together into a soft blur due to persistence. The moment the motion stops, the 4K sharpness instantly returns. This dynamic resolution loss is why competitive gamers prioritize high refresh rates — 240Hz or 360Hz keeps the image sharp <em>while</em> you are turning quickly, allowing you to spot targets more easily.</p>
+      <h3 style="font-size: 16px; margin: 24px 0 12px; color: #ccc;">Evaluating the Test</h3>
+      <p style="margin-bottom: 16px;">Track the moving photograph with your eyes. On a slow 60Hz panel, the fine details will become entirely unreadable. As you increase the refresh rate, or if you enable a backlight strobing mode (BFI/ULMB), you should notice the fine textures remaining distinct and sharp even at high panning speeds. Compare this visual result directly to your experience when panning the camera quickly in a first-person shooter.</p>
     </section>
   </div>
 </Base>

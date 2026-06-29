@@ -5,12 +5,18 @@ import GuideCTA from '../../components/layout/GuideCTA.astro';
 const title = "G-Sync vs FreeSync — Full Comparison";
 const description = "A breakdown of Variable Refresh Rate (VRR) technologies and how they eliminate screen tearing.";
 
+const publishedTime = "2026-06-01T12:00:00Z";
+const modifiedTime  = new Date().toISOString();
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
   "description": description,
-  "author": { "@type": "Organization", "name": "ScreenHz" }
+  "author": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "publisher": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" },
+  "datePublished": publishedTime,
+  "dateModified": modifiedTime
 };
 ---
 

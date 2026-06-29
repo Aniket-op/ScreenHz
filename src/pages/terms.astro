@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = "Terms of Service";
+const description = "ScreenHz Terms of Service. Read the terms and conditions for using ScreenHz's free browser-based monitor benchmark and display test suite.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": title,
+  "url": "https://screenhz.com/terms",
+  "description": description,
+  "publisher": { "@type": "Organization", "name": "ScreenHz", "url": "https://screenhz.com" }
+};
+
+const lastUpdated = "June 1, 2026";
+---
+
+<Base title={title} description={description} jsonLd={jsonLd} robots="noindex, follow">
+  <div style="min-height: 100vh; background: #0c0c0c; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace;">
+
+    <div style="max-width: 720px; margin: 0 auto; padding: 64px 24px;">
+
+      <nav style="font-size: 12px; color: #555; margin-bottom: 40px;">
+        <a href="/" style="color: #555; text-decoration: none;">Home</a>
+        <span style="margin: 0 8px;">/</span>
+        <span style="color: #e8e8e8;">Terms of Service</span>
+      </nav>
+
+      <h1 style="font-size: 32px; font-weight: 700; color: #e8e8e8; margin-bottom: 8px; line-height: 1.2;">Terms of Service</h1>
+      <p style="font-size: 12px; color: #555; margin-bottom: 48px;">Last updated: {lastUpdated}</p>
+
+      <div style="font-size: 14px; line-height: 1.8; color: #ccc;">
+
+        <p>Please read these Terms of Service ("Terms") carefully before using <strong style="color:#e8e8e8;">screenhz.com</strong> (the "Service") operated by ScreenHz ("us", "we", or "our"). By accessing or using the Service, you agree to be bound by these Terms.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">1. Acceptance of Terms</h2>
+        <p>By accessing and using ScreenHz, you accept and agree to be bound by these Terms and our <a href="/privacy" style="color:#39ff14; text-decoration:none;">Privacy Policy</a>. If you do not agree to these Terms, please do not use the Service.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">2. Description of Service</h2>
+        <p>ScreenHz provides a free, browser-based suite of display and peripheral benchmark tools including, but not limited to:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;">Monitor refresh rate (Hz) detection</li>
+          <li style="margin-bottom: 8px;">Motion blur, ghosting, and pixel response tests</li>
+          <li style="margin-bottom: 8px;">Input latency and mouse polling rate measurement</li>
+          <li style="margin-bottom: 8px;">Display calibration patterns and color tests</li>
+          <li style="margin-bottom: 8px;">Screen resolution and DPI analysis</li>
+          <li style="margin-bottom: 8px;">Full display benchmark scoring and leaderboard</li>
+        </ul>
+        <p>The Service is provided "as-is" and "as available" for informational and entertainment purposes. ScreenHz is not a substitute for professional display calibration equipment.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">3. Accuracy of Results</h2>
+        <p>All measurements provided by ScreenHz are performed using standard browser APIs (primarily <code style="background:#1a1a1a; padding:2px 6px; border-radius:3px; font-size:12px;">requestAnimationFrame</code> and <code style="background:#1a1a1a; padding:2px 6px; border-radius:3px; font-size:12px;">performance.now()</code>). While we strive for high accuracy, results may vary depending on:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;">Your browser's implementation of web standards</li>
+          <li style="margin-bottom: 8px;">Background CPU/GPU load on your system</li>
+          <li style="margin-bottom: 8px;">Your operating system's scheduling behavior</li>
+          <li style="margin-bottom: 8px;">Power saving modes, VSync, or other system settings</li>
+        </ul>
+        <p>ScreenHz makes no warranty that test results are suitable for any specific professional calibration, hardware warranty, or purchasing decision purpose.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">4. Intellectual Property</h2>
+        <p>All content on ScreenHz — including but not limited to the visual design, source code, written articles, test algorithms, and benchmark scoring system — is the intellectual property of ScreenHz and protected by applicable copyright laws. You may not reproduce, distribute, or create derivative works without explicit written permission.</p>
+        <p>You may link to ScreenHz pages freely. You may share screenshots of test results for personal or editorial use provided you attribute ScreenHz and link back to screenhz.com.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">5. Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 8px;">Use the Service in any way that violates applicable local, national, or international law or regulation</li>
+          <li style="margin-bottom: 8px;">Attempt to scrape, crawl, or systematically access the Service in a way that places unreasonable load on our servers</li>
+          <li style="margin-bottom: 8px;">Submit false, misleading, or spam entries to the benchmark leaderboard</li>
+          <li style="margin-bottom: 8px;">Attempt to reverse-engineer or extract proprietary benchmark algorithms</li>
+          <li style="margin-bottom: 8px;">Use automated bots to interact with display tests or collect results</li>
+        </ul>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">6. Leaderboard Submissions</h2>
+        <p>By submitting a benchmark score to the public leaderboard, you grant ScreenHz a perpetual, royalty-free, non-exclusive license to display, publish, and use your submitted score data (hardware stats and score) on the Service. Leaderboard entries are public and may be visible to all users. We reserve the right to remove entries that appear to be falsified or generated by automated tools.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">7. Disclaimer of Warranties</h2>
+        <p>THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">8. Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, SCREENHZ SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR GOODWILL, RESULTING FROM YOUR USE OF OR INABILITY TO USE THE SERVICE.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">9. Third-Party Links</h2>
+        <p>The Service may contain links to third-party websites. These links are provided for convenience only. ScreenHz has no control over the content of those sites and accepts no responsibility for them or for any loss or damage that may arise from your use of them.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">10. Governing Law</h2>
+        <p>These Terms shall be governed by and construed in accordance with applicable laws. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the applicable courts.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">11. Changes to Terms</h2>
+        <p>We reserve the right to modify these Terms at any time. The "Last updated" date will reflect the most recent revision. Your continued use of the Service after any changes constitutes acceptance of the updated Terms.</p>
+
+        <h2 style="font-size: 18px; color: #e8e8e8; margin-top: 40px; margin-bottom: 12px;">12. Contact</h2>
+        <p>For questions about these Terms, please contact us at: <strong style="color:#e8e8e8;">legal@screenhz.com</strong></p>
+
+      </div>
+
+      <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid #1a1a1a; display: flex; gap: 24px; font-size: 13px;">
+        <a href="/privacy" style="color: #39ff14; text-decoration: none;">Privacy Policy →</a>
+        <a href="/" style="color: #555; text-decoration: none;">← Back to ScreenHz</a>
+      </div>
+
+    </div>
+  </div>
+</Base>
